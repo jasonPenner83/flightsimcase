@@ -144,7 +144,7 @@ def rebuild(build_mod):
     while r.occurrences.count:
         r.occurrences.item(0).deleteMe()
     build_mod.build()
-    colorize()
+    apply_materials()
 
 
 def cut_list():
@@ -160,3 +160,52 @@ def cut_list():
                 prof = b.name.split()[0]
                 c[(prof, round(dims[2], 1), o.component.name)] += 1
     return c
+
+
+MATERIALS = [  # (body-name prefix, physical material) - first match wins
+    ('2020', 'Aluminum 6061'), ('2040', 'Aluminum 6061'),
+    ('HINGE', 'Aluminum 6061'), ('PIN', 'Stainless Steel'),
+    ('PRINT', 'PET Plastic'),                     # PETG stand-in (similar density)
+    ('COVER', 'ABS Plastic'), ('SHEET', 'ABS Plastic'), ('SKIN', 'ABS Plastic'),
+    ('BEZEL', 'ABS Plastic'), ('REF', 'ABS Plastic'),
+]
+# real 20-series profiles are hollow: ratio of real mass to the solid box modelled here
+PROFILE_FILL = {'2020': 0.46, '2040': 0.42}
+NON_PARTS = ('ZONE', 'ENVELOPE', 'REF', 'BEZEL')
+
+
+def apply_materials(hide_refs=True):
+    app, d = _d()
+    lib = app.materialLibraries.itemByName('Fusion Material Library')
+    cache = {}
+    for comp in d.allComponents:
+        for b in comp.bRepBodies:
+            for pre, mat in MATERIALS:
+                if b.name.startswith(pre):
+                    if mat not in cache:
+                        cache[mat] = lib.materials.itemByName(mat)
+                    b.material = cache[mat]
+                    break
+            if hide_refs and b.name.startswith('REF'):
+                b.isLightBulbOn = False
+    colorize()      # appearances override the material's default look
+
+
+def case_weight():
+    """Estimated build weight (kg), hollow-profile corrected, placeholders/zones excluded."""
+    app, d = _d()
+    tot = {}
+    for comp in d.allComponents:
+        if comp.name == 'Desk controls':
+            continue
+        n_inst = max(1, len([o for o in d.rootComponent.allOccurrences if o.component == comp]))
+        for b in comp.bRepBodies:
+            if b.name.startswith(NON_PARTS):
+                continue
+            m = b.physicalProperties.mass * n_inst
+            key = b.name.split()[0]
+            if key in PROFILE_FILL:
+                m *= PROFILE_FILL[key]
+            grp = 'extrusion' if key in PROFILE_FILL else ('printed' if key == 'PRINT' else ('sheet' if key in ('COVER', 'SHEET', 'SKIN') else 'other'))
+            tot[grp] = tot.get(grp, 0) + m
+    return {k: round(v, 2) for k, v in tot.items()}, round(sum(tot.values()), 2)

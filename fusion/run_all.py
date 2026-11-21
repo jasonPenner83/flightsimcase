@@ -14,7 +14,7 @@ def run(_context: str):
     t = load('tools')
     t.rebuild(load('build_case'))
     load('build_switch_panel').build()
-    t.colorize()
+    t.apply_materials()
     print('open, stored:', t.interference() or 'clear')
     t.set_outriggers(90)
     print('open, outriggers out:', t.interference() or 'clear')

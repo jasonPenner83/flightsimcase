@@ -33,6 +33,7 @@ Fold the left wing, then the right. On the right, the hinges can move together o
 | Open width | 1113 mm |
 | Closed | 379 W x 416 H x 289 D mm (height includes 40 mm feet; clamp jaws come off) |
 | Panels | Left wing 310, center 350, right spacer 98, right wing 350 mm wide; 375.6 mm tall |
+| Estimated weight | About 9.5 kg before electronics, from Fusion materials with hollow-profile correction: extrusion 5.7, sheet/cover parts 3.1 (printed spacer strips modeled solid, so the real figure is lower), printed plates 0.5, hinges 0.2 |
 | Fold check | Interference every 5° (10° one-hinge-at-a-time), outriggers stored and deployed. All clear |
 
 ## 2. Module standard (revised: rails placed per panel)

@@ -146,6 +146,7 @@ def build():
             for b in comp.bRepBodies:
                 if b.name.startswith('REF'):
                     b.opacity = 0.6
+                    b.isLightBulbOn = False      # placeholders hidden by default
         return occ
 
     def rocker_refs(cx, cz):
