@@ -9,7 +9,7 @@ A carry-size folding home cockpit for MSFS 2024. It starts with a full-scale Ces
 - **Renders:** [renders/](renders/) (older revisions in subfolders)
 
 ## Fusion model
-The master model lives in Autodesk Fusion: project "Flight Sim Case", design "Folding Cockpit Case".
+The master model lives in Autodesk Fusion: project "Flight Sim Case", design "Folding Cockpit Case - C172" (v1 = rev E lock).
 The scripts in [fusion/](fusion/) rebuild it through the Fusion API:
 - `build_case.py`: frame, hinges, outriggers. Dimensions are in the `P` dict at the top.
 - `build_switch_panel.py`: faceplate modules, built as real sketch/extrude features.
