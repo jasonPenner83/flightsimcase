@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+# Slicer / printer outputs (keep STLs, skip sliced files)
+*.gcode
+*.gcode.3mf
+*.bgcode
