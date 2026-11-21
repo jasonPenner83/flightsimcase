@@ -70,12 +70,12 @@ def _bodies(o):
             yield b
 
 
-def interference(min_vol_mm3=1.0, names=None):
+def interference(min_vol_mm3=1.0, names=None, children=True):
     app, d = _d()
     coll = adsk.core.ObjectCollection.create()
     tagged = []
     for n in (names or NAMES):
-        for b in _bodies(occ(n)):
+        for b in (_bodies(occ(n)) if children else occ(n).bRepBodies):
             if b.name.startswith(('BEZEL', 'ENVELOPE', 'HINGE', 'REF', 'OUTSOURCE')):
                 continue
             coll.add(b)
@@ -176,6 +176,7 @@ MATERIALS = [  # (body-name prefix, physical material) - first match wins
     ('OUTSOURCE', 'Nylon 12 (with Formlabs Fuse 1 3D Printer)'),
     ('COVER', 'ABS Plastic'), ('SHEET', 'ABS Plastic'), ('SKIN', 'ABS Plastic'),
     ('BEZEL', 'ABS Plastic'), ('REF', 'ABS Plastic'),
+    ('PANEL', 'Plywood, Finish'), ('ALU', 'Aluminum 6061'),
 ]
 # real 20-series profiles are hollow: ratio of real mass to the solid box modelled here
 PROFILE_FILL = {'2020': 0.46, '2040': 0.42}
@@ -206,7 +207,7 @@ def case_weight():
     app, d = _d()
     tot = {}
     for comp in d.allComponents:
-        if comp.name == 'Desk controls':
+        if comp.name in ('Desk controls', 'MIP', 'Component1'):
             continue
         n_inst = max(1, len([o for o in d.rootComponent.allOccurrences if o.component == comp]))
         for b in comp.bRepBodies:

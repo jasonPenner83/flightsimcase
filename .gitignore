@@ -10,3 +10,6 @@ desktop.ini
 *.gcode
 *.gcode.3mf
 *.bgcode
+
+# Paid vendor files (737DIYSIM) - never commit
+vendor/
