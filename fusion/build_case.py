@@ -6,8 +6,9 @@
 import adsk.core, adsk.fusion, math
 
 P = dict(
-    W=350.0,     # center + right wing width (center inner 310 holds the 300 mm GDU 1040 PFD)
-    WL=310.0,    # left wing: far edge must clear the audio-panel knobs on the right spacer when closed
+    W=414.0,     # center: audio panel (64) + MFD bezel (306) side by side, like the real C172
+    WL=350.0,    # left wing: PFD bezel (306) + switch rows either side of the pilot yoke
+    WR=350.0,    # right wing: flexible space (copilot side)
     H=375.6,     # 4 bays of 88.9 mm (2U EIA-310) + 20 mm rail
     T=20.0,
     proud=40.0,  # 2060 uprights stand 40 mm in front of the rail face
@@ -18,14 +19,16 @@ P = dict(
     hg=1.5,      # half gap at hinges (two hinge leaves sit in the seam)
     kn=2.5,      # knuckle axis in front of the upright face (knuckle rides on the front edge)
     # rails placed per panel to suit realistic module sizes (rail centerlines, mm from panel bottom)
-    rails_L=[10.0, 70.0, 170.0, 365.6],     # switch row 60 | flex bay 100 | standby instruments 195.6
-    rails_C=[10.0, 110.0, 310.0, 365.6],    # yoke + dimmers 100 | PFD 200 | top strip 55.6
-    rails_R=[10.0, 110.0, 310.0, 365.6],    # copilot yoke 100 | MFD 200 | top strip 55.6
+    rails_L=[10.0, 110.0, 310.0, 365.6],    # switches + yoke 100 | PFD 200 | top strip 55.6
+    rails_C=[10.0, 110.0, 310.0, 365.6],    # standby gauges + dimmers + copilot yoke 100 | audio + MFD 200 | top 55.6
+    rails_R=[10.0, 110.0, 310.0, 365.6],    # flexible
     foot=40.0,
     out_c=135.0,
     out_w=230.0,
-    yoke_x=0.0,      # pilot yoke on the PFD centerline (pilot sits square to the PFD, as in the C172)
-    thr_x=250.0,     # throttle on the aircraft centerline (audio panel / MFD seam)
+    yoke_x=-385.0,   # pilot yoke on the PFD centerline (PFD on the left wing)
+    thr_x=-120.0,    # throttle / aircraft centerline at the audio panel / MFD seam
+    out_wl=160.0,    # left wing outer outrigger
+    out_wi=120.0,    # left wing inner outrigger (second support for the yoke shelf)
 )
 
 
@@ -150,10 +153,11 @@ def build():
     wxr = AL[0] - hg; wxl = wxr - P['WL']
     rl = P['rails_L']
     lw = frame(wxl, wxr, rl)
-    lw.append(('BEZEL standby instruments (placeholder)', tbox(wxl + T + 2, wxr - T - 2, 0, 15, rl[2] + 0.4, rl[3] - 0.4)))
     lw.append(leaf(wxr, +1, 'HINGE leaf L-wing'))
     occLW = add_comp('Left wing', lw)
-    occOL = add_comp('Left wing outrigger', [outrigger(wxl + 30, P['out_w'], +1, '2020 Outrigger %d' % P['out_w']),
+    occOLI = add_comp('Left wing inner outrigger', [outrigger(wxr - 30, P['out_wi'], -1, '2020 Outrigger %d' % P['out_wi']),
+                                                   ('PRINT outrigger riser', tbox(wxr - 40, wxr - 20, -T, 0, -ft + 20, 0))])
+    occOL = add_comp('Left wing outrigger', [outrigger(wxl + 30, P['out_wl'], +1, '2020 Outrigger %d' % P['out_wl']),
                                              ('PRINT outrigger riser', tbox(wxl + 20, wxl + 40, -T, 0, -ft + 20, 0))])
 
     # ---------------- Right spacer (two 2020 verticals at the front plane + 3 mm skin) and right wing
@@ -162,22 +166,16 @@ def build():
     rs = [('2020 Spacer vertical %d' % round(H), tbox(rx0, rx0 + T, pr - T, pr, 0, H)),
           ('2020 Spacer vertical %d' % round(H), tbox(rx1 - T, rx1, pr - T, pr, 0, H)),
           ('SKIN spacer 3 mm', tbox(rx0 + T, rx1 - T, pr - T, pr - T + cv, 0, H)),
-          ('ZONE front (spacer modules)', tbox(rx0 + T, rx1 - T, pr - T + cv, pr + 37, 0, H)),
-          ('BEZEL GMA audio (approx 64x196)', tbox((rx0 + rx1) / 2 - 32, (rx0 + rx1) / 2 + 32, pr - T + cv, pr - T + cv + 15, (P['rails_R'][1] + P['rails_R'][2]) / 2 - 98, (P['rails_R'][1] + P['rails_R'][2]) / 2 + 98)),
           leaf(rx0, -1, 'HINGE leaf R-spacer'), leaf(rx1, +1, 'HINGE leaf R-spacer'),
           ('PRINT spacer cap', tbox(rx0 + T, rx1 - T, pr - T + cv, pr + 37, 0, cv)),
           ('PRINT spacer cap', tbox(rx0 + T, rx1 - T, pr - T + cv, pr + 37, H - cv, H)),
           knuckle(AR, 'HINGE knuckle R-center'), knuckle(BR, 'HINGE knuckle R-wing')]
     occRS = add_comp('Right spacer', rs)
 
-    wxl = BR[0] + hg; wxr = wxl + Wp
+    wxl = BR[0] + hg; wxr = wxl + P['WR']
     rr = P['rails_R']
     rw = frame(wxl, wxr, rr)
     mx = (wxl + wxr) / 2
-    rw.append(('BEZEL GDU 1040 MFD 300x196', tbox(mx - 150, mx + 150, 0, 15, (rr[1] + rr[2]) / 2 - 98, (rr[1] + rr[2]) / 2 + 98)))
-    cop_x = 2 * P['thr_x'] - P['yoke_x']       # copilot yoke mirrored about the aircraft centerline
-    if wxl + 80 < cop_x < wxr - 80:
-        rw.append(yoke_plate(cop_x, 'BEZEL copilot yoke blank (future)', rr[0], rr[1]))
     rw.append(leaf(wxl, -1, 'HINGE leaf R-wing'))
     occRW = add_comp('Right wing', rw)
     occOR = add_comp('Right wing outrigger', [outrigger(wxr - 30, P['out_w'], -1, '2020 Outrigger %d' % P['out_w']),
@@ -187,7 +185,7 @@ def build():
     yb = -T - Be - cv
     yx = P['yoke_x']; tx = P['thr_x']
     env = [
-        ('ENVELOPE yoke shelf plate (on deployed center outriggers)', tbox(yx - 160, yx + 160, -350, yb - 25, -ft, -ft + 6)),
+        ('ENVELOPE yoke shelf plate (on the two deployed left wing outriggers)', tbox(yx - 160, yx + 160, -350, yb - 25, -ft, -ft + 6)),
         ('ENVELOPE Logitech yoke housing (approx)', tbox(yx - 120, yx + 120, -320, yb - 30, -ft + 6, -ft + 146)),
         ('ENVELOPE Yoke shaft (through panel)', ycyl(yx, yoke_z, yb - 30, 150, 13)),
         ('ENVELOPE Yoke handles (approx)', tbox(yx - 140, yx + 140, 150, 200, yoke_z - 60, yoke_z + 60)),
@@ -197,7 +195,7 @@ def build():
 
     occC.isGrounded = True
     occE.isGrounded = True
-    for occ in (occC, occLW, occRS, occRW, occOCL, occOCR, occOL, occOR, occE):
+    for occ in (occC, occLW, occRS, occRW, occOCL, occOCR, occOL, occOLI, occOR, occE):
         for b in occ.component.bRepBodies:
             if b.name.startswith('ZONE'):
                 b.opacity = 0.15
@@ -228,7 +226,8 @@ def build():
     joint('Center outrigger L swing', occOCL, occC, (-140, -10))
     joint('Center outrigger R swing', occOCR, occC, (140, -10))
     joint('Left outrigger swing', occOL, occLW, (AL[0] - hg - P['WL'] + 30, -10))
-    joint('Right outrigger swing', occOR, occRW, (BR[0] + hg + Wp - 30, -10))
+    joint('Left inner outrigger swing', occOLI, occLW, (AL[0] - hg - 30, -10))
+    joint('Right outrigger swing', occOR, occRW, (BR[0] + hg + P['WR'] - 30, -10))
     print('geometry', G)
 
 

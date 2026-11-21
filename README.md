@@ -2,10 +2,10 @@
 
 A carry-size folding home cockpit for MSFS 2024. It starts with a full-scale Cessna 172 G1000 panel, with TBM 900 / PC-12 later. The frame is Vevor 2020/2040 aluminum extrusion with 3D-printed (Bambu A1) modules.
 
-- **Current design:** rev E (locked). Three panels (left wing 310, center 350, right wing 350 mm) on side-mounted piano hinges, with a 98 mm right spacer. It folds to 379 x 416 x 289 mm and is sealed when closed.
+- **Current design:** rev E frame, C172 G1000 layout. Left wing 350 mm (PFD + switches), center 414 mm (audio + MFD + standby gauges and dimmers), right wing 350 mm (flexible). Side-mounted piano hinges and a 98 mm right spacer. It folds to 443 x 416 x 289 mm and is sealed when closed.
 - **Module standard and cut list:** [Module_Standard_and_Cut_List.md](Module_Standard_and_Cut_List.md)
 - **Bill of materials:** [BOM.md](BOM.md)
-- **Print files:** [prints/](prints/) (plain faceplates SW-1, CL-1, CL-2; PFD-1 GDU 1040 bezel in 3 pieces)
+- **Print files:** [prints/](prints/) (PFD-1 and MFD-1 bezels in 3 pieces each, AU-1 audio, SB-1/SB-2 standby + dimming, SW-1L/SW-1R switches, YK-1/CP-1 yoke plates)
 - **Label artwork:** [labels/](labels/) (1:1 SVG for stickers or outsourced engraving; regenerate with `python fusion/gen_label_art.py`)
 - **Renders:** [renders/](renders/) (older revisions in subfolders)
 
@@ -15,6 +15,7 @@ The scripts in [fusion/](fusion/) rebuild it through the Fusion API:
 - `build_case.py`: frame, hinges, outriggers. Dimensions are in the `P` dict at the top.
 - `build_switch_panel.py`: faceplate modules, built as real sketch/extrude features. It writes `labels/panels.json`.
 - `build_pfd.py`: PFD-1 GDU 1040 bezel with LCD, PCBs, encoders and controller placeholders (hidden by default).
+- `build_standby.py`: SB-1 standby gauges and SB-2 dimming block.
 - `gen_label_art.py`: turns `panels.json` into the SVG label artwork.
 - `tools.py`, `run_all.py`: rebuild, fold collision sweep, cut list.
 - `*_revA..D.py`: earlier revisions, kept for history.

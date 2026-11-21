@@ -21,9 +21,9 @@ def joint(name):
 
 SIGN = {'Left wing hinge': 1.0, 'Right spacer hinge': -1.0, 'Right wing hinge': -1.0,
         'Center outrigger L swing': 1.0, 'Center outrigger R swing': -1.0,
-        'Left outrigger swing': 1.0, 'Right outrigger swing': -1.0}
+        'Left outrigger swing': 1.0, 'Right outrigger swing': -1.0, 'Left inner outrigger swing': -1.0}
 NAMES = ['Center panel', 'Left wing', 'Right spacer', 'Right wing',
-         'Center outrigger L', 'Center outrigger R', 'Left wing outrigger', 'Right wing outrigger']
+         'Center outrigger L', 'Center outrigger R', 'Left wing outrigger', 'Left wing inner outrigger', 'Right wing outrigger']
 
 
 def set_joint(name, deg):
@@ -40,7 +40,7 @@ def set_fold(left, rs=0, rw=None):
 
 
 def set_outriggers(deg):
-    for n in ('Center outrigger L swing', 'Center outrigger R swing', 'Left outrigger swing', 'Right outrigger swing'):
+    for n in ('Center outrigger L swing', 'Center outrigger R swing', 'Left outrigger swing', 'Left inner outrigger swing', 'Right outrigger swing'):
         set_joint(n, deg)
 
 
@@ -79,7 +79,7 @@ def interference(min_vol_mm3=1.0, names=None):
 
     def owner(e):
         n = _owner(e)
-        return {'SW-': 'Left wing', 'CL-': 'Center panel', 'PFD': 'Center panel'}.get(n[:3], n)   # modules live inside their host panel
+        return {'SW-': 'Left wing', 'YK-': 'Left wing', 'PFD': 'Left wing', 'CL-': 'Center panel', 'MFD': 'Center panel', 'SB-': 'Center panel', 'CP-': 'Center panel', 'AU-': 'Center panel'}.get(n[:3], n)   # modules live inside their host panel
     ii = d.createInterferenceInput(coll)
     ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)
@@ -128,7 +128,8 @@ def colorize():
          'COVER': 'Plastic - Matte (Gray)', 'SKIN': 'Plastic - Matte (Gray)', 'SHEET': 'Plastic - Matte (Gray)'}
     m['PRINT SW'] = 'Plastic - Matte (Black)'
     m['PRINT CL'] = 'Plastic - Matte (Black)'
-    m['PRINT PFD'] = 'Plastic - Matte (Black)'
+    for k in ('PRINT PFD', 'PRINT MFD', 'PRINT SB', 'PRINT YK', 'PRINT CP', 'PRINT AU'):
+        m[k] = 'Plastic - Matte (Black)'
     m['REF'] = 'Plastic - Matte (White)'
     for comp in d.allComponents:
         for b in comp.bRepBodies:
@@ -189,6 +190,8 @@ def apply_materials(hide_refs=True):
                     break
             if hide_refs and b.name.startswith('REF'):
                 b.isLightBulbOn = False
+        for sk in comp.sketches:
+            sk.isLightBulbOn = False
     colorize()      # appearances override the material's default look
 
 

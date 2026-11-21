@@ -30,9 +30,9 @@ Fold the left wing, then the right. On the right, the hinges can move together o
 
 | | Value |
 |---|---|
-| Open width | 1113 mm |
-| Closed | 379 W x 416 H x 289 D mm (height includes 40 mm feet; clamp jaws come off) |
-| Panels | Left wing 310, center 350, right spacer 98, right wing 350 mm wide; 375.6 mm tall |
+| Open width | 1217 mm |
+| Closed | 443 W x 416 H x 289 D mm (height includes 40 mm feet; clamp jaws come off) |
+| Panels | Left wing 350 (PFD), center 414 (audio + MFD), right spacer 98, right wing 350 (flexible) mm wide; 375.6 mm tall |
 | Estimated weight | About 9.5 kg before electronics, from Fusion materials with hollow-profile correction: extrusion 5.7, sheet/cover parts 3.1 (printed spacer strips modeled solid, so the real figure is lower), printed plates 0.5, hinges 0.2 |
 | Fold check | Interference every 5° (10° one-hinge-at-a-time), outriggers stored and deployed. All clear |
 
@@ -57,15 +57,18 @@ Rails no longer sit on a fixed grid. Each panel's rails go wherever its real-siz
 ### Current rail maps (rail centerlines, mm from panel bottom)
 | Panel | Rails | Sections |
 |---|---|---|
-| Left wing | 10 · 70 · 170 · 365.6 | SW-1 switch row (59.2) · flex section (99.2, blank for now) · standby instruments (194.8) |
-| Center | 10 · 110 · 310 · 365.6 | CL-1 dimmers + CL-2 yoke hole (99.2) · PFD (199.2) · top strip (54.8) |
-| Right wing | 10 · 110 · 310 · 365.6 | Copilot yoke blank (99.2) · MFD (199.2) · top strip (54.8) |
+| Left wing | 10 · 110 · 310 · 365.6 | SW-1L switches · YK-1 pilot yoke · SW-1R lights (99.2) · PFD-1 (199.2) · top strip (54.8) |
+| Center | 10 · 110 · 310 · 365.6 | SB-1 standby gauges · SB-2 dimming · CP-1 copilot yoke (99.2) · AU-1 audio + MFD-1 (199.2) · top strip (54.8) |
+| Right wing | 10 · 110 · 310 · 365.6 | Flexible (blanks for now; candidates: GFC 700 autopilot, circuit breakers, ELT/hobbs) |
 
-## 3. Yoke and throttle
-* Pilot yoke on the PFD centerline, 100 mm above the desk, through a 2U pass-through plate.
-* Throttle on the aircraft centerline at the audio/MFD seam (+250 mm).
-* Copilot yoke blank mirrored at +500 mm under the MFD.
-* Yoke shelf on the center outriggers.
+## 3. Layout (C172 G1000 style) and yoke placement
+* **Left wing:** the PFD (pilot sits square to it). Below it: SW-1L (mags, MASTER, STBY BATT, AVIONICS), the YK-1 pilot yoke pass-through, and SW-1R (fuel pump, lights, pitot heat).
+* **Center:** AU-1 audio panel + MFD-1. Below them: SB-1 standby gauges, SB-2 dimming (4 knobs) and CP-1 copilot yoke blank.
+* **Right wing:** flexible space.
+* **Pilot yoke:** on the PFD centerline, 100 mm above the desk. The yoke shelf sits on the two deployed left wing outriggers.
+* **Throttle:** on the aircraft centerline at the audio/MFD seam (desk edge). The copilot yoke is mirrored about that line.
+* **Fold check:** clean with every module installed.
+* **Estimated weight:** about 10.4 kg before electronics.
 
 ## 4. Hardware
 * 3 piano hinges (~355 mm), side-mounted.
@@ -78,12 +81,12 @@ Rails no longer sit on a fixed grid. Each panel's rails go wherever its real-siz
 |---|---|---|---|
 | 2040 | 375.6 mm (cut 376) | 6 | Upright cores |
 | 2020 | 375.6 mm (cut 376) | 8 | Upright bumpers (6) + right spacer verticals (2) |
-| 2020 | 310 mm | 8 | Center + right wing rails |
-| 2020 | 270 mm | 4 | Left wing rails |
-| 2020 | 230 mm | 2 | Wing outriggers |
+| 2020 | 374 mm | 4 | Center rails |
+| 2020 | 310 mm | 8 | Left + right wing rails |
+| 2020 | 230 / 160 / 120 mm | 1 / 1 / 1 | Right wing, left wing outer, left wing inner outriggers |
 | 2020 | 135 mm | 2 | Center outriggers |
 
-Totals: 2040 is 2.25 m (6 pieces). 2020 is 7.30 m (24 pieces).
+Totals: 2040 is 2.26 m (6 pieces). 2020 is 7.76 m (25 pieces). See BOM.md for the stick-by-stick cut plan.
 Sheet: 3 rear covers (~350 x 376), 12 edge lips (~310 x 40 / 310 x 30), one spacer skin (55 x 376), all 3 mm aluminum or ABS.
 
 ## 6. Open items

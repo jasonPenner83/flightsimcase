@@ -1,7 +1,11 @@
-# Bill of Materials: Folding C172 Cockpit Case (rev E) + Lower-Left Switch Panels
+# Bill of Materials: Folding C172 Cockpit Case (rev E, C172 layout)
 
-Quantities include no spares unless noted. Part numbers are generic specs, so buy the closest match.
-Prices are left out on purpose. Fastener counts are rounded up; buy the next pack size.
+**Layout:**
+* **Left wing (350 mm):** G1000 PFD, with the switch rows either side of the pilot yoke below it.
+* **Center (414 mm):** GMA audio panel + G1000 MFD on top; standby gauges, 4 dimmers and the copilot yoke blank below.
+* **Right wing (350 mm):** flexible space.
+
+Quantities include no spares unless noted. Part numbers are generic specs, so buy the closest match. Prices are left out on purpose.
 
 ---
 
@@ -13,18 +17,20 @@ Prices are left out on purpose. Fastener counts are rounded up; buy the next pac
 | 2040 | 376 mm | 6 | Upright cores (2 per panel) |
 | 2020 | 376 mm | 6 | Upright front "bumpers" (bolted to the 2040s) |
 | 2020 | 376 mm | 2 | Right spacer verticals |
-| 2020 | 310 mm | 8 | Center + right wing rails (4 each, placed per panel) |
-| 2020 | 270 mm | 4 | Left wing rails |
-| 2020 | 230 mm | 2 | Wing outriggers |
+| 2020 | 374 mm | 4 | Center rails |
+| 2020 | 310 mm | 8 | Left + right wing rails (4 each) |
+| 2020 | 230 mm | 1 | Right wing outrigger |
+| 2020 | 160 mm | 1 | Left wing outer outrigger |
 | 2020 | 135 mm | 2 | Center outriggers |
+| 2020 | 120 mm | 1 | Left wing inner outrigger (with the outer one, carries the yoke shelf) |
 
 ### Stock to buy (1000 mm sticks, 3 mm kerf allowed)
 | Profile | Sticks | How they're cut |
 |---|---|---|
 | 2040 x 1000 | **3** | 376 + 376 per stick |
-| 2020 x 1000 | **8** | 2 sticks of 376+376+230 · 2 sticks of 376+376+135 · 2 sticks of 310+310+310 · 1 stick of 310+310+270 · 1 stick of 270+270+270 |
+| 2020 x 1000 | **9** | 376+376+230 · 376+376+160 · 2 sticks of 376+376+135 · 374+374+120 · 374+374 · 2 sticks of 310+310+310 · 310+310 |
 
-If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 m.
+Totals: 2040 = 2.26 m, 2020 = 7.76 m.
 
 ---
 
@@ -32,42 +38,36 @@ If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 
 
 | # | Item | Qty | Notes |
 |---|---|---|---|
-| B1 | 2020 inside corner bracket (L, 20-series, with screws) | 30 | Rail-to-upright joints: 24, plus 6 extra on the top and bottom rails |
-| B2 | M5 x 8 button head screw | 100 | Brackets (60), edge lips (18), spacer skin (8), spare |
-| B3 | M5 drop-in T-nut, 2020 (6 mm slot) | 200 | Used everywhere. Buy a 200-pack |
-| B4 | M5 x 25 socket head cap screw | 24 | Bumper to 2040, 4 per upright, through 8.5 mm counterbored access holes in the bumper |
-| B5 | M5 x 40 socket head cap screw | 24 | Rear covers through the printed spacers into the rails |
-| B6 | M5 x 10 button head + 15 mm OD washer | 20 | Faceplate edge clamps (one screw clamps two neighboring plates) |
+| B1 | 2020 inside corner bracket (L, 20-series, with screws) | 30 | Rail-to-upright joints: 24, plus 6 extra |
+| B2 | M5 x 8 button head screw | 100 | Brackets, edge lips, spacer skin, spare |
+| B3 | M5 drop-in T-nut, 2020 (6 mm slot) | 250 | Used everywhere |
+| B4 | M5 x 25 socket head cap screw | 24 | Bumper to 2040, 4 per upright |
+| B5 | M5 x 40 socket head cap screw | 24 | Rear covers through the printed spacers |
+| B6 | M5 x 10 button head + 15 mm OD washer | 40 | Faceplate / bezel edge clamps |
 | B7 | M5 x 16 socket head | 4 | Clamp feet into the tapped 2040 end bores |
-| B8 | M5 x 45 socket head + washer + nyloc | 4 | Outrigger pivots |
-| B9 | M5 tap + 4.2 mm drill | 1 | Tapping extrusion end bores |
-| B10 | Aluminum piano hinge, ~1.5 mm leaf, about 32 mm open width, 762 mm (30 in) | 2 | Cut into 3 x 355 mm (plus 1 spare) |
-| B11 | M4 x 8 countersunk screw + M4 drop-in T-nut (2020) | 50 + 50 | Piano hinge leaves into the bumper side slots |
-| B12 | Toggle draw latch, small (about 70 mm) | 2 | Holds the case closed |
+| B8 | M5 x 45 socket head + washer + nyloc | 5 | Outrigger pivots |
+| B9 | M5 tap + 4.2 mm drill | 1 | |
+| B10 | Aluminum piano hinge, ~32 mm open width, 762 mm (30 in) | 2 | Cut into 3 x 355 mm (+1 spare) |
+| B11 | M4 x 8 countersunk screw + M4 drop-in T-nut | 50 + 50 | Hinge leaves into the bumper side slots |
+| B12 | Toggle draw latch, small | 2 | Holds the case closed |
 | B13 | Spring indexing plunger M10, or 6 mm quick-release pin | 2 | Locks each fold open |
-| B14 | Folding chest handle, about 100 mm screw spacing | 1 | Bolts to the center top rail (2 x M5 x 10 + T-nuts) |
-| B15 | M8 x 60 hex bolt + M8 nut | 2 + 2 | Desk clamp screws, with a printed thumb knob |
-| B16 | Adhesive rubber feet, 20 mm | 8 | Under the clamp feet and outrigger ends |
-| B17 | 3 mm sheet: ABS, PVC foam or ACM (Dibond), 1220 x 610 | 1 | Cut into: 3 rear covers 350x376 (left wing 310x376), 1 spacer skin 55x376, 6 front edge lips 40 x 310/270 |
-| B18 | 2020 slot cover strip, 1 m | 2 | Optional; hides open slots on visible faces |
+| B14 | Folding chest handle | 1 | On the center top rail |
+| B15 | M8 x 60 hex bolt + nut | 2 + 2 | Desk clamp screws |
+| B16 | Adhesive rubber feet, 20 mm | 10 | Clamp feet and outrigger ends |
+| B17 | 3 mm sheet (ABS, PVC foam or ACM), 1220 x 610 | 1 | 3 rear covers (414x376, 2 x 350x376), spacer skin, 6 edge lips |
+| B18 | 2020 slot cover strip, 1 m | 2 | Optional |
 
 ### Printed case parts (PETG)
 | # | Part | Qty | Notes |
 |---|---|---|---|
-| P1 | Rear-cover spacer strip, 20 x 30 mm section, ≤ 250 mm segments | 24 | 8 per panel: sides in 2 segments, top and bottom in 2 |
-| P2 | Spacer cap (top + bottom of the right spacer) | 2 | 55 x 40 x 3 mm |
-| P3 | Clamp foot (40 mm tall) | 2 | Under the center uprights. Captures an M8 nut |
-| P4 | Desk clamp jaw | 2 | Hooks the desk front edge; comes off for packing |
-| P5 | Clamp thumb knob, M8 hex insert | 2 | |
-| P6 | Outrigger riser / pivot block | 4 | One per outrigger |
-| P7 | (now the CL-2 yoke panel, see D) | – | |
-| P8 | Copilot yoke blank, 306 x 99 (print in 2 pieces) | 1 | Right wing, lowest section under the MFD |
-| P9 | Blank filler plates (rail spacing − 0.8 mm tall, ≤ 256 mm wide pieces) | as needed | Fill unused sections, e.g. the left wing flex section (99 mm) |
-
-### Yoke shelf
-| # | Item | Qty | Notes |
-|---|---|---|---|
-| Y1 | 6 mm plywood or aluminum plate, 320 x 270 mm | 1 | Sits on the deployed center outriggers; the yoke clamps to its front edge |
+| P1 | Rear-cover spacer strip, 20 x 30 mm, ≤ 250 mm segments | 26 | |
+| P2 | Spacer cap | 2 | Top and bottom of the right spacer |
+| P3 | Clamp foot, 40 mm | 2 | Under the center uprights |
+| P4 | Desk clamp jaw | 2 | Comes off for packing |
+| P5 | Clamp thumb knob, M8 | 2 | |
+| P6 | Outrigger riser / pivot block | 5 | |
+| P7 | Blank filler plates (rail spacing − 0.8 tall, ≤ 256 wide) | as needed | Top strips, and the right wing until it gets modules |
+| Y1 | Yoke shelf: 6 mm plywood or aluminum, 320 x 270 mm | 1 | Sits on the two deployed left wing outriggers, under the PFD |
 
 ---
 
@@ -75,112 +75,76 @@ If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 
 
 | # | Item | Qty | Notes |
 |---|---|---|---|
-| E1 | Powered USB hub, 7+ ports, with its own power supply | 1 | Mounts in the center rear zone (max 30 mm deep behind the rails) |
+| E1 | Powered USB hub, 10 port | 1 | Center rear zone |
 | E2 | USB cable to PC, 3 m | 1 | |
-| E3 | Short micro-USB to USB-A cables, 0.3 m | 1 per module | Pico boards use micro-USB |
-| E4 | Cable ties + adhesive tie mounts | 1 pack | |
+| E3 | Short USB cables, 0.3 m | 1 per board | |
+| E4 | 12 V 5 A power supply + DC splitter | 1 | Two 10.4 in LCDs (PFD + MFD), plus margin |
+| E5 | HDMI cables to PC, 1–2 m | 2 | PFD and MFD pop-outs |
+| E6 | Cable ties + adhesive mounts | 1 pack | |
 
 ---
 
-## D. Lower-left switch row (SW-1) + center lower panels (CL-1, CL-2)
+## D. Modules
 
-### Layout
-* **SW-1, one row, left wing bottom (254 x 59.2 mm plate):** MAGNETOS key, MASTER ALT | BAT (red), STBY BATT, AVIONICS BUS 1 | BUS 2 (red), then FUEL PUMP, BCN, LAND, TAXI, NAV, STROBE, PITOT HEAT.
-* **CL-1, center bottom left (120 x 99.2):** PANEL and STBY IND dimmers.
-* **CL-2, center bottom right (185 x 99.2):** 40 mm yoke shaft hole on the PFD centerline.
-* Every plate fits the A1's 256 mm bed flat.
-* Plates print plain. Labels are stickers or outsourced (see Labels below). Clip pockets on the back leave a 1.4 mm wall so the snap-in rockers grip.
-* Tallest part is the key knob at 28 mm, inside the 40 mm budget. The fold check with all modules installed is clean.
+Every faceplate prints plain, at most 256 mm per piece. Labels are vinyl stickers or outsourced engraving, from `labels/*.svg`.
+Placeholder parts (switch bodies, LCDs, boards) are in the Fusion model, hidden by default.
 
-| # | Item | Qty | Notes |
-|---|---|---|---|
-| S1 | KCD1 rocker, ON-OFF, 2-pin, 21 x 15 mm cutout, **red** | 4 | MASTER ALT/BAT, AVIONICS BUS1/BUS2 |
-| S2 | KCD1 rocker, ON-OFF, 2-pin, 21 x 15 mm cutout, **black** | 7 | FUEL PUMP, BCN, LAND, TAXI, NAV, STROBE, PITOT HEAT |
-| S3 | KCD1 rocker, (ON)-OFF-ON, 3-pin, 21 x 15 mm, black | 1 | STBY BATT (TEST momentary / OFF / ARM) |
-| S4 | Rotary switch 1-pole 12-position with adjustable stop (Lorlin CK1049 style), 3/8 in bushing, 1/4 in shaft | 1 | Stop set to 5 for OFF/R/L/BOTH/START. START does not spring back (later upgrade) |
-| S5 | Potentiometer 10 kΩ linear, 16 mm, 6 mm D-shaft | 2 | PANEL, STBY IND |
-| S6 | Raspberry Pi Pico (RP2040) | 2 | SW-1 and CL-1, one each. MobiFlight firmware |
-| S7 | M2 x 6 self-tapping screw | 8 | Pico onto the printed carriers |
-| S8 | Silicone hook-up wire, 24 AWG, 6 colors | 1 kit | |
-| S9 | 4.8 mm insulated female spade connectors | 30 | KCD1 terminals (or solder) |
-| S10 | Heat-shrink assortment | 1 kit | |
-| S11 | M5 x 10 button head + 15 mm washer + T-nut | 9 | Faceplate edge clamps (counted in B6) |
+### D1. Left wing, lower section: SW-1L / YK-1 / SW-1R (rails 10–110)
+* **SW-1L (127 mm):** magneto key, red MASTER ALT | BAT, STBY BATT, red AVIONICS BUS 1 | BUS 2.
+* **YK-1 (50 mm):** pilot yoke pass-through, 40 mm hole on the PFD centerline, 100 mm above the desk.
+* **SW-1R (127 mm):** FUEL PUMP, BCN, LAND, TAXI, NAV, STROBE, PITOT HEAT.
 
-### Printed parts
-| # | Part | Qty | Notes |
-|---|---|---|---|
-| SP1 | SW-1 faceplate, plain (`prints/SW-1_faceplate.stl`) | 1 | PETG black, face down on a smooth PEI plate if a sticker goes on it |
-| SP2 | CL-1 dimmer faceplate (`prints/CL-1_faceplate.stl`) | 1 | PETG black |
-| SP3 | CL-2 yoke faceplate (`prints/CL-2_faceplate.stl`) | 1 | PETG black. Add a felt or brush ring in the 40 mm hole if the shaft rubs |
-| SP4 | Pico carrier, bolts to the back of a rail (M5 + T-nut) | 2 | Not modeled yet: a 60 x 30 mm plate with 4 M2 bosses |
-| SP5 | Magneto key knob | 1 | Not modeled yet |
-| SP6 | Dimmer knobs, 16 mm knurled, D-shaft | 2 | |
-| SP7 | Master switch interlock tab (optional) | 1 | |
-
-### Labels (not printed in the plastic)
-The faceplates print **plain**, and labels come from one of these:
-* **Printed sticker (default, cheap):** print `labels/<panel>_label.svg` at 100% scale on matte white-on-black vinyl, laminate it, and kiss-cut on the red lines (holes and notches). Apply it to the plain printed plate.
-* **Outsourced panel (best look):** send the same SVG to a laser-engraving or UV-printing shop, e.g. a 2-ply black/white engraving laminate, or a powder-coated 3 mm aluminum plate with UV print. The red lines are the cut path.
-  * The plate must stay 3.0 mm at the rails (panel-plane rule). A thinner outsourced plate gets a printed 3.0 mm backer, or shims under the clamp notches.
-* **Engrave in the print (fallback):** set `ENGRAVE_LABELS = True` in `fusion/build_switch_panel.py` and rebuild.
-
-| # | Item | Qty | Notes |
-|---|---|---|---|
-| L1 | Printable matte vinyl sticker sheet + matte laminate, A4 | 2 | If printing stickers at home |
-| L2 | Outsourced engraved / UV-printed faceplates | 3 | Optional alternative to L1; quote from the SVGs |
-
-### Pico wiring (MobiFlight, every switch to GND, internal pull-ups)
-| Board | Pin | Function |
+| # | Item | Qty |
 |---|---|---|
-| SW-1 | GP2–GP6 | Magnetos OFF / R / L / BOTH / START (rotary common to GND) |
-| SW-1 | GP7, GP8 | MASTER ALT, BAT |
-| SW-1 | GP9, GP10 | STBY BATT ARM, TEST |
-| SW-1 | GP11, GP12 | AVIONICS BUS 1, BUS 2 |
-| SW-1 | GP13–GP19 | FUEL PUMP, BCN, LAND, TAXI, NAV, STROBE, PITOT HEAT |
-| CL-1 | GP26 (ADC0), GP27 (ADC1) | PANEL, STBY IND dimmers (pot ends to 3V3 / AGND) |
+| S1 | KCD1 rocker ON-OFF 21x15 cutout, red | 4 |
+| S2 | KCD1 rocker ON-OFF 21x15 cutout, black | 7 |
+| S3 | KCD1 rocker (ON)-OFF-ON 21x15 cutout, black (STBY BATT) | 1 |
+| S4 | Rotary switch 1P12T with stop set to 5 (Lorlin CK1049 style), 3/8 in bushing (magnetos) | 1 |
+| S5 | Raspberry Pi Pico, MobiFlight (both switch plates) | 1 |
+| S6 | 4.8 mm spade connectors, 24 AWG wire, heat-shrink | 1 kit |
 
----
+### D2. PFD-1 (left wing) and MFD-1 (center): GDU 1040 style bezels (rails 110–310)
+Each bezel is 306 x 199.2 x 15 mm deep and prints in 3 pieces (37 / 232 / 37 mm).
+* **Face:** 211.2 x 158.4 mm window and 12 softkeys.
+* **Knobs:** NAV/COM VOL, NAV/COM/ALT/CRS-BARO/FMS dual knobs, HDG, RANGE, flip keys and the FMS key grid.
+* **Inside the bezel:** the LCD and three key/encoder boards.
+* **Behind the rails:** the HDMI driver board and a Mega Pro Mini.
 
-## D2. PFD-1: G1000 PFD bezel (GDU 1040 style), center panel
+> **Monitor fit:** the cavity is **9.5 mm deep**. Use an **LED-backlit 10.4 in 1024x768 module, ≤ 228.6 x 175.8 x 9 mm**. Older CCFL panels are 10–12 mm thick and won't fit.
 
-### Layout and packaging
-* **Bezel:** 306 x 199.2 x 15 mm deep shell, with 3 mm flanges on the rails (panel-plane rule) and a 2.5 mm face. The back is open between the rails.
-  * Printed in 3 pieces to fit the bed: left knob column 37 mm, display frame 232 mm, right knob column 37 mm. Join them with epoxy plus printed splice strips on the back.
-* **Face:** a 211.2 x 158.4 mm display window (exact GDU 1040 10.4 in area) and 12 softkeys under the display.
-  * Left column: NAV VOL, NAV flip key, NAV dual knob, HDG, ALT dual knob.
-  * Right column: COM VOL, COM flip key, COM dual knob, CRS/BARO dual knob, RANGE, the D→/MENU/FPL/PROC/CLR/ENT key grid, and the FMS dual knob.
-* **Inside the bezel (in front of the rail plane):**
-  * The LCD module sits against the back of the face.
-  * Three PCBs carry the tact switches and EC11 encoders: left column, right column, and the softkey strip.
-  * Dual-concentric encoders mount through the face, with their bodies reaching back through the rail window.
-* **Behind the rails (rear zone):** the LCD's HDMI driver board and an Arduino Mega 2560 Pro Mini running MobiFlight.
-* **Fit checks in Fusion:**
-  * Nothing inside the bezel touches anything else: LCD, PCBs, encoders, rails, driver board, controller.
-  * The case folds closed cleanly with the bezel installed. Knob tops sit 33 mm proud, inside the 40 mm budget.
+| # | Item | Qty (PFD + MFD) |
+|---|---|---|
+| PF1 | 10.4 in 1024x768 LED-backlit LCD + HDMI driver kit | 2 |
+| PF2 | Dual-concentric encoder with push | 10 |
+| PF3 | EC11 encoder with push | 8 |
+| PF4 | Tact switch 6x6x5 mm | 40 |
+| PF5 | Arduino Mega 2560 Pro Mini (MobiFlight) | 2 |
+| PF6 | Key/encoder PCBs (3 per bezel; perfboard for a first build) | 2 sets |
+| PF7 | M2.5 x 6 screws (PCB and LCD clips) | 32 |
 
-> **Monitor fit warning:** the cavity behind the face is **9.5 mm deep**. The LCD must be an **LED-backlit 10.4 in 1024x768 (4:3) module, at most 228.6 x 175.8 x 9 mm**, with an active area of about 211 x 158 mm. Older CCFL-backlit 10.4 in panels are often 10–12 mm thick and **won't fit**. Check the outline drawing before buying. A 10.1 in 16:10 tablet panel will *not* fill the GDU window correctly.
+### D3. AU-1: GMA 1347 style audio panel (center, left of the MFD, 63 x 199.2 mm)
+22 keys in 2 columns (COM/NAV/MKR/etc., legends on the caps) and the PILOT/COPLT volume dual knob.
+
+| # | Item | Qty |
+|---|---|---|
+| AU1 | Tact switch 12x12 mm with printed 22x8 caps | 22 |
+| AU2 | Dual-concentric encoder with push | 1 |
+| AU3 | Raspberry Pi Pico, MobiFlight | 1 |
+
+### D4. SB-1 standby instruments + SB-2 dimming (center, lower section)
+Shell bezels 20 mm deep, side by side so they read as one panel.
+* **SB-1 (212 mm):** AIRSPEED (2-1/4 in), ATTITUDE (3-1/8 in), ALTIMETER (2-1/4 in) windows. Round LCDs sit inside the shell.
+* **SB-2 (58 mm):** DIMMING block with SW/CN PNL, STBY IND, PEDESTAL and AVIONICS knobs, as Jason asked.
 
 | # | Item | Qty | Notes |
 |---|---|---|---|
-| PF1 | 10.4 in 1024x768 LED-backlit LCD + HDMI driver board kit (e.g. AUO G104XVN01 class) | 1 | See the fit warning. Driver board about 100 x 65 x 15, mounted behind the rails |
-| PF2 | 12 V 3 A power supply + DC splitter | 1 | LCD backlight. Size it to also feed the MFD later |
-| PF3 | HDMI cable, 1–2 m (LCD driver to PC) | 1 | The PFD runs as an MSFS pop-out window on this display |
-| PF4 | Dual-concentric rotary encoder with push (e.g. Propwash / EC11 dual style) | 5 | NAV, COM, CRS/BARO, ALT, FMS |
-| PF5 | EC11 rotary encoder with push, 20 mm shaft | 4 | NAV VOL, COM VOL, HDG, RANGE |
-| PF6 | Tact switch 6 x 6 mm, 5 mm tall | 20 | 12 softkeys, 6 FMS keys, 2 flip keys |
-| PF7 | Arduino Mega 2560 Pro Mini | 1 | About 57 inputs: 28 encoder pins, 9 pushes, 20 keys. MobiFlight |
-| PF8 | PCB, 3 boards (left column, right column, softkey strip) | 1 set | Not designed yet. Perfboard works for a first build |
-| PF9 | M2.5 x 6 screws + printed bosses | 16 | PCBs and LCD retaining clips |
-| PF10 | Ribbon cable / Dupont jumpers | 1 kit | PCBs to the Mega through the rail window |
+| SB1 | Round LCD 2.1 in (480x480) with ESP32-S3 | 2 | Airspeed, altimeter. **Gauge software still to pick** (custom ESP32 firmware or a PC-driven option) |
+| SB2 | Round LCD 2.8 in with ESP32-S3 | 1 | Attitude. Check that the module is ≤ 83 mm across and ≤ 13 mm deep |
+| SB3 | Potentiometer 10 kΩ linear, 16 mm, D-shaft | 4 | Dimmers |
+| SB4 | Arduino Pro Micro (4 analog inputs, MobiFlight) | 1 | A Pico only has 3 ADCs |
 
-Printed parts:
-* `prints/PFD-1_bezel_left_knob_column.stl`, `PFD-1_bezel_display_frame.stl`, `PFD-1_bezel_right_knob_column.stl` (PETG black or dark grey).
-* 5 dual and 4 single knob sets, 20 key caps (not modeled yet).
-* LCD retaining clips and PCB bosses (not modeled yet).
-
-Labels:
-* Face artwork: `labels/PFD-1a/b/c_label.svg`, one per printed piece.
-* Key legends (D→, MENU, FPL, PROC, CLR, ENT, flip arrows) go on the key caps as small stickers.
+### D5. CP-1: copilot yoke blank (center, lower right, 98 mm)
+A 40 mm hole mirrored about the aircraft centerline, for a future second yoke.
 
 ---
 
@@ -188,13 +152,16 @@ Labels:
 
 | Item | Qty |
 |---|---|
-| PETG filament, black, 1 kg | 2 (case parts + panels; about 1.3 kg total) |
-| PETG white or a paint pen | 1 |
-| Miter saw with a non-ferrous blade (or hacksaw + miter box) | |
-| Drill + 4.2 / 5.5 / 6.5 / 8.5 mm bits, M5 tap, deburring tool | |
-| Medium thread locker (pivots, latches) | |
+| PETG filament, black, 1 kg | 3 (case parts, bezels, faceplates; about 2 kg total) |
+| Matte vinyl sticker sheets + laminate (labels), A4 | 3 |
+| Miter saw with a non-ferrous blade, drill bits, M5 tap, deburring tool | |
+| Epoxy (joining bezel pieces), medium thread locker | |
 
 ---
 
-## F. Not in this BOM yet (future modules)
-MFD bezel (reuses the PFD-1 pattern), audio panel, standby instruments, autopilot, Logitech yoke shelf clamp details, and throttle quadrant mount.
+## F. Not in this BOM yet
+* Knobs and key caps (all modules)
+* PCB layouts
+* GFC 700 autopilot strip and circuit breakers (candidates for the right wing)
+* Throttle/mixture, flaps, trim
+* Yoke shelf clamp details

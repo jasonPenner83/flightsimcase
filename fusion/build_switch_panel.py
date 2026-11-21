@@ -41,6 +41,7 @@ def build():
     def module(host_name, name, z_rails, x0, x1, holes, labels, standoffs, refs, label_h=2.5):
         host = hosts[host_name].component
         occ = host.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        occ.isGroundToParent = True      # move with the wing when it folds
         comp = occ.component
         comp.name = name
         plane0 = comp.xZConstructionPlane
@@ -154,57 +155,73 @@ def build():
         return [('REF rocker body', tbox(cx - 7, cx + 7, -22, 0, cz - 10, cz + 10)),
                 ('REF rocker cap', tbox(cx - 7.5, cx + 7.5, 3, 11, cz - 10.5, cz + 10.5))]
 
-    # ---------------- SW-1: one-row switch panel, left wing rails 10-70 (59.2 mm tall plate)
+    # ---------------- left wing bottom section (rails 10-110): switches either side of the pilot yoke
     from importlib import util as _u
     spec = _u.spec_from_file_location('bc', r'D:/Admin/Documents/Projects/FlightSimCase/fusion/build_case.py')
     bc = _u.module_from_spec(spec); spec.loader.exec_module(bc)
     PP = bc.P; G = bc.geometry()
     T = PP['T']
     wxr = G['AL'][0] - PP['hg']; wxl = wxr - PP['WL']
-    mid = (wxl + wxr) / 2
-    xa, xb = mid - 127, mid + 127                     # 254 mm plate: fits the A1 bed flat
     rl = PP['rails_L']
-    zr = (rl[0] + rl[1]) / 2                          # rocker row centered in the window
-    X = lambda dx: xa + dx
-    # positions (mm from plate left edge): key, then groups with 6 mm gaps, 2 mm inside split pairs
-    key_x = 16.0
-    layout = [('ALT', 38.5), ('BAT', 55.5),
-              ('STBY BATT', 76.5),
-              ('BUS 1', 97.5), ('BUS 2', 114.5),
-              ('FUEL PUMP', 135.5), ('BCN', 153.5), ('LAND', 171.5), ('TAXI', 189.5),
-              ('NAV', 207.5), ('STROBE', 225.5), ('PITOT HT', 243.5)]
-    holes = [('circ', X(key_x), zr, KEY_HOLE)] + [('rect', X(dx), zr, *ROCKER) for _, dx in layout]
+    zr = (rl[0] + rl[1]) / 2                          # switch row = yoke shaft height
+    yx = PP['yoke_x']; yz = 100.0 - PP['foot']
     lab_lo = zr - 16.5
     lab_hi = zr + 16.5
-    labels = [('IGN', X(key_x), lab_hi), ('MASTER', X(47), lab_hi), ('AVIONICS', X(106), lab_hi),
-              ('LIGHTS', X(189.5), lab_hi)]
-    labels += [(nm, X(dx), lab_lo) for nm, dx in layout if nm != 'STBY BATT' and nm != 'FUEL PUMP' and nm != 'PITOT HT']
-    labels += [('STBY', X(76.5), lab_hi), ('BATT', X(76.5), lab_lo), ('FUEL', X(135.5), lab_hi), ('PUMP', X(135.5), lab_lo),
-               ('PITOT', X(243.5), lab_hi), ('HEAT', X(243.5), lab_lo)]
+
+    # SW-1L: magnetos + MASTER (ALT|BAT) + STBY BATT + AVIONICS (BUS1|BUS2), left of the yoke
+    xa = wxl + T + 2; xb = xa + 127
+    X = lambda dx: xa + dx
+    key_x = 16.0
+    lay1 = [('ALT', 38.5), ('BAT', 55.5), ('STBY BATT', 76.5), ('BUS 1', 97.5), ('BUS 2', 114.5)]
+    holes = [('circ', X(key_x), zr, KEY_HOLE)] + [('rect', X(dx), zr, *ROCKER) for _, dx in lay1]
+    labels = [('IGN', X(key_x), lab_hi), ('MASTER', X(47), lab_hi), ('STBY', X(76.5), lab_hi), ('AVIONICS', X(106), lab_hi),
+              ('ALT', X(38.5), lab_lo), ('BAT', X(55.5), lab_lo), ('BATT', X(76.5), lab_lo), ('BUS 1', X(97.5), lab_lo), ('BUS 2', X(114.5), lab_lo)]
     refs = [('REF key switch body (1P12T, stop at 5)', tbox(X(key_x) - 13, X(key_x) + 13, -30, 0, zr - 13, zr + 13)),
             ('REF printed key knob', tbox(X(key_x) - 4, X(key_x) + 4, 3, 28, zr - 13, zr + 13))]
-    for _, dx in layout:
+    for _, dx in lay1:
         refs += rocker_refs(X(dx), zr)
-    # Pico on a printed carrier bolted to the back of the upper rail (rail at rl[1])
-    pc_x = X(150)
-    refs.append(('REF Raspberry Pi Pico', tbox(pc_x - 25.5, pc_x + 25.5, -28.6, -27, rl[1] - 10.5, rl[1] + 10.5)))
-    module('Left wing', 'SW-1 Switch row', (rl[0], rl[1]), xa, xb, holes, labels, [], refs, label_h=2.5)
+    refs.append(('REF Raspberry Pi Pico (SW-1L + SW-1R)', tbox(yx - 25.5, yx + 25.5, -28.6, -27, rl[1] - 10.5, rl[1] + 10.5)))
+    module('Left wing', 'SW-1L Master/avionics panel', (rl[0], rl[1]), xa, xb, holes, labels, [], refs, label_h=2.5)
 
-    # ---------------- CL-1: center lower panel, rails 10-110: yoke hole + two dimmers
+    # YK-1: pilot yoke pass-through
+    module('Left wing', 'YK-1 Pilot yoke plate', (rl[0], rl[1]), xb + 1, xb + 51, [('circ', yx, yz, YOKE_HOLE)], [], [], [], label_h=2.5)
+
+    # SW-1R: lights row + fuel pump + pitot heat, right of the yoke
+    xa2 = xb + 52; xb2 = wxr - T - 2
+    X2 = lambda dx: xa2 + dx
+    lay2 = ['FUEL PUMP', 'BCN', 'LAND', 'TAXI', 'NAV', 'STROBE', 'PITOT HT']
+    holes2 = []; labels2 = [('LIGHTS', X2(63.5), lab_hi)]; refs2 = []
+    for i, nm in enumerate(lay2):
+        cx = X2(9.5 + i * 18)
+        holes2.append(('rect', cx, zr, *ROCKER))
+        refs2 += rocker_refs(cx, zr)
+        if nm == 'FUEL PUMP':
+            labels2 += [('FUEL', cx, lab_hi), ('PUMP', cx, lab_lo)]
+        elif nm == 'PITOT HT':
+            labels2 += [('PITOT', cx, lab_hi), ('HEAT', cx, lab_lo)]
+        else:
+            labels2.append((nm, cx, lab_lo))
+    module('Left wing', 'SW-1R Lights panel', (rl[0], rl[1]), xa2, xb2, holes2, labels2, [], refs2, label_h=2.5)
+
+    # ---------------- AU-1: GMA 1347 style audio panel, center top-left (rails 110-310), 63 mm wide
+    ra = PP['rails_C']
+    ax0 = -PP['W'] / 2 + T + 2; ax1 = ax0 + 63
+    acx = (ax0 + ax1) / 2
+    au_holes = []; au_refs = []
+    for r in range(11):                       # 2 columns x 11 rows of keys (COM/NAV/MKR/etc.), legends on the caps
+        zz = ra[2] - 22 - r * 13
+        for dx in (-14, 14):
+            au_holes.append(('rect', acx + dx, zz, 22.0, 8.0))
+    au_holes.append(('circ', acx, ra[1] + 22, 10.0))   # PILOT/COPLT volume dual knob
+    au_refs.append(('REF dual encoder (audio volume)', tbox(acx - 6.5, acx + 6.5, -15, 0, ra[1] + 15.5, ra[1] + 28.5)))
+    au_refs.append(('REF Raspberry Pi Pico (audio keys)', tbox(acx - 10.5, acx + 10.5, -28.6, -27, ra[1] + 40, ra[1] + 91)))
+    module('Center panel', 'AU-1 Audio panel', (ra[1], ra[2]), ax0, ax1, au_holes, [('VOL', acx, ra[1] + 36)], [], au_refs, label_h=2.3)
+
+    # ---------------- center bottom right: copilot yoke blank (mirror of the pilot yoke about the aircraft centerline)
     rc = PP['rails_C']
-    cxa, cxb = -PP['W'] / 2 + T + 2, PP['W'] / 2 - T - 2
-    yz = 100.0 - PP['foot']
-    zc = (rc[0] + rc[1]) / 2
-    yx = PP['yoke_x']
-    split = cxa + 120          # two plates so each fits the 256 mm bed
-    holes2 = [('circ', cxa + 35, zc, POT_HOLE), ('circ', cxa + 85, zc, POT_HOLE)]
-    labels2 = [('PANEL', cxa + 35, zc + 18), ('STBY IND', cxa + 85, zc + 18)]
-    refs2 = []
-    for px in (cxa + 35, cxa + 85):
-        refs2.append(('REF pot body 16 mm', tbox(px - 8, px + 8, -12, 0, zc - 8, zc + 8)))
-        refs2.append(('REF knob', tbox(px - 8, px + 8, 3, 21, zc - 8, zc + 8)))
-    module('Center panel', 'CL-1 Dimmer panel', (rc[0], rc[1]), cxa, split, holes2, labels2, [], refs2, label_h=2.5)
-    module('Center panel', 'CL-2 Yoke panel', (rc[0], rc[1]), split + 1, cxb, [('circ', yx, yz, YOKE_HOLE)], [], [], [], label_h=2.5)
+    cop_x = 2 * PP['thr_x'] - yx
+    cxb = PP['W'] / 2 - T - 2
+    module('Center panel', 'CP-1 Copilot yoke blank', (rc[0], rc[1]), cxb - 98, cxb, [('circ', cop_x, yz, YOKE_HOLE)], [], [], [], label_h=2.5)
     import json, os
     os.makedirs(os.path.dirname(ART_JSON), exist_ok=True)
     with open(ART_JSON, 'w') as f:

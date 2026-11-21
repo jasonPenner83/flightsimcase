@@ -103,7 +103,7 @@ def build(host_name='Center panel', name='PFD-1 GDU 1040 bezel', xa=-153.0, xb=1
             else:
                 _, cx, cz, dia = h
                 sub(b, ycyl(cx, cz, -1, D + 1, dia / 2))
-        bodies.append(('PRINT PFD-1 bezel %s' % piece_names[i], b))
+        bodies.append(('PRINT %s bezel %s' % (name.split()[0], piece_names[i]), b))
     # edge clamp notches on the flanges
     notch_x = [xa + 12, Ly['xm'] - 100, Ly['xm'], Ly['xm'] + 100, xb - 12]
     notches = [(nx, ez) for nx in notch_x for ez in (zl, zh)]
@@ -130,6 +130,7 @@ def build(host_name='Center panel', name='PFD-1 GDU 1040 bezel', xa=-153.0, xb=1
         refs.append(('REF softkey cap', box(x - 5, x + 5, FL + 1.6, D + 2, zl + 9.1 - 2, zl + 9.1 + 2)))
 
     occ = host.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+    occ.isGroundToParent = True      # move with the wing when it folds
     comp = occ.component
     comp.name = name
     bf = comp.features.baseFeatures.add()
@@ -144,7 +145,8 @@ def build(host_name='Center panel', name='PFD-1 GDU 1040 bezel', xa=-153.0, xb=1
 
     # ---- label artwork: one entry per printed piece (bezel face is the sticker surface)
     art = json.load(open(ART_JSON)) if os.path.exists(ART_JSON) else []
-    art = [a for a in art if not a['name'].startswith('PFD-1')]
+    tag = name.split()[0]
+    art = [a for a in art if not a['name'].startswith(tag)]
     for i in range(3):
         px0, px1 = splits[i], splits[i + 1]
         inside = lambda x, w=0: px0 <= x <= px1
@@ -157,7 +159,7 @@ def build(host_name='Center panel', name='PFD-1 GDU 1040 bezel', xa=-153.0, xb=1
                     hs.append(['rect', (lo + hi) / 2, cz, hi - lo, hh])
             elif inside(h[1]):
                 hs.append(list(h))
-        art.append(dict(name='PFD-1%s %s' % ('abc'[i], piece_names[i]), host=host_name, x0=px0, x1=px1, z0=zl, z1=zh,
+        art.append(dict(name='%s%s %s' % (tag, 'abc'[i], piece_names[i]), host=host_name, x0=px0, x1=px1, z0=zl, z1=zh,
                         holes=hs, labels=[list(l) for l in Ly['labels'] if inside(l[1])],
                         notches=[(nx, ez) for nx, ez in notches if px0 - 3.2 <= nx <= px1 + 3.2], notch_r=3.2, label_h=2.3))
     json.dump(art, open(ART_JSON, 'w'), indent=1)
