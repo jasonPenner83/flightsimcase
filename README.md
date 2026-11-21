@@ -5,7 +5,7 @@ A carry-size folding home cockpit for MSFS 2024. It starts with a full-scale Ces
 - **Current design:** rev E (locked). Three panels (left wing 310, center 350, right wing 350 mm) on side-mounted piano hinges, with a 98 mm right spacer. It folds to 379 x 416 x 289 mm and is sealed when closed.
 - **Module standard and cut list:** [Module_Standard_and_Cut_List.md](Module_Standard_and_Cut_List.md)
 - **Bill of materials:** [BOM.md](BOM.md)
-- **Print files:** [prints/](prints/) (plain faceplates: SW-1 switch row, CL-1 dimmers, CL-2 yoke panel)
+- **Print files:** [prints/](prints/) (plain faceplates SW-1, CL-1, CL-2; PFD-1 GDU 1040 bezel in 3 pieces)
 - **Label artwork:** [labels/](labels/) (1:1 SVG for stickers or outsourced engraving; regenerate with `python fusion/gen_label_art.py`)
 - **Renders:** [renders/](renders/) (older revisions in subfolders)
 
@@ -14,6 +14,7 @@ The master model lives in Autodesk Fusion: project "Flight Sim Case", design "Fo
 The scripts in [fusion/](fusion/) rebuild it through the Fusion API:
 - `build_case.py`: frame, hinges, outriggers. Dimensions are in the `P` dict at the top.
 - `build_switch_panel.py`: faceplate modules, built as real sketch/extrude features. It writes `labels/panels.json`.
+- `build_pfd.py`: PFD-1 GDU 1040 bezel with LCD, PCBs, encoders and controller placeholders (hidden by default).
 - `gen_label_art.py`: turns `panels.json` into the SVG label artwork.
 - `tools.py`, `run_all.py`: rebuild, fold collision sweep, cut list.
 - `*_revA..D.py`: earlier revisions, kept for history.

@@ -134,7 +134,6 @@ def build():
     xl, xr = -Wp / 2, Wp / 2
     rc = P['rails_C']
     c = frame(xl, xr, rc)
-    c.append(('BEZEL GDU 1040 PFD 300x196', tbox(-150, 150, 0, 15, (rc[1] + rc[2]) / 2 - 98, (rc[1] + rc[2]) / 2 + 98)))
     c.append(leaf(xl, -1, 'HINGE leaf L-center'))
     c.append(leaf(xr, +1, 'HINGE leaf R-center'))
     c.append(knuckle(G['AL'], 'HINGE knuckle L'))

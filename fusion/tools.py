@@ -79,7 +79,7 @@ def interference(min_vol_mm3=1.0, names=None):
 
     def owner(e):
         n = _owner(e)
-        return {'SW-': 'Left wing', 'CL-': 'Center panel'}.get(n[:3], n)   # modules live inside their host panel
+        return {'SW-': 'Left wing', 'CL-': 'Center panel', 'PFD': 'Center panel'}.get(n[:3], n)   # modules live inside their host panel
     ii = d.createInterferenceInput(coll)
     ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)
@@ -128,6 +128,7 @@ def colorize():
          'COVER': 'Plastic - Matte (Gray)', 'SKIN': 'Plastic - Matte (Gray)', 'SHEET': 'Plastic - Matte (Gray)'}
     m['PRINT SW'] = 'Plastic - Matte (Black)'
     m['PRINT CL'] = 'Plastic - Matte (Black)'
+    m['PRINT PFD'] = 'Plastic - Matte (Black)'
     m['REF'] = 'Plastic - Matte (White)'
     for comp in d.allComponents:
         for b in comp.bRepBodies:

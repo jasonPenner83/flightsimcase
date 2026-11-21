@@ -141,6 +141,49 @@ The faceplates print **plain**, and labels come from one of these:
 
 ---
 
+## D2. PFD-1: G1000 PFD bezel (GDU 1040 style), center panel
+
+### Layout and packaging
+* **Bezel:** 306 x 199.2 x 15 mm deep shell, with 3 mm flanges on the rails (panel-plane rule) and a 2.5 mm face. The back is open between the rails.
+  * Printed in 3 pieces to fit the bed: left knob column 37 mm, display frame 232 mm, right knob column 37 mm. Join them with epoxy plus printed splice strips on the back.
+* **Face:** a 211.2 x 158.4 mm display window (exact GDU 1040 10.4 in area) and 12 softkeys under the display.
+  * Left column: NAV VOL, NAV flip key, NAV dual knob, HDG, ALT dual knob.
+  * Right column: COM VOL, COM flip key, COM dual knob, CRS/BARO dual knob, RANGE, the D→/MENU/FPL/PROC/CLR/ENT key grid, and the FMS dual knob.
+* **Inside the bezel (in front of the rail plane):**
+  * The LCD module sits against the back of the face.
+  * Three PCBs carry the tact switches and EC11 encoders: left column, right column, and the softkey strip.
+  * Dual-concentric encoders mount through the face, with their bodies reaching back through the rail window.
+* **Behind the rails (rear zone):** the LCD's HDMI driver board and an Arduino Mega 2560 Pro Mini running MobiFlight.
+* **Fit checks in Fusion:**
+  * Nothing inside the bezel touches anything else: LCD, PCBs, encoders, rails, driver board, controller.
+  * The case folds closed cleanly with the bezel installed. Knob tops sit 33 mm proud, inside the 40 mm budget.
+
+> **Monitor fit warning:** the cavity behind the face is **9.5 mm deep**. The LCD must be an **LED-backlit 10.4 in 1024x768 (4:3) module, at most 228.6 x 175.8 x 9 mm**, with an active area of about 211 x 158 mm. Older CCFL-backlit 10.4 in panels are often 10–12 mm thick and **won't fit**. Check the outline drawing before buying. A 10.1 in 16:10 tablet panel will *not* fill the GDU window correctly.
+
+| # | Item | Qty | Notes |
+|---|---|---|---|
+| PF1 | 10.4 in 1024x768 LED-backlit LCD + HDMI driver board kit (e.g. AUO G104XVN01 class) | 1 | See the fit warning. Driver board about 100 x 65 x 15, mounted behind the rails |
+| PF2 | 12 V 3 A power supply + DC splitter | 1 | LCD backlight. Size it to also feed the MFD later |
+| PF3 | HDMI cable, 1–2 m (LCD driver to PC) | 1 | The PFD runs as an MSFS pop-out window on this display |
+| PF4 | Dual-concentric rotary encoder with push (e.g. Propwash / EC11 dual style) | 5 | NAV, COM, CRS/BARO, ALT, FMS |
+| PF5 | EC11 rotary encoder with push, 20 mm shaft | 4 | NAV VOL, COM VOL, HDG, RANGE |
+| PF6 | Tact switch 6 x 6 mm, 5 mm tall | 20 | 12 softkeys, 6 FMS keys, 2 flip keys |
+| PF7 | Arduino Mega 2560 Pro Mini | 1 | About 57 inputs: 28 encoder pins, 9 pushes, 20 keys. MobiFlight |
+| PF8 | PCB, 3 boards (left column, right column, softkey strip) | 1 set | Not designed yet. Perfboard works for a first build |
+| PF9 | M2.5 x 6 screws + printed bosses | 16 | PCBs and LCD retaining clips |
+| PF10 | Ribbon cable / Dupont jumpers | 1 kit | PCBs to the Mega through the rail window |
+
+Printed parts:
+* `prints/PFD-1_bezel_left_knob_column.stl`, `PFD-1_bezel_display_frame.stl`, `PFD-1_bezel_right_knob_column.stl` (PETG black or dark grey).
+* 5 dual and 4 single knob sets, 20 key caps (not modeled yet).
+* LCD retaining clips and PCB bosses (not modeled yet).
+
+Labels:
+* Face artwork: `labels/PFD-1a/b/c_label.svg`, one per printed piece.
+* Key legends (D→, MENU, FPL, PROC, CLR, ENT, flip arrows) go on the key caps as small stickers.
+
+---
+
 ## E. Consumables and tools
 
 | Item | Qty |
@@ -154,4 +197,4 @@ The faceplates print **plain**, and labels come from one of these:
 ---
 
 ## F. Not in this BOM yet (future modules)
-GDU 1040 PFD/MFD bezels and 10.1 in thin LCD panels with driver boards, audio panel, standby instruments, autopilot, Logitech yoke shelf clamp details, and throttle quadrant mount.
+MFD bezel (reuses the PFD-1 pattern), audio panel, standby instruments, autopilot, Logitech yoke shelf clamp details, and throttle quadrant mount.

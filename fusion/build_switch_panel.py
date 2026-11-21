@@ -118,6 +118,7 @@ def build():
         fplane.isLightBulbOn = False
         st = comp.sketches.add(fplane)
         st.name = 'Labels'
+        st.isLightBulbOn = False   # reference only; labels are stickers / outsourced
         texts = []
         for txt, cx, cz in labels:
             w = max(12.0, len(txt) * label_h * 0.95)
