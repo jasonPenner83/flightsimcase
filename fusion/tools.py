@@ -51,6 +51,10 @@ def bbox_mm(o):
                 z=(round(mn.z * 10, 1), round(mx.z * 10, 1)))
 
 
+MODULE_HOST = {'SW-': 'Left wing', 'YK-': 'Left wing', 'PFD': 'Left wing', 'CL-': 'Center panel', 'MFD': 'Center panel',
+               'SB-': 'Center panel', 'CP-': 'Center panel', 'AU-': 'Center panel'}
+
+
 def _owner(e):
     if e.assemblyContext:
         top = e.assemblyContext.fullPathName.split('+')[0]
@@ -79,7 +83,7 @@ def interference(min_vol_mm3=1.0, names=None):
 
     def owner(e):
         n = _owner(e)
-        return {'SW-': 'Left wing', 'YK-': 'Left wing', 'PFD': 'Left wing', 'CL-': 'Center panel', 'MFD': 'Center panel', 'SB-': 'Center panel', 'CP-': 'Center panel', 'AU-': 'Center panel'}.get(n[:3], n)   # modules live inside their host panel
+        return MODULE_HOST.get(n[:3], n)   # modules live inside their host panel
     ii = d.createInterferenceInput(coll)
     ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)
@@ -128,7 +132,7 @@ def colorize():
          'COVER': 'Plastic - Matte (Gray)', 'SKIN': 'Plastic - Matte (Gray)', 'SHEET': 'Plastic - Matte (Gray)'}
     m['PRINT SW'] = 'Plastic - Matte (Black)'
     m['PRINT CL'] = 'Plastic - Matte (Black)'
-    for k in ('PRINT PFD', 'PRINT MFD', 'PRINT SB', 'PRINT YK', 'PRINT CP', 'PRINT AU'):
+    for k in ('PRINT PFD', 'PRINT MFD', 'PRINT SB', 'PRINT YK', 'PRINT CP', 'PRINT AU', 'PRINT SC', 'PRINT LT', 'PRINT CB'):
         m[k] = 'Plastic - Matte (Black)'
     m['REF'] = 'Plastic - Matte (White)'
     for comp in d.allComponents:

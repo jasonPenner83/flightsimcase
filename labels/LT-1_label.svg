@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="191.00mm" height="99.20mm" viewBox="0 0 191.00 99.20">
+<g id="LT-1 Mags and lights">
+<rect x="0.00" y="0.00" width="191.00" height="99.20" fill="#111111"/>
+<text x="18.00" y="32.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MAGNETOS</text>
+<text x="99.00" y="32.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LIGHTS</text>
+<text x="45.00" y="32.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">FUEL</text>
+<text x="45.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PUMP</text>
+<text x="63.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BCN</text>
+<text x="81.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LAND</text>
+<text x="99.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">TAXI</text>
+<text x="117.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
+<text x="135.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STROBE</text>
+<text x="153.00" y="32.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PITOT</text>
+<text x="153.00" y="66.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HEAT</text>
+<rect x="0.00" y="0.00" width="191.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="18.00" cy="49.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="37.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="55.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="73.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="91.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="109.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="127.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="145.50" y="39.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="99.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="179.00" cy="99.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="179.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+</svg>

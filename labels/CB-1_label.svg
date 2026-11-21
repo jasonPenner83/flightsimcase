@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="127.00mm" height="99.20mm" viewBox="0 0 127.00 99.20">
+<g id="CB-1 Circuit breakers">
+<rect x="0.00" y="0.00" width="127.00" height="99.20" fill="#111111"/>
+<text x="63.50" y="13.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ESSENTIAL BUS</text>
+<text x="63.50" y="51.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS BUS</text>
+<rect x="0.00" y="0.00" width="127.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="16.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="35.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="54.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="73.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="92.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="111.00" cy="27.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="16.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="35.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="54.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="73.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="92.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="111.00" cy="65.60" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="99.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="115.00" cy="99.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="115.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+</svg>

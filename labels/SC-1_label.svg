@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="63.00mm" height="199.20mm" viewBox="0 0 63.00 199.20">
+<g id="SC-1 Switch column">
+<rect x="0.00" y="0.00" width="63.00" height="199.20" fill="#111111"/>
+<text x="31.50" y="13.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY BATT</text>
+<text x="31.50" y="69.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MASTER</text>
+<text x="23.00" y="105.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
+<text x="40.00" y="105.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BAT</text>
+<text x="31.50" y="125.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
+<text x="23.00" y="161.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS1</text>
+<text x="40.00" y="161.60" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS2</text>
+<rect x="0.00" y="0.00" width="63.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="24.00" y="21.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.50" y="77.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="32.50" y="77.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.50" y="133.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="32.50" y="133.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="199.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="51.00" cy="199.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="51.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+</svg>

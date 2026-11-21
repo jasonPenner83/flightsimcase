@@ -1,249 +1,270 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="242.00mm" height="2059.60mm" viewBox="0 0 242.00 2059.60">
-<g id="SW-1L Master/avionics panel">
-<rect x="5.00" y="5.00" width="127.00" height="99.20" fill="#111111"/>
-<text x="21.00" y="38.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">IGN</text>
-<text x="52.00" y="38.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MASTER</text>
-<text x="81.50" y="38.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY</text>
-<text x="111.00" y="38.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
-<text x="43.50" y="71.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
-<text x="60.50" y="71.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BAT</text>
-<text x="81.50" y="71.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BATT</text>
-<text x="102.50" y="71.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS 1</text>
-<text x="119.50" y="71.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS 2</text>
-<rect x="5.00" y="5.00" width="127.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="54.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="36.00" y="44.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="53.00" y="44.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="74.00" y="44.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="95.00" y="44.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="112.00" y="44.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="104.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="5.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="120.00" cy="104.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="120.00" cy="5.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-</g>
-<g id="YK-1 Pilot yoke plate">
-<rect x="5.00" y="109.20" width="50.00" height="99.20" fill="#111111"/>
-<rect x="5.00" y="109.20" width="50.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="30.00" cy="158.80" r="20.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="208.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="109.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="43.00" cy="208.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="43.00" cy="109.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-</g>
-<g id="SW-1R Lights panel">
-<rect x="5.00" y="213.40" width="127.00" height="99.20" fill="#111111"/>
-<text x="68.50" y="246.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LIGHTS</text>
-<text x="14.50" y="246.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">FUEL</text>
-<text x="14.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PUMP</text>
-<text x="32.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BCN</text>
-<text x="50.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LAND</text>
-<text x="68.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">TAXI</text>
-<text x="86.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
-<text x="104.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STROBE</text>
-<text x="122.50" y="246.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PITOT</text>
-<text x="122.50" y="279.50" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HEAT</text>
-<rect x="5.00" y="213.40" width="127.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="25.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="43.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="61.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="79.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="97.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="115.00" y="252.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="312.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="213.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="120.00" cy="312.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="120.00" cy="213.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-</g>
-<g id="AU-1 Audio panel">
-<rect x="5.00" y="317.60" width="63.00" height="199.20" fill="#111111"/>
-<text x="36.50" y="481.20" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">VOL</text>
-<rect x="5.00" y="317.60" width="63.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="335.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="335.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="348.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="348.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="361.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="361.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="374.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="374.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="387.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="387.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="400.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="400.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="413.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="413.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="426.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="426.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="439.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="439.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="452.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="452.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="11.50" y="465.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="39.50" y="465.20" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="36.50" cy="495.20" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="516.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="317.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="56.00" cy="516.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="56.00" cy="317.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-</g>
-<g id="CP-1 Copilot yoke blank">
-<rect x="5.00" y="521.80" width="98.00" height="99.20" fill="#111111"/>
-<rect x="5.00" y="521.80" width="98.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="63.00" cy="571.40" r="20.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="621.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="521.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="91.00" cy="621.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="91.00" cy="521.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="242.00mm" height="2263.80mm" viewBox="0 0 242.00 2263.80">
 <g id="PFD-1a left knob column">
-<rect x="5.00" y="626.00" width="37.00" height="199.20" fill="#111111"/>
-<text x="26.00" y="637.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV VOL</text>
-<text x="26.00" y="696.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
-<text x="26.00" y="718.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HDG</text>
-<text x="26.00" y="785.20" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
-<rect x="5.00" y="626.00" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="646.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="681.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="731.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="800.20" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="20.50" y="659.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="825.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="626.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="5.00" width="37.00" height="199.20" fill="#111111"/>
+<text x="26.00" y="16.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV VOL</text>
+<text x="26.00" y="75.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
+<text x="26.00" y="97.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HDG</text>
+<text x="26.00" y="164.20" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
+<rect x="5.00" y="5.00" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="25.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="60.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="110.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="179.20" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="20.50" y="38.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="204.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="5.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="PFD-1b display frame">
-<rect x="5.00" y="830.20" width="232.00" height="199.20" fill="#111111"/>
-<rect x="5.00" y="830.20" width="232.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="15.40" y="845.70" width="211.20" height="158.40" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="18.70" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="36.30" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="53.90" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="71.50" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="89.10" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="106.70" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="124.30" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="141.90" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="159.50" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="177.10" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="194.70" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="212.30" y="1017.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1029.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="830.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="121.00" cy="1029.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="121.00" cy="830.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="221.00" cy="1029.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="221.00" cy="830.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="209.20" width="232.00" height="199.20" fill="#111111"/>
+<rect x="5.00" y="209.20" width="232.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.40" y="224.70" width="211.20" height="158.40" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="18.70" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="36.30" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="53.90" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="71.50" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="89.10" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="106.70" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="124.30" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="141.90" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="159.50" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="177.10" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="194.70" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="212.30" y="396.80" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="408.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="209.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="121.00" cy="408.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="121.00" cy="209.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="221.00" cy="408.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="221.00" cy="209.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="PFD-1c right knob column">
-<rect x="5.00" y="1034.40" width="37.00" height="199.20" fill="#111111"/>
-<text x="21.00" y="1045.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM VOL</text>
-<text x="21.00" y="1104.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM</text>
-<text x="21.00" y="1114.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">CRS / BARO</text>
-<text x="21.00" y="1150.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">RANGE</text>
-<rect x="5.00" y="1034.40" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1054.40" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1089.40" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1129.40" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1162.40" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1216.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="15.50" y="1067.40" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1172.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1172.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1185.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1185.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1198.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1198.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="30.00" cy="1233.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="30.00" cy="1034.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="413.40" width="37.00" height="199.20" fill="#111111"/>
+<text x="21.00" y="424.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM VOL</text>
+<text x="21.00" y="483.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM</text>
+<text x="21.00" y="493.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">CRS / BARO</text>
+<text x="21.00" y="529.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">RANGE</text>
+<rect x="5.00" y="413.40" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="433.40" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="468.40" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="508.40" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="541.40" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="595.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.50" y="446.40" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="551.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="551.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="564.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="564.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="577.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="577.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="30.00" cy="612.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="30.00" cy="413.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="MFD-1a left knob column">
-<rect x="5.00" y="1238.60" width="37.00" height="199.20" fill="#111111"/>
-<text x="26.00" y="1249.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV VOL</text>
-<text x="26.00" y="1308.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
-<text x="26.00" y="1330.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HDG</text>
-<text x="26.00" y="1397.80" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
-<rect x="5.00" y="1238.60" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="1258.60" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="1293.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="1343.60" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="26.00" cy="1412.80" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="20.50" y="1271.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="1437.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="1238.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="617.60" width="37.00" height="199.20" fill="#111111"/>
+<text x="26.00" y="628.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV VOL</text>
+<text x="26.00" y="687.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
+<text x="26.00" y="709.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HDG</text>
+<text x="26.00" y="776.80" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
+<rect x="5.00" y="617.60" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="637.60" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="672.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="722.60" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="26.00" cy="791.80" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="20.50" y="650.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="816.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="617.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="MFD-1b display frame">
-<rect x="5.00" y="1442.80" width="232.00" height="199.20" fill="#111111"/>
-<rect x="5.00" y="1442.80" width="232.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="15.40" y="1458.30" width="211.20" height="158.40" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="18.70" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="36.30" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="53.90" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="71.50" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="89.10" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="106.70" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="124.30" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="141.90" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="159.50" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="177.10" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="194.70" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="212.30" y="1630.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1642.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1442.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="121.00" cy="1642.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="121.00" cy="1442.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="221.00" cy="1642.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="221.00" cy="1442.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="821.80" width="232.00" height="199.20" fill="#111111"/>
+<rect x="5.00" y="821.80" width="232.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.40" y="837.30" width="211.20" height="158.40" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="18.70" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="36.30" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="53.90" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="71.50" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="89.10" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="106.70" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="124.30" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="141.90" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="159.50" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="177.10" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="194.70" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="212.30" y="1009.40" width="11.00" height="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1021.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="821.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="121.00" cy="1021.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="121.00" cy="821.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="221.00" cy="1021.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="221.00" cy="821.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="MFD-1c right knob column">
-<rect x="5.00" y="1647.00" width="37.00" height="199.20" fill="#111111"/>
-<text x="21.00" y="1658.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM VOL</text>
-<text x="21.00" y="1717.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM</text>
-<text x="21.00" y="1727.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">CRS / BARO</text>
-<text x="21.00" y="1763.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">RANGE</text>
-<rect x="5.00" y="1647.00" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1667.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1702.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1742.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1775.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1829.20" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="15.50" y="1680.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1784.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1784.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1797.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1797.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="7.50" y="1810.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<rect x="23.50" y="1810.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="30.00" cy="1846.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="30.00" cy="1647.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="1026.00" width="37.00" height="199.20" fill="#111111"/>
+<text x="21.00" y="1037.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM VOL</text>
+<text x="21.00" y="1096.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">COM</text>
+<text x="21.00" y="1106.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">CRS / BARO</text>
+<text x="21.00" y="1142.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">RANGE</text>
+<rect x="5.00" y="1026.00" width="37.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1046.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1081.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1121.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1154.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1208.20" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="15.50" y="1059.00" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="1163.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="1163.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="1176.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="1176.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="7.50" y="1189.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="23.50" y="1189.60" width="11.00" height="6.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="30.00" cy="1225.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="30.00" cy="1026.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="SC-1 Switch column">
+<rect x="5.00" y="1230.20" width="63.00" height="199.20" fill="#111111"/>
+<text x="36.50" y="1243.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY BATT</text>
+<text x="36.50" y="1299.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MASTER</text>
+<text x="28.00" y="1335.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
+<text x="45.00" y="1335.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BAT</text>
+<text x="36.50" y="1355.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
+<text x="28.00" y="1391.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS1</text>
+<text x="45.00" y="1391.80" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS2</text>
+<rect x="5.00" y="1230.20" width="63.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="29.00" y="1251.30" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="20.50" y="1307.30" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="37.50" y="1307.30" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="20.50" y="1363.30" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="37.50" y="1363.30" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1429.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1230.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="56.00" cy="1429.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="56.00" cy="1230.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="LT-1 Mags and lights">
+<rect x="5.00" y="1434.40" width="191.00" height="99.20" fill="#111111"/>
+<text x="23.00" y="1467.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MAGNETOS</text>
+<text x="104.00" y="1467.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LIGHTS</text>
+<text x="50.00" y="1467.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">FUEL</text>
+<text x="50.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PUMP</text>
+<text x="68.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BCN</text>
+<text x="86.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LAND</text>
+<text x="104.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">TAXI</text>
+<text x="122.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
+<text x="140.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STROBE</text>
+<text x="158.00" y="1467.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PITOT</text>
+<text x="158.00" y="1501.00" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HEAT</text>
+<rect x="5.00" y="1434.40" width="191.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="23.00" cy="1484.00" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="42.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="60.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="78.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="96.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="114.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="132.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="150.50" y="1473.50" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1533.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1434.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="184.00" cy="1533.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="184.00" cy="1434.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="YK-1 Pilot yoke plate">
+<rect x="5.00" y="1538.60" width="50.00" height="99.20" fill="#111111"/>
+<rect x="5.00" y="1538.60" width="50.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="30.00" cy="1588.20" r="20.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1637.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1538.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="43.00" cy="1637.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="43.00" cy="1538.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="CB-1 Circuit breakers">
+<rect x="5.00" y="1642.80" width="127.00" height="99.20" fill="#111111"/>
+<text x="68.50" y="1656.40" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ESSENTIAL BUS</text>
+<text x="68.50" y="1694.40" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS BUS</text>
+<rect x="5.00" y="1642.80" width="127.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="40.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="59.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="78.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="97.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="116.00" cy="1670.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="40.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="59.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="78.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="97.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="116.00" cy="1708.40" r="4.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1742.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1642.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="120.00" cy="1742.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="120.00" cy="1642.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="AU-1 Audio panel">
+<rect x="5.00" y="1747.00" width="63.00" height="199.20" fill="#111111"/>
+<text x="36.50" y="1910.60" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">VOL</text>
+<rect x="5.00" y="1747.00" width="63.00" height="199.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1764.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1764.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1777.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1777.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1790.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1790.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1803.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1803.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1816.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1816.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1829.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1829.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1842.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1842.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1855.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1855.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1868.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1868.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1881.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1881.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="11.50" y="1894.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="39.50" y="1894.60" width="22.00" height="8.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="36.50" cy="1924.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1946.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1747.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="56.00" cy="1946.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="56.00" cy="1747.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="SB-1 Standby instruments">
-<rect x="5.00" y="1851.20" width="212.00" height="99.20" fill="#111111"/>
-<rect x="5.00" y="1851.20" width="212.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="38.00" cy="1900.80" r="29.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="111.00" cy="1900.80" r="40.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="184.00" cy="1900.80" r="29.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="1950.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="1851.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="205.00" cy="1950.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="205.00" cy="1851.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="1951.20" width="212.00" height="99.20" fill="#111111"/>
+<rect x="5.00" y="1951.20" width="212.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="38.00" cy="2000.80" r="29.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="111.00" cy="2000.80" r="40.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="184.00" cy="2000.80" r="29.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="2050.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="1951.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="205.00" cy="2050.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="205.00" cy="1951.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 <g id="SB-2 Dimming panel">
-<rect x="5.00" y="1955.40" width="58.00" height="99.20" fill="#111111"/>
-<text x="21.00" y="1973.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">SW/CN PNL</text>
-<text x="47.00" y="1973.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY IND</text>
-<text x="21.00" y="2013.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PEDESTAL</text>
-<text x="47.00" y="2013.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
-<text x="34.00" y="1961.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">DIMMING</text>
-<rect x="5.00" y="1955.40" width="58.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="1987.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="47.00" cy="1987.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="21.00" cy="2027.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="47.00" cy="2027.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="2054.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="17.00" cy="1955.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="51.00" cy="2054.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
-<circle cx="51.00" cy="1955.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="5.00" y="2055.40" width="58.00" height="99.20" fill="#111111"/>
+<text x="21.00" y="2073.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">SW/CN PNL</text>
+<text x="47.00" y="2073.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY IND</text>
+<text x="21.00" y="2113.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PEDESTAL</text>
+<text x="47.00" y="2113.00" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
+<text x="34.00" y="2061.40" font-family="Arial, Helvetica, sans-serif" font-size="3.22" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">DIMMING</text>
+<rect x="5.00" y="2055.40" width="58.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="2087.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="47.00" cy="2087.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="21.00" cy="2127.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="47.00" cy="2127.00" r="3.75" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="2154.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="2055.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="51.00" cy="2154.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="51.00" cy="2055.40" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+<g id="CP-1 Copilot yoke blank">
+<rect x="5.00" y="2159.60" width="98.00" height="99.20" fill="#111111"/>
+<rect x="5.00" y="2159.60" width="98.00" height="99.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="60.00" cy="2209.20" r="20.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="2258.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="17.00" cy="2159.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="91.00" cy="2258.80" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="91.00" cy="2159.60" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
 </g>
 </svg>
