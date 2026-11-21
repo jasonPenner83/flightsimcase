@@ -89,7 +89,7 @@ If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 
 * **CL-1, center bottom left (120 x 99.2):** PANEL and STBY IND dimmers.
 * **CL-2, center bottom right (185 x 99.2):** 40 mm yoke shaft hole on the PFD centerline.
 * Every plate fits the A1's 256 mm bed flat.
-* Labels are engraved 0.6 mm. Clip pockets on the back leave a 1.4 mm wall so the snap-in rockers grip.
+* Plates print plain. Labels are stickers or outsourced (see Labels below). Clip pockets on the back leave a 1.4 mm wall so the snap-in rockers grip.
 * Tallest part is the key knob at 28 mm, inside the 40 mm budget. The fold check with all modules installed is clean.
 
 | # | Item | Qty | Notes |
@@ -109,7 +109,7 @@ If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 
 ### Printed parts
 | # | Part | Qty | Notes |
 |---|---|---|---|
-| SP1 | SW-1 faceplate (`prints/SW-1_faceplate.stl`) | 1 | PETG black, face down on a textured PEI plate |
+| SP1 | SW-1 faceplate, plain (`prints/SW-1_faceplate.stl`) | 1 | PETG black, face down on a smooth PEI plate if a sticker goes on it |
 | SP2 | CL-1 dimmer faceplate (`prints/CL-1_faceplate.stl`) | 1 | PETG black |
 | SP3 | CL-2 yoke faceplate (`prints/CL-2_faceplate.stl`) | 1 | PETG black. Add a felt or brush ring in the 40 mm hole if the shaft rubs |
 | SP4 | Pico carrier, bolts to the back of a rail (M5 + T-nut) | 2 | Not modeled yet: a 60 x 30 mm plate with 4 M2 bosses |
@@ -117,7 +117,17 @@ If Vevor only sells longer sticks, the totals are 2040 = 2.26 m and 2020 = 7.30 
 | SP6 | Dimmer knobs, 16 mm knurled, D-shaft | 2 | |
 | SP7 | Master switch interlock tab (optional) | 1 | |
 
-Label fill: white paint pen or acrylic wiped into the engraving, or print the top 0.6 mm in white with an AMS lite.
+### Labels (not printed in the plastic)
+The faceplates print **plain**, and labels come from one of these:
+* **Printed sticker (default, cheap):** print `labels/<panel>_label.svg` at 100% scale on matte white-on-black vinyl, laminate it, and kiss-cut on the red lines (holes and notches). Apply it to the plain printed plate.
+* **Outsourced panel (best look):** send the same SVG to a laser-engraving or UV-printing shop, e.g. a 2-ply black/white engraving laminate, or a powder-coated 3 mm aluminum plate with UV print. The red lines are the cut path.
+  * The plate must stay 3.0 mm at the rails (panel-plane rule). A thinner outsourced plate gets a printed 3.0 mm backer, or shims under the clamp notches.
+* **Engrave in the print (fallback):** set `ENGRAVE_LABELS = True` in `fusion/build_switch_panel.py` and rebuild.
+
+| # | Item | Qty | Notes |
+|---|---|---|---|
+| L1 | Printable matte vinyl sticker sheet + matte laminate, A4 | 2 | If printing stickers at home |
+| L2 | Outsourced engraved / UV-printed faceplates | 3 | Optional alternative to L1; quote from the SVGs |
 
 ### Pico wiring (MobiFlight, every switch to GND, internal pull-ups)
 | Board | Pin | Function |

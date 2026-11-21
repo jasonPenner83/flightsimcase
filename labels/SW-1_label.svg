@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="254.00mm" height="59.20mm" viewBox="0 0 254.00 59.20">
+<g id="SW-1 Switch row">
+<rect x="0.00" y="0.00" width="254.00" height="59.20" fill="#111111"/>
+<text x="16.00" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">IGN</text>
+<text x="47.00" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">MASTER</text>
+<text x="106.00" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">AVIONICS</text>
+<text x="189.50" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LIGHTS</text>
+<text x="38.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">ALT</text>
+<text x="55.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BAT</text>
+<text x="97.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS 1</text>
+<text x="114.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BUS 2</text>
+<text x="153.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BCN</text>
+<text x="171.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">LAND</text>
+<text x="189.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">TAXI</text>
+<text x="207.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">NAV</text>
+<text x="225.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STROBE</text>
+<text x="76.50" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">STBY</text>
+<text x="76.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">BATT</text>
+<text x="135.50" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">FUEL</text>
+<text x="135.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PUMP</text>
+<text x="243.50" y="13.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">PITOT</text>
+<text x="243.50" y="46.10" font-family="Arial, Helvetica, sans-serif" font-size="3.50" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="central">HEAT</text>
+<rect x="0.00" y="0.00" width="254.00" height="59.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="16.00" cy="29.60" r="5.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="31.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="48.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="69.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="90.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="107.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="128.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="146.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="164.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="182.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="200.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="218.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<rect x="236.00" y="19.10" width="15.00" height="21.00" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="59.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="12.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="127.00" cy="59.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="127.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="242.00" cy="59.20" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+<circle cx="242.00" cy="0.00" r="3.20" stroke="#ff0000" stroke-width="0.1" fill="none"/>
+</g>
+</svg>

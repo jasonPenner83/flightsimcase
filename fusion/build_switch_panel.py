@@ -14,9 +14,13 @@ POT_HOLE = 7.5
 KEY_HOLE = 10.0
 YOKE_HOLE = 40.0
 ENGRAVE = 0.6
+ENGRAVE_LABELS = False   # labels come from stickers / outsourced panels; True engraves them into the print
+ART_JSON = r'D:/Admin/Documents/Projects/FlightSimCase/labels/panels.json'
+ARTWORK = []
 
 
 def build():
+    ARTWORK.clear()
     app = adsk.core.Application.get()
     d = adsk.fusion.Design.cast(app.activeProduct)
     root = d.rootComponent
@@ -62,10 +66,14 @@ def build():
                 _, cx, cz, dia = h
                 C.addByCenterRadius(S(cx, cz), dia / 20.0)
         n_notch = max(2, int((x1 - x0) // 110) + 1)
+        notches = []
         for i in range(n_notch):
             nx = x0 + 12 + i * (x1 - x0 - 24) / (n_notch - 1)
             for ez in (z0, z1):
                 C.addByCenterRadius(S(nx, ez), 0.32)
+                notches.append((nx, ez))
+        ARTWORK.append(dict(name=name, host=host_name, x0=x0, x1=x1, z0=z0, z1=z1, holes=[list(h) for h in holes],
+                            labels=[list(l) for l in labels], notches=notches, notch_r=3.2, label_h=label_h))
         prof = max(list(sk.profiles), key=lambda p: p.areaProperties().area)
         ei = comp.features.extrudeFeatures.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
         ei.setOneSideExtent(dist(PLATE_T), to_front)
@@ -122,7 +130,7 @@ def build():
             ti.isHorizontalFlip = FLIP_H
             ti.isVerticalFlip = FLIP_V
             texts.append(st.sketchTexts.add(ti))
-        for t in texts:
+        for t in (texts if ENGRAVE_LABELS else []):
             ti2 = comp.features.extrudeFeatures.createInput(t, adsk.fusion.FeatureOperations.CutFeatureOperation)
             ti2.setOneSideExtent(dist(ENGRAVE), to_back)
             ti2.participantBodies = [plate]
@@ -195,7 +203,11 @@ def build():
         refs2.append(('REF knob', tbox(px - 8, px + 8, 3, 21, zc - 8, zc + 8)))
     module('Center panel', 'CL-1 Dimmer panel', (rc[0], rc[1]), cxa, split, holes2, labels2, [], refs2, label_h=2.5)
     module('Center panel', 'CL-2 Yoke panel', (rc[0], rc[1]), split + 1, cxb, [('circ', yx, yz, YOKE_HOLE)], [], [], [], label_h=2.5)
-    print('modules built')
+    import json, os
+    os.makedirs(os.path.dirname(ART_JSON), exist_ok=True)
+    with open(ART_JSON, 'w') as f:
+        json.dump(ARTWORK, f, indent=1)
+    print('modules built; label artwork data ->', ART_JSON)
 
 
 def run(_context: str):

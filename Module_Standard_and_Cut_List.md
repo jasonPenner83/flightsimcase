@@ -49,6 +49,7 @@ Rails no longer sit on a fixed grid. Each panel's rails go wherever its real-siz
 | **Panel plane (thickness standard)** | **Every faceplate is exactly 3.0 mm thick where it touches the rails**, so all front faces land on one plane 3.0 mm in front of the rail face. Thicker items (display bezels, gauge bezels) keep a 3.0 mm mounting flange; any extra thickness goes forward of that plane inside the 40 mm budget, never behind it. Thinner sheet (aluminum, ACM) gets a printed 3.0 mm frame or shims |
 | Print rule for flatness | Front face down on the textured PEI plate, 0.2 mm layers, 4 walls, 100% infill under the clamp notches. Check with calipers: 3.0 ± 0.1 mm |
 | Plate material | PETG. Snap-in parts get a back pocket leaving a 1.4 mm wall |
+| Labels | Not printed in the plastic. Each module gets 1:1 SVG artwork in `labels/` (black field, white text, red cut lines), used for a vinyl sticker or an outsourced engraved / UV-printed plate. Outsourced plates must still meet the 3.0 mm panel plane |
 | Real-world sizes kept | GA avionics 6.25 in (158.75 mm) wide, 3-1/8 in and 2-1/4 in round gauges, GDU 1040 300 x 196 mm, DZUS 5.75 in via adapter (airliner, later) |
 | Electronics | One Pico (MobiFlight) per module, one USB hub in the center rear zone |
 
