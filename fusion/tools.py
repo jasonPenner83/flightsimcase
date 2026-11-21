@@ -76,7 +76,7 @@ def interference(min_vol_mm3=1.0, names=None):
     tagged = []
     for n in (names or NAMES):
         for b in _bodies(occ(n)):
-            if b.name.startswith(('BEZEL', 'ENVELOPE', 'HINGE', 'REF')):
+            if b.name.startswith(('BEZEL', 'ENVELOPE', 'HINGE', 'REF', 'OUTSOURCE')):
                 continue
             coll.add(b)
             tagged.append((b, n))
@@ -132,7 +132,8 @@ def colorize():
          'COVER': 'Plastic - Matte (Gray)', 'SKIN': 'Plastic - Matte (Gray)', 'SHEET': 'Plastic - Matte (Gray)'}
     m['PRINT SW'] = 'Plastic - Matte (Black)'
     m['PRINT CL'] = 'Plastic - Matte (Black)'
-    for k in ('PRINT PFD', 'PRINT MFD', 'PRINT SB', 'PRINT YK', 'PRINT CP', 'PRINT AU', 'PRINT SC', 'PRINT LT', 'PRINT CB'):
+    for k in ('PRINT PFD', 'PRINT MFD', 'PRINT SB', 'PRINT YK', 'PRINT CP', 'PRINT AU', 'PRINT SC', 'PRINT LT', 'PRINT CB',
+              'PRINT knob', 'PRINT key', 'PRINT softkey', 'PRINT LCD', 'PRINT electronics'):
         m[k] = 'Plastic - Matte (Black)'
     m['REF'] = 'Plastic - Matte (White)'
     for comp in d.allComponents:
@@ -172,12 +173,13 @@ MATERIALS = [  # (body-name prefix, physical material) - first match wins
     ('2020', 'Aluminum 6061'), ('2040', 'Aluminum 6061'),
     ('HINGE', 'Aluminum 6061'), ('PIN', 'Stainless Steel'),
     ('PRINT', 'PET Plastic'),                     # PETG stand-in (similar density)
+    ('OUTSOURCE', 'Nylon 12 (with Formlabs Fuse 1 3D Printer)'),
     ('COVER', 'ABS Plastic'), ('SHEET', 'ABS Plastic'), ('SKIN', 'ABS Plastic'),
     ('BEZEL', 'ABS Plastic'), ('REF', 'ABS Plastic'),
 ]
 # real 20-series profiles are hollow: ratio of real mass to the solid box modelled here
 PROFILE_FILL = {'2020': 0.46, '2040': 0.42}
-NON_PARTS = ('ZONE', 'ENVELOPE', 'REF', 'BEZEL')
+NON_PARTS = ('ZONE', 'ENVELOPE', 'REF', 'BEZEL', 'OUTSOURCE')
 
 
 def apply_materials(hide_refs=True):
@@ -192,7 +194,7 @@ def apply_materials(hide_refs=True):
                         cache[mat] = lib.materials.itemByName(mat)
                     b.material = cache[mat]
                     break
-            if hide_refs and b.name.startswith('REF'):
+            if hide_refs and b.name.startswith(('REF', 'OUTSOURCE')):
                 b.isLightBulbOn = False
         for sk in comp.sketches:
             sk.isLightBulbOn = False

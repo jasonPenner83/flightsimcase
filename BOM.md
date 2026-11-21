@@ -48,7 +48,8 @@ Print files are in `prints/`. All PETG black, printed plain; labels come from `l
 | SC-1 + LT-1 controller | | 1 x Raspberry Pi Pico (MobiFlight, 18 inputs) |
 | **YK-1** yoke plate (50 x 99) | 40 mm pilot yoke hole | none |
 | **CB-1** breakers (127 x 99) | 2 rows x 6 breakers (ESSENTIAL / AVIONICS BUS) | 12 x 10 mm latching panel push buttons with printed breaker caps; dummy for now or wired to a Pico later |
-| **PFD-1** + **MFD-1** GDU 1040 bezels (306 x 199 x 15, 3 pieces each) | Display window, 12 softkeys, 9 knobs, flip keys, FMS keys | Per bezel: 10.4 in 1024x768 **LED-backlit LCD, max 9 mm thick** + HDMI driver, 5 dual encoders, 4 EC11, 20 tact switches, Arduino Mega 2560 Pro Mini, 3 key/encoder PCBs |
+| **MFD-1** GDU 1040 assembly (306 x 199 x 15, 3 pieces or 1 outsourced) | Display window, 12 softkeys, 9 knobs, flip keys, FMS keys, LCD clips, electronics tray | **Full parts + hardware list in [docs/MFD-1_Build_Guide.md](docs/MFD-1_Build_Guide.md)**: AUO G104XVN01.0 + LVDS-HDMI kit, 5 PropWash dual encoders, 3 EC11, ALPS RKJXT1F42001, 20 Omron B3F, Mega 2560 Pro, M2.5/M3 heat-set inserts |
+| **PFD-1** GDU 1040 bezel | Same as MFD-1 (bezel only so far; it gets the MFD-1 assembly next) | Same parts as MFD-1 |
 | **AU-1** GMA 1347 audio (63 x 199) | 22 keys + volume dual knob | 22 x 12 mm tact switches, 1 dual encoder, 1 x Pico |
 | **SB-1** standby gauges (212 x 99 x 20) | Airspeed, attitude, altimeter | 2 x 2.1 in round LCD + ESP32-S3, 1 x 2.8 in round LCD + ESP32-S3. **Gauge software still to pick** |
 | **SB-2** dimming (58 x 99 x 20) | SW/CN PNL, STBY IND, PEDESTAL, AVIONICS | 4 x 10 kOhm linear 16 mm pots, 1 x Arduino Pro Micro |
@@ -67,4 +68,4 @@ Print files are in `prints/`. All PETG black, printed plain; labels come from `l
 | Epoxy (joining bezel pieces), thread locker | 1 each |
 
 ## F. Not yet modeled
-Knobs, key caps, breaker caps, PCB layouts, LCD clips, Pico carriers, magneto key knob, yoke shelf clamp.
+Breaker caps, PCB layouts, Pico carriers, magneto key knob, yoke shelf clamp. (MFD-1 knobs, key caps, LCD clips and electronics tray are now modeled.)

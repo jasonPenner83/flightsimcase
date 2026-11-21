@@ -181,7 +181,7 @@ def build():
             ('REF Raspberry Pi Pico (audio keys)', box(acx - 10.5, acx + 10.5, -28.6, -27, disp[0] + 40, disp[0] + 91))]
     flat('Right half', 'AU-1 Audio panel', disp, aa, ab, holes, [('VOL', acx, disp[0] + 36)], refs, label_h=2.3)
 
-    _load('build_pfd').build('Right half', 'MFD-1 GDU 1040 bezel', ab + 1, Ri1, tuple(disp))
+    _load('build_gdu1040').build('Right half', 'MFD-1 GDU 1040 assembly', ab + 1, Ri1, tuple(disp))
 
     # SB-1 standby gauges (shell, 20 deep) | SB-2 dimming | CP-1 copilot yoke
     s1a, s1b = Ri0, Ri0 + 212
@@ -210,7 +210,7 @@ def build():
 
     os.makedirs(os.path.dirname(ART_JSON), exist_ok=True)
     old = json.load(open(ART_JSON)) if os.path.exists(ART_JSON) else []
-    keep = [a for a in old if a['name'].split()[0][:3] in ('PFD', 'MFD')]   # written by build_pfd just now
+    keep = [a for a in old if a['name'].split()[0][:3] in ('PFD', 'MFD')]   # written by build_pfd / build_gdu1040 just now
     json.dump(keep + art, open(ART_JSON, 'w'), indent=1)
     print('C172 panels built; pilot yoke x %.1f, copilot yoke x %.1f, PFD x %.1f..%.1f' % (yx, cop, pfd_xa, Li1))
 
