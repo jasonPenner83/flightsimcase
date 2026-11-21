@@ -13,7 +13,7 @@ P = dict(
     hg=1.5, kn=2.5,
     cut_left=430.0, cut_right=496.0, shift_right=25.0,
     gma_u=476.0, gma_w=48.0, gma_z0=129.5, gma_z1=327.5,
-    gauges_u=(560.0, 650.0, 736.9), gauge_z=72.2,      # ASI / attitude / altimeter (final u)
+    gauge_shift=83.0,            # his ASI/attitude/altimeter block moves +83 mm (into the old copilot-yoke area)
     yoke_u=283.8, yoke_z=60.0, yoke_d=40.0,
     rear=70.0,                   # his ASI case is ~65 mm behind the panel
     foot=40.0,
@@ -79,12 +79,14 @@ def build():
     mv = adsk.core.Matrix3D.create(); mv.translation = adsk.core.Vector3D.create(dR / 10.0, 0, 0)
     tbm.transform(right_panel, mv)
     op(left_panel, ycyl(X(P['yoke_u']), P['yoke_z'], -tp - 1, 1, P['yoke_d'] / 2), SUB)
-    op(right_panel, box(X(P['cut_right'] + dR), X(728.0), -tp, 0, 22.0, 122.0), UNI)
-    for gu in P['gauges_u']:
-        op(right_panel, ycyl(X(gu), P['gauge_z'], -tp - 1, 1, 40.5), SUB)
-        for dx in (-32, 32):
-            for dz in (-32, 32):
-                op(right_panel, ycyl(X(gu) + dx, P['gauge_z'] + dz, -tp - 1, 1, 2.2), SUB)
+    # standby gauges: re-use HIS cutout shapes (ASI / attitude / altimeter + screw holes), moved +83 mm into the
+    # old copilot-yoke area: plugs = slab minus his panel over the gauge region, then fill + re-cut
+    plugs = box(X(434.0), X(702.0), -tp, 0, 22.0, 122.0)
+    op(plugs, panel, SUB)
+    mg = adsk.core.Matrix3D.create(); mg.translation = adsk.core.Vector3D.create(P['gauge_shift'] / 10.0, 0, 0)
+    tbm.transform(plugs, mg)
+    op(right_panel, box(X(P['cut_right'] + dR), X(702.0 + P['gauge_shift']), -tp, 0, 22.0, 122.0), UNI)
+    op(right_panel, plugs, SUB)
     s0, s1 = uB + hg, uA - hg
     spacer_panel = box(X(s0), X(s1), -tp, 0, 0, 369.0)
     op(spacer_panel, box(X(P['gma_u'] - P['gma_w'] / 2), X(P['gma_u'] + P['gma_w'] / 2), -tp - 1, 1, P['gma_z0'], P['gma_z1']), SUB)

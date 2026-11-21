@@ -14,6 +14,7 @@ def load(n):
 def setup(t):
     t.NAMES = ['Right half', 'Spacer', 'Left half']
     t.MODULE_HOST.clear()
+    t.SIGN.update({'Spacer hinge': 1.0, 'Left hinge': 1.0})
 
 
 def fold(t, sp, lh=None):
