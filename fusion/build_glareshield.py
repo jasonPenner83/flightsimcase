@@ -124,7 +124,7 @@ def build_glareshield():
         'Left half': [('PRINT glareshield L (top closure)', L),
                       ('PANEL bottom closure strip 3 mm (stowed on lid)', box(X(4), X(424), -back + 3, -back + 6, -118, -118 + gap))],
         'Right half': [('PRINT glareshield R (top closure)', R),
-                       ('PANEL side closure strip 3 mm (stowed on lid)', box(X(800), X(800 + gap), -back + 3, -back + 6, -120, 221))],
+                       ('PANEL side closure strip 3 mm (stowed on lid)', box(X(800), X(800 + gap), -190.0 + 3, -190.0 + 6, -120, 221))],
     }
     for h, its in items.items():
         comp = hosts[h].component

@@ -15,16 +15,27 @@ PLACE = {
     # lower panel: his fuse panels are fascias that stand 28 mm proud of his recessed 3 mm plate; brought
     # forward 12 mm their faces land flush with the MIP face and pass through cut-outs in our 9 mm lower plate.
     # The flaps lever comes forward 40 mm (lever stands proud like the real one, mechanism stays shallow).
-    # Throttle (throt temp, 172 THROTTLE V2) and mixture (Mix Lever) are left out: Logitech quadrant does those.
     'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Left half', 0.0, 12.0),
-    'Lower Panel Assy v1:1/RHS Fuse Pnl v1:1':   ('Right half', 265.0, 12.0),   # off the seam: u 530-733
+    # (RHS fuse panel removed: throttle / mixture / condition push-pulls take its place, see SPLIT)
     'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 126.0, 40.0),   # u 790-872
     # fuel selector on the left lower in the old start-key spot (Jason: keep the key that's in the LHS fuse panel).
     # Face u 288-423, z -119..11 (overlaps the MIP bottom edge by 11 mm), face plate on the panel front; support body
     # fits exactly between the lower 2020 rail (z -105) and the MIP panel bottom (z 0).
     'FSP3 v1:1':           ('Left half', 125.0, 8.0, 145.0),
 }
-LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'FSP3')
+# His lower-panel push-pull throttle and mixture (slide-pot type), plus a second throttle used as the CONDITION
+# knob, on the right lower where the RHS fuse panel was. Modelled PUSHED IN (storage/fold state): knob, rod and
+# ferrule move 62 mm (throttle) / 60 mm (mixture) back from his pulled-out pose, so knobs stand ~46 mm proud and the
+# rods reach ~171 mm behind the face (right rear tub is deeper for this). Each is placed child by child into a
+# wrapper component.  (key, wrapper name, host, du, dy, dz, {child-name prefix: extra dy, None = leave out})
+MOVE_T = {'8mm x 198mm brass rod': -62.0, '5 Throttle Knob (1)': -62.0, '8 Ferrule (1)': -62.0, '5 Throttle Knob (2)': None}
+MOVE_M = {'Mix Tube': -60.0, '3 Mix Knob': -60.0, '8 Ferrule': -60.0}
+SPLIT = [
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Right half', 74.0, 12.0, 0.0, MOVE_T),   # knob u 640
+    ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Right half', 73.0, 12.0, 0.0, MOVE_M),     # knob u 690
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Right half', 174.0, 12.0, 0.0, MOVE_T),  # knob u 740
+]
+LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 
@@ -70,6 +81,30 @@ def place():
         occ = hosts[host].component.occurrences.addExistingComponent(src.component, W)
         occ.isGroundToParent = True
         placed.append((host, occ))
+    lookup = {}
+    for src in top.childOccurrences:
+        for ch in src.childOccurrences:
+            lookup[src.name + '/' + ch.name] = (ch, src)
+    for key, wname, host, du, dy, dz, moves in SPLIT:
+        src, parent = lookup[key]
+        wo = hosts[host].component.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        wo.component.name = wname
+        wo.isGroundToParent = True
+        for ch in src.childOccurrences:
+            extra = 0.0
+            hit = [k for k in moves if ch.name.startswith(k)]
+            if hit:
+                extra = moves[max(hit, key=len)]
+                if extra is None:
+                    continue
+            W = ch.transform2.copy()          # proxy transform2 is already the full (world) transform
+            W.transformBy(R)
+            W.transformBy(Tours)
+            Tm = adsk.core.Matrix3D.create(); Tm.translation = adsk.core.Vector3D.create(du / 10.0, -(dy + extra) / 10.0, dz / 10.0)
+            W.transformBy(Tm)
+            o = wo.component.occurrences.addExistingComponent(ch.component, W)
+            o.isGroundToParent = True
+        placed.append((host, wo))
     vend.isLightBulbOn = False
 
     # front envelopes (y >= 0 in pilot frame = Fusion y <= 0), per placed module, as ZONE bodies in the host

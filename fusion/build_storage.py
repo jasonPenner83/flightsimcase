@@ -16,7 +16,7 @@ bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
 S = dict(
-    tub_back=130.0,      # rear lid outer face, mm behind the panel face
+    tub_back={'Left half': 130.0, 'Right half': 190.0},   # rear lid outer face behind the panel face; right is deeper (throttle rods, more storage)
     wall=3.0,
     ell_a=236.0, ell_b=153.0, ell_z=216.0,   # his panel's top outer corner curve (approximated as a quarter ellipse)
     pocket_depth=60.0,
@@ -82,8 +82,8 @@ def build_storage():
 
     hosts = {o.component.name: o for o in root.occurrences}
     items = {'Left half': [], 'Right half': [], 'Spacer': []}
-    back = -S['tub_back']
     for h in ('Left half', 'Right half'):
+        back = -S['tub_back'][h]
         walls = prism(h, 0.0, back + w, -tp)
         op(walls, prism(h, w, back, -tp + 1), SUB)
         # clear the frame members the walls run along (uprights, seam angle, lower rail)
@@ -160,7 +160,7 @@ def build_storage():
     # fuel selector now lives on the panel (left lower), so only the trim wheel is a clamp-on pod
     # pod(FUEL_POD, 'Fuel selector pod (clamp-on)', (-69.0, -75.0, -66.0), (69.0, -8.0, 66.0))   # tucked between MFD, rail and the corner curve
     pod(TRIM_POD, 'Trim wheel pod (clamp-on)', (-41.5, -130.0, -90.0), (41.5, 0.0, 90.0))
-    print('storage: tubs to %.0f mm behind face, pockets %d, stowed quadrant/base/pods' % (S['tub_back'], len(P['pockets'])))
+    print('storage: tubs %s mm behind face, pockets %d' % (S['tub_back'], len(P['pockets'])))
 
 
 def run(_context: str):

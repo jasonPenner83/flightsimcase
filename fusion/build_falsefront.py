@@ -14,10 +14,10 @@ P = bcm.P
 W = 2.0                      # cubby wall
 Y_FRONT, Y_BACK = -11.5, -122.0     # front stays clear of the seam-angle leaf (y -9..-11)
 # (host, inner u0, u1, inner z0, z1)  - inner box contains the fascia footprint
-CUBBIES = [('Left half', 23.0, 291.0, -103.0, -1.5), ('Right half', 529.0, 740.0, -103.0, -1.5)]   # top wall ends at z 0 (2020 rail)
+CUBBIES = [('Left half', 23.0, 291.0, -103.0, -1.5)]   # (right fuse panel replaced by throttle/mixture/condition)   # top wall ends at z 0 (2020 rail)
 HW = [  # (host, name, u0, u1, z0, z1, y0, y1)
     ('Left half', 'REF powered USB hub 7-port (115x45x25)', 150.0, 265.0, -103.0, -78.0, -115.0, -70.0),
-    ('Right half', 'REF 12V PSU (LRS-50-12 size 99x82x30)', 560.0, 659.0, -103.0, -73.0, -117.0, -35.0),
+    ('Right half', 'REF 12V PSU (LRS-50-12 size 99x82x30)', 528.0, 610.0, -103.0, -4.0, -45.0, -15.0),   # on edge, behind the blank right lower
 ]
 
 
@@ -61,7 +61,7 @@ def build_falsefront():
         mc = (u0 + u1) / 2
         items[h].append(('PRINT false-front magnet catch', box(X(mc) - 10, X(mc) + 10, -26.0, -19.0, z1 - 6, z1)))
     for h, nm, u0, u1, z0, z1, y0, y1 in HW:
-        items[h].append((nm, box(X(u0), X(u1), y0, y1, z0, z1)))
+        items.setdefault(h, []).append((nm, box(X(u0), X(u1), y0, y1, z0, z1)))
     for h, its in items.items():
         comp = hosts[h].component
         bf = comp.features.baseFeatures.add(); bf.startEdit()
@@ -70,7 +70,7 @@ def build_falsefront():
             if nm.startswith('REF'):
                 nb.opacity = 0.35
         bf.finishEdit()
-    print('false fronts: cubbies L u %.0f-%.0f, R u %.0f-%.0f, %d mm deep' % (CUBBIES[0][1], CUBBIES[0][2], CUBBIES[1][1], CUBBIES[1][2], -Y_BACK))
+    print('false front: cubby L u %.0f-%.0f, %d mm deep' % (CUBBIES[0][1], CUBBIES[0][2], -Y_BACK))
 
 
 def run(_context: str):

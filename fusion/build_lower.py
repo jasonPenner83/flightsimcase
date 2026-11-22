@@ -10,12 +10,11 @@ spec = importlib.util.spec_from_file_location('build_case_mip', BASE + 'build_ca
 bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
-COND = dict(u=760.0, z=-55.0, knob_d=28.0, knob_h=22.0, shaft_d=6.0, hole_d=10.0)
 # (host, u0, u1, z0, z1, depth) open-top bins behind the lower plates. Halves: inside the 2040 frame depth.
 # Spacer: shallow, because the spacer's back faces outward when folded (a deeper bin widens the closed case).
 BINS = [('Spacer', 436.0, 515.0, None, -5.0, 21.5),
         ('Right half', 878.0, 922.0, None, -5.0, 48.5)]
-LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'FSP3')
+LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
 
 
 def X(u):
@@ -73,14 +72,7 @@ def build_lower():
                 if not tbm.booleanOperation(plates[h], tool, SUB):
                     raise RuntimeError('cut failed ' + ch.name)
                 cuts.append('%s %s u %.0f..%.0f z %.0f..%.0f' % (h, ch.component.name[:16], lo[0] * 10 + 460, hi[0] * 10 + 460, lo[1] * 10, hi[1] * 10))
-    # condition knob hole (right lower)
-    tbm.booleanOperation(plates['Right half'], ycyl(X(COND['u']), COND['z'], -tp - 1, 1, COND['hole_d'] / 2), SUB)
-
     items = {h: [('PANEL lower (%s)' % h.lower(), plates[h])] for h in spans}
-    knob = ycyl(X(COND['u']), COND['z'], 0, COND['knob_h'], COND['knob_d'] / 2)
-    tbm.booleanOperation(knob, ycyl(X(COND['u']), COND['z'], -35, 0, COND['shaft_d'] / 2), UNI)
-    items['Right half'].append(('PRINT condition knob (placeholder)', knob))
-    items['Right half'].append(('PRINT condition knob pot bracket', box(X(COND['u']) - 15, X(COND['u']) + 15, -tp - 25, -tp - 22, COND['z'] - 15, COND['z'] + 15)))
 
     for h, u0, u1, z0, z1, dep in BINS:
         z0 = (zl + T + 2) if (z0 is None and h != 'Spacer') else (zl + 5 if z0 is None else z0)

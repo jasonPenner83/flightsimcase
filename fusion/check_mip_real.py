@@ -65,6 +65,8 @@ def check(angles=((90, 90),), include_panels=True):
                 hits.append('%s/%s x %s/%s %.0f mm3' % (ha, pa[:25], hb, pb[:25], r.interferenceBody.volume * 1000))
         out[(sp, lh)] = hits
         print('fold', sp, lh, 'bodies', coll.count, 'secs', round(time.time() - t0), 'hits', len(hits), 'unmatched', unk, 'raw', (res.count if res else 0), hits[:4], dbg)
+        with open(BASE + 'check_fold.log', 'a') as f:
+            f.write('fold %s %s secs %d hits %d %s' % (sp, lh, round(time.time() - t0), len(hits), hits[:6]) + chr(10))
     rm.fold(t, 0, 0)
     return out
 
