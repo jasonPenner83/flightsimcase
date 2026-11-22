@@ -21,3 +21,4 @@ fabrication/panels.json
 fabrication/*.pdf
 fabrication/jigs/*.stl
 fabrication/jigs/*.svg
+fabrication/*.zip
