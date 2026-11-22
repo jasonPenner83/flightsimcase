@@ -16,16 +16,17 @@ bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
 S = dict(
-    tub_back={'Left half': 130.0, 'Right half': 190.0},   # rear lid outer face behind the panel face; right is deeper (throttle rods, more storage)
+    tub_back={'Left half': 72.0, 'Right half': 190.0},   # Jason: deep parts live on the right; left is thin (rear frame sits right behind the 2040 upright)
+      # rear lid outer face behind the panel face; right is deeper (throttle rods, more storage)
     wall=3.0,
     ell_a=236.0, ell_b=153.0, ell_z=216.0,   # his panel's top outer corner curve (approximated as a quarter ellipse)
-    pocket_depth=60.0,
+    pocket_depth={'Left half': 56.0, 'Right half': 60.0},
 )
 # stowed positions (pilot u / z of the stowed item's centre, pilot y range)
 QUADRANT = dict(host='Right half', u=(560.0, 735.0), z=(140.0, 315.0), y=(-122.0, -32.0))   # 175 x 175 x 90
-PED_BASE = dict(host='Left half', u=(30.0, 250.0), z=(175.0, 285.0), y=(-80.0, -35.0))
+PED_BASE = dict(host='Right half', u=(840.0, 885.0), z=(60.0, 280.0), y=(-120.0, -75.0))   # on edge, behind the right face pocket
 FUEL_POD = dict(host='Right half', src='FSP3 v1:1', mod_u=230.5, mod_z=-199.0, stow_u=852.0, stow_z=211.0, stow_c=-87.0, rot=180)
-TRIM_POD = dict(host='Left half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=249.0, stow_yc=-74.0, stow_z=230.0, rot=90)
+TRIM_POD = dict(host='Right half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=674.0, stow_yc=-74.0, stow_z=80.0, rot=90)   # Jason's position (moved in Fusion, 2026-11-22)
 
 
 def X(u):
@@ -105,13 +106,14 @@ def build_storage():
         fr.append(('2020 Rear rail %d' % round(ut1 - ut0), prof(X(ut0), X(ut1), yr1, yr0, zt - T, zt)))
         for (c0, c1, yf, z0, z1) in ((uo0, uo1, -tp - 40, zl, zl + T), (uo0, uo1, -tp - 40, 216.0 - T, 216.0),
                                      (us0, us1, -tp - 20, zl, zl + T), (us0, us1, -tp - 20, zt - T, zt)):
-            fr.append(('2020 Depth %d' % round(yf - yr0), prof(X(c0), X(c1), yf, yr0, z0, z1)))
+            if yf - yr0 > 5.0:      # thin left box: the rear frame bolts straight to the 2040 upright
+                fr.append(('2020 Depth %d' % round(yf - yr0), prof(X(c0), X(c1), yf, yr0, z0, z1)))
         items[h].extend(fr)
 
     # face pockets (open-front print trays behind the panel cut-outs)
     for h, p0, p1, q0, q1 in P['pockets']:
-        tray = box(X(p0) - 2, X(p1) + 2, -tp - S['pocket_depth'] - 2, -tp, q0 - 2, q1 + 2)
-        op(tray, box(X(p0), X(p1), -tp - S['pocket_depth'], -tp + 1, q0, q1), SUB)
+        tray = box(X(p0) - 2, X(p1) + 2, -tp - S['pocket_depth'][h] - 2, -tp, q0 - 2, q1 + 2)
+        op(tray, box(X(p0), X(p1), -tp - S['pocket_depth'][h], -tp + 1, q0, q1), SUB)
         items[h].append(('PRINT face pocket tray', tray))
 
     # stowed: quadrant envelope + pedestal base

@@ -14,9 +14,9 @@ P = bcm.P
 W = 2.0                      # cubby wall
 Y_FRONT, Y_BACK = -11.5, -122.0     # front stays clear of the seam-angle leaf (y -9..-11)
 # (host, inner u0, u1, inner z0, z1)  - inner box contains the fascia footprint
-CUBBIES = [('Left half', 23.0, 291.0, -103.0, -1.5)]   # (right fuse panel replaced by throttle/mixture/condition)   # top wall ends at z 0 (2020 rail)
+CUBBIES = []   # Jason scrapped the left false front (2026-11-22); file now only places the hub / PSU envelopes   # top wall ends at z 0 (2020 rail)
 HW = [  # (host, name, u0, u1, z0, z1, y0, y1)
-    ('Left half', 'REF powered USB hub 7-port (115x45x25)', 150.0, 265.0, -103.0, -78.0, -115.0, -70.0),
+    ('Left half', 'REF powered USB hub 7-port (115x45x25)', 120.0, 235.0, -95.0, -50.0, -46.0, -21.0),   # behind the left fuse panel, flat
     ('Right half', 'REF 12V PSU (LRS-50-12 size 99x82x30)', 528.0, 610.0, -103.0, -4.0, -45.0, -15.0),   # on edge, behind the blank right lower
 ]
 
@@ -70,7 +70,7 @@ def build_falsefront():
             if nm.startswith('REF'):
                 nb.opacity = 0.35
         bf.finishEdit()
-    print('false front: cubby L u %.0f-%.0f, %d mm deep' % (CUBBIES[0][1], CUBBIES[0][2], -Y_BACK))
+    print('hub / PSU envelopes placed')
 
 
 def run(_context: str):
