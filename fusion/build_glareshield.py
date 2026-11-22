@@ -1,11 +1,9 @@
-# Two-piece glareshield that doubles as the TOP closure of the folded case (runs after build_storage).
-# Each piece follows its half's top outline (straight run + the big outer corner curve, quarter ellipse
-# a236 b153 at z216) and overhangs 93 mm toward the pilot = the folded face gap. Both stay on their halves:
-#  - LEFT piece: plate y 3..93 (z 369..373), rear flange hugging the panel face (y 3..6) and a 20 mm brow at
-#    y 90..93. Folded, it spans the gap just under the right piece.
-#  - RIGHT piece: plate y -9..93 one layer up (z 373..377, on 4 mm standoffs over its panel's top edge), brow
-#    y 90..93 hanging 24 mm. Folded, its plate covers the left piece and its brow drops in just inside the
-#    left panel face, beside the left plate: the top and curved corners of the gap are closed.
+# Glareshield v2 (runs after build_storage): left + right pieces on the SAME plane (z 369..373), each following its
+# half's real top outline (sampled from his panel, incl. the big curved corners). Each covers its panel's top edge
+# and overhangs 46.5 mm = half the folded face gap, with a 20 mm brow, so when folded the two meet level in the
+# middle of the gap and close the top and curved corners. The right piece's curve is shifted 6 mm outward
+# because the left half is 6 mm wider (folded outlines differ by 6).
+# Middle piece over the spacer: deployed only, snaps between L and R on 6x3 mm magnets; stows in a rear tub.
 # Straight side + bottom of the gap: two 3 mm closure strips, stowed on the inside of the rear lids.
 # Units mm, frame as build_case_mip (X right, Y toward pilot, Z up, u = x + 460).
 import importlib.util
@@ -99,21 +97,33 @@ def build_glareshield():
 
     gap, t, brow = G['gap'], G['t'], G['brow']
     sh = 6.0     # folded, the left outline sits 6 mm further out than the right one (left half is 6 mm wider)
-    # left piece
-    L = band('Left half', t, 0.0, 3.0, gap)
-    op(L, band('Left half', 0.01, -brow, 3.0, 6.0), UNI)               # rear flange on the panel face
-    op(L, band('Left half', 0.01, -brow, gap - 3, gap), UNI)           # brow
-    # right piece, one layer up
-    R = band('Right half', 2 * t, t, -P['t_panel'], gap, sh)
-    op(R, band('Right half', t + 0.01, -brow, gap - 3, gap, sh), UNI)      # brow (24 mm below its plate)
-    for u in (r0 + 30, (r0 + r1 - 236.0) / 2, r1 - 236.0):                     # 4 mm standoffs on the panel top edge
-        op(R, box(X(u) - 6, X(u) + 6, -P['t_panel'] + 1, -1, zt, zt + t + 0.01), UNI)
+    ov = gap / 2.0          # each piece overhangs half the folded gap: closed, they meet in the middle, level
+    s0, s1 = uB + hg, uA - hg
+    # left / right pieces: same plane (z 369..373), plate over the panel top edge + 46.5 mm overhang, 20 mm brow
+    L = band('Left half', t, 0.0, -P['t_panel'], ov)
+    op(L, band('Left half', 0.01, -brow, ov - 3, ov), UNI)
+    R = band('Right half', t, 0.0, -P['t_panel'], ov, sh)
+    op(R, band('Right half', 0.01, -brow, ov - 3, ov, sh), UNI)
+    # middle piece over the spacer (deployed only): same section, snaps between L and R on magnets
+    M = box(X(l1), X(r0), -P['t_panel'], ov, zt, zt + t)
+    op(M, box(X(l1), X(r0), ov - 3, ov, zt - brow, zt), UNI)
+    # magnet blocks under the plate at the joints (2 x 6x3 mm magnets per face)
+    def mblock(u0, u1):
+        blk = box(X(u0), X(u1), 3.0, ov - 3, zt - 8, zt)
+        return blk
+    op(L, mblock(l1 - 15, l1), UNI); op(R, mblock(r0, r0 + 15), UNI)
+    op(M, mblock(l1, l1 + 15), UNI); op(M, mblock(r0 - 15, r0), UNI)
+    for (bd, ue, sgn) in ((L, l1, -1), (R, r0, 1), (M, l1, 1), (M, r0, -1)):
+        for yy in (12.0, ov - 12):
+            mag = tbm.createCylinderOrCone(F(X(ue), yy, zt - 4), 0.31, F(X(ue) + sgn * 3.2, yy, zt - 4), 0.31)
+            op(bd, mag, SUB)
 
     tp = P['t_panel']; back = 130.0
     items = {
+        'Spacer': [('PRINT glareshield middle (magnetic, deployed only)', M)],
         'Left half': [('PRINT glareshield L (top closure)', L),
                       ('PANEL bottom closure strip 3 mm (stowed on lid)', box(X(4), X(424), -back + 3, -back + 6, -118, -118 + gap))],
-        'Right half': [('PRINT glareshield R (top closure, nests over L)', R),
+        'Right half': [('PRINT glareshield R (top closure)', R),
                        ('PANEL side closure strip 3 mm (stowed on lid)', box(X(800), X(800 + gap), -back + 3, -back + 6, -120, 221))],
     }
     for h, its in items.items():
@@ -122,7 +132,7 @@ def build_glareshield():
         for nm, bd in its:
             nb = comp.bRepBodies.add(bd, bf); nb.name = nm
         bf.finishEdit()
-    print('glareshield: L plate y 3..93 z 369..373, R plate y -9..93 z 373..377; closure strips stowed')
+    print('glareshield v2: L/R level, overhang %.1f each, middle piece on spacer; closure strips stowed' % ov)
 
 
 def run(_context: str):
