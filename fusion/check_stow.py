@@ -1,7 +1,7 @@
 # Stowage check: stowed items, pods, tubs and face pockets vs everything else on the same half (open state).
 import adsk.core, adsk.fusion
 
-NEW = ('PANEL rear', 'PRINT face pocket', 'PRINT pedestal', 'REF Logitech', 'PRINT glareshield', 'PANEL bottom closure', 'PANEL side closure')
+NEW = ('PANEL rear', 'PRINT face pocket', 'PRINT pedestal', 'REF Logitech', 'PRINT glareshield', 'PANEL bottom closure', 'PANEL side closure', 'PRINT false-front', 'REF powered', 'REF 12V')
 
 
 def check(host_name, everything=False):

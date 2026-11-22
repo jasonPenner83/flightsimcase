@@ -100,9 +100,9 @@ def build_glareshield():
     ov = gap / 2.0          # each piece overhangs half the folded gap: closed, they meet in the middle, level
     s0, s1 = uB + hg, uA - hg
     # left / right pieces: same plane (z 369..373), plate over the panel top edge + 46.5 mm overhang, 20 mm brow
-    L = band('Left half', t, 0.0, -P['t_panel'], ov)
+    L = band('Left half', t + 0.05, 0.05, -P['t_panel'], ov)
     op(L, band('Left half', 0.01, -brow, ov - 3, ov), UNI)
-    R = band('Right half', t, 0.0, -P['t_panel'], ov, sh)
+    R = band('Right half', t + 0.05, 0.05, -P['t_panel'], ov, sh)
     op(R, band('Right half', 0.01, -brow, ov - 3, ov, sh), UNI)
     # middle piece over the spacer (deployed only): same section, snaps between L and R on magnets
     M = box(X(l1), X(r0), -P['t_panel'], ov, zt, zt + t)
