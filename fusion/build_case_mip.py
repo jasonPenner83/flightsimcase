@@ -17,6 +17,7 @@ P = dict(
     yoke_u=283.8, yoke_z=60.0, yoke_d=40.0,
     rear=70.0,                   # his ASI case is ~65 mm behind the panel
     foot=40.0,
+    z_low=-125.0,                # bottom of the lower panel (his fuse panels reach z -103)
 )
 
 
@@ -52,7 +53,7 @@ def build():
     SUB = adsk.fusion.BooleanTypes.DifferenceBooleanType
     UNI = adsk.fusion.BooleanTypes.UnionBooleanType
     INT = adsk.fusion.BooleanTypes.IntersectionBooleanType
-    T = P['T']; tp = P['t_panel']
+    T = P['T']; tp = P['t_panel']; zl = P['z_low']
 
     # ---- his panel (inserted design "MIP"), turned to face the pilot
     src = None
@@ -97,9 +98,9 @@ def build():
         L = []
         hz = 216.5
         if outer_left:
-            L.append(('2040 Upright %d' % hz, box(X(u0), X(u0) + T, -tp - 40, -tp, 0, hz)))
+            L.append(('2040 Upright %d' % (hz - zl), box(X(u0), X(u0) + T, -tp - 40, -tp, zl, hz)))
         if outer_right:
-            L.append(('2040 Upright %d' % hz, box(X(u1) - T, X(u1), -tp - 40, -tp, 0, hz)))
+            L.append(('2040 Upright %d' % (hz - zl), box(X(u1) - T, X(u1), -tp - 40, -tp, zl, hz)))
         for (a, b, zc) in rails:
             L.append(('2020 Rail %d' % round(b - a), box(X(a), X(b), -tp - T, -tp, zc - T / 2, zc + T / 2)))
         return L
@@ -107,9 +108,9 @@ def build():
     def seam_angle(u_edge, side):
         x = X(u_edge)
         x0, x1 = (x - 2, x) if side < 0 else (x, x + 2)
-        a = box(x0, x1, -tp - 20, -tp, 0, 369.0)
+        a = box(x0, x1, -tp - 20, -tp, zl, 369.0)
         x0, x1 = (x - 20, x) if side < 0 else (x, x + 20)
-        op(a, box(x0, x1, -tp - 2, -tp, 0, 369.0), UNI)
+        op(a, box(x0, x1, -tp - 2, -tp, zl, 369.0), UNI)
         return ('ALU angle 20x20x2 (seam)', a)
 
     def add(name, items, grounded=False):
@@ -124,18 +125,18 @@ def build():
 
     ft = P['foot']; yk = P['kn']
     left = [('PANEL 737DIYSIM MIP - left (switches + PFD)', left_panel), seam_angle(l1, -1),
-            ('HINGE leaf', box(X(l1), X(l1) + 1.4, -tp - 20, 0, 10, 359))]
-    left += frame(l0, l1, True, False, [(l0 + T, l1 - 2, 10.0), (215.5, l1 - 2, 126.0)])
+            ('HINGE leaf', box(X(l1), X(l1) + 1.4, -tp - 20, 0, zl + 10, 359))]
+    left += frame(l0, l1, True, False, [(l0 + T, l1 - 2, zl + 10), (l0 + T, l1 - 2, 10.0), (215.5, l1 - 2, 126.0)])
     for xu in (X(l0), X(l1) - 40):
-        left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, -ft, 0)))
+        left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
     spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1), seam_angle(s1, -1),
-              ('HINGE knuckle B', vcyl(X(uB), yk, 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, 10, 359, 3.0))]
+              ('HINGE knuckle B', vcyl(X(uB), yk, zl + 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, zl + 10, 359, 3.0))]
     right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), seam_angle(r0, +1),
-             ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, 10, 359))]
-    right += frame(r0, r1, False, True, [(r0 + 2, r1 - T, 10.0), (r0 + 2, r1 - T, 126.0)])
+             ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, zl + 10, 359))]
+    right += frame(r0, r1, False, True, [(r0 + 2, r1 - T, zl + 10), (r0 + 2, r1 - T, 10.0), (r0 + 2, r1 - T, 126.0)])
     for xu in (X(r0) + 2, X(r1) - T):
-        right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, -ft, 0)))
-        right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, -ft - 60, -ft)))
+        right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
+        right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, zl - ft - 60, zl - ft)))
 
     occR = add('Right half', right, grounded=True)
     occS = add('Spacer', spacer)

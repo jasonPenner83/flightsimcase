@@ -3,7 +3,7 @@
 # Front envelopes (ZONE bodies) are generated from each placed module's bounding box for the fold check.
 import adsk.core, adsk.fusion, math
 
-# source occurrence name -> (host, du shift mm, dy shift mm (+ = toward pilot), envelope exclusions)
+# source occurrence name ('parent/child' for nested) -> (host, du mm, dy mm (+ = toward pilot)[, dz mm])
 PLACE = {
     'G1000 v1:1':          ('Left half', 0.0, 0.0),
     '172 AV PNL v1:1':     ('Left half', 0.0, 0.0),
@@ -12,7 +12,16 @@ PLACE = {
     'G1000 V2 v1:1':       ('Right half', 25.0, 0.0),
     'ASI v1:1':            ('Right half', 83.0, 0.0),    # ASI + attitude + altimeter block moved right
     'Elt:1':               ('Right half', 25.0, 0.0),
+    # lower panel: his fuse panels are fascias that stand 28 mm proud of his recessed 3 mm plate; brought
+    # forward 12 mm their faces land flush with the MIP face and pass through cut-outs in our 9 mm lower plate.
+    # The flaps lever comes forward 40 mm (lever stands proud like the real one, mechanism stays shallow).
+    # Throttle (throt temp, 172 THROTTLE V2) and mixture (Mix Lever) are left out: Logitech quadrant does those.
+    'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Left half', 0.0, 12.0),
+    'Lower Panel Assy v1:1/RHS Fuse Pnl v1:1':   ('Right half', 265.0, 12.0),   # off the seam: u 530-733
+    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 126.0, 40.0),   # u 790-872
+    'C172 Start sw v1:1':  ('Left half', 227.0, 0.0, 121.5),                    # key: from pedestal to left lower, u 300
 }
+LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'C172 Start sw')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 
@@ -37,14 +46,23 @@ def place():
                                                                    hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]))
 
     placed = []
+    srcs = []
     for src in top.childOccurrences:
-        if src.name not in PLACE:
-            continue
-        host, du, dy = PLACE[src.name]
+        if src.name in PLACE:
+            srcs.append((src, PLACE[src.name], None))
+        for ch in src.childOccurrences:
+            k = src.name + '/' + ch.name
+            if k in PLACE:
+                srcs.append((ch, PLACE[k], src))
+    for src, spec, parent in srcs:
+        host, du, dy = spec[:3]
+        dz = spec[3] if len(spec) > 3 else 0.0
         W = src.transform2.copy()
+        if parent is not None:
+            W.transformBy(parent.transform2)
         W.transformBy(R)
         W.transformBy(Tours)
-        Tm = adsk.core.Matrix3D.create(); Tm.translation = adsk.core.Vector3D.create(du / 10.0, -dy / 10.0, 0)
+        Tm = adsk.core.Matrix3D.create(); Tm.translation = adsk.core.Vector3D.create(du / 10.0, -dy / 10.0, dz / 10.0)
         W.transformBy(Tm)
         occ = hosts[host].component.occurrences.addExistingComponent(src.component, W)
         occ.isGroundToParent = True

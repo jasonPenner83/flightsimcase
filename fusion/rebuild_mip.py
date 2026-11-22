@@ -24,6 +24,7 @@ def run(_context: str):
             o.deleteMe()
     load('build_case_mip').build()
     load('place_vendor').place()
+    load('build_lower').build_lower()
     lib = app.materialLibraries.itemByName('Fusion Material Library')
     mats = {'PANEL': 'Plywood, Finish', 'ALU': 'Aluminum 6061', '20': 'Aluminum 6061', 'PRINT': 'PET Plastic'}
     for o in r.occurrences:
