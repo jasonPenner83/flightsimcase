@@ -157,7 +157,8 @@ def build_storage():
         mo.isGroundToParent = True
         return po
 
-    pod(FUEL_POD, 'Fuel selector pod (clamp-on)', (-69.0, -75.0, -66.0), (69.0, -8.0, 66.0))   # tucked between MFD, rail and the corner curve
+    # fuel selector now lives on the panel (left lower), so only the trim wheel is a clamp-on pod
+    # pod(FUEL_POD, 'Fuel selector pod (clamp-on)', (-69.0, -75.0, -66.0), (69.0, -8.0, 66.0))   # tucked between MFD, rail and the corner curve
     pod(TRIM_POD, 'Trim wheel pod (clamp-on)', (-41.5, -130.0, -90.0), (41.5, 0.0, 90.0))
     print('storage: tubs to %.0f mm behind face, pockets %d, stowed quadrant/base/pods' % (S['tub_back'], len(P['pockets'])))
 

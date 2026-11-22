@@ -13,10 +13,9 @@ P = bcm.P
 COND = dict(u=760.0, z=-55.0, knob_d=28.0, knob_h=22.0, shaft_d=6.0, hole_d=10.0)
 # (host, u0, u1, z0, z1, depth) open-top bins behind the lower plates. Halves: inside the 2040 frame depth.
 # Spacer: shallow, because the spacer's back faces outward when folded (a deeper bin widens the closed case).
-BINS = [('Left half', 352.0, 424.0, None, -5.0, 48.5),
-        ('Spacer', 436.0, 515.0, None, -5.0, 21.5),
+BINS = [('Spacer', 436.0, 515.0, None, -5.0, 21.5),
         ('Right half', 878.0, 922.0, None, -5.0, 48.5)]
-LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'C172 Start sw')
+LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'FSP3')
 
 
 def X(u):
@@ -64,7 +63,7 @@ def build_lower():
                 o = stack.pop()
                 for b in o.bRepBodies:
                     bb = b.boundingBox
-                    if bb.minPoint.y < tp / 10.0 - 0.01 and bb.maxPoint.y > 0.01 and bb.maxPoint.z * 10 < 2:
+                    if bb.minPoint.y < 2.0 and bb.maxPoint.y > 0.01 and bb.minPoint.z * 10 < 0:   # anything within 20 mm behind the face (fascia plates sit 14 mm back)
                         lo = [min(lo[0], bb.minPoint.x), min(lo[1], bb.minPoint.z)]
                         hi = [max(hi[0], bb.maxPoint.x), max(hi[1], bb.maxPoint.z)]
                 stack.extend(list(o.childOccurrences))

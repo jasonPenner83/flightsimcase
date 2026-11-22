@@ -19,9 +19,12 @@ PLACE = {
     'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Left half', 0.0, 12.0),
     'Lower Panel Assy v1:1/RHS Fuse Pnl v1:1':   ('Right half', 265.0, 12.0),   # off the seam: u 530-733
     'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 126.0, 40.0),   # u 790-872
-    'C172 Start sw v1:1':  ('Left half', 227.0, 0.0, 121.5),                    # key: from pedestal to left lower, u 300
+    # fuel selector on the left lower in the old start-key spot (Jason: keep the key that's in the LHS fuse panel).
+    # Face u 288-423, z -119..11 (overlaps the MIP bottom edge by 11 mm), face plate on the panel front; support body
+    # fits exactly between the lower 2020 rail (z -105) and the MIP panel bottom (z 0).
+    'FSP3 v1:1':           ('Left half', 125.0, 8.0, 145.0),
 }
-LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'C172 Start sw')
+LOWER = ('LHS Fuse panel', 'RHS Fuse Pnl', 'flaps lever', 'FSP3')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 
