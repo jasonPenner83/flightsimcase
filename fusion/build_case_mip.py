@@ -20,7 +20,11 @@ P = dict(
     z_low=-125.0,                # bottom of the lower panel (his fuse panels reach z -103)
     # open face pockets (u0, u1, z0, z1): blank panel areas that face the other half's protruding parts when
     # closed, so they double as storage pockets; between the 2020 rails at z 10 and z 126
-    square_top=True,             # Jason: lose the top corner radius -> straight extrusion frame + straight glareshield
+    square_top=False,            # Jason: KEEP his curved top corners
+    r_ext=6.0,                   # right half is 6 mm narrower than the left (424 vs 430): a 6 mm edge filler on its outer
+                                 # edge evens them so the forward-extended rims meet exactly when folded
+    rim=46.5,                    # each half's rim (top, curved corner, outer side, bottom) runs this far in front of the face
+    skin=3.0,
     pockets=(('Left half', 338.0, 405.0, 24.0, 112.0), ('Right half', 800.0, 915.0, 24.0, 112.0)),
 )
 
@@ -141,17 +145,19 @@ def build():
     ft = P['foot']; yk = P['kn']
     left = [('PANEL 737DIYSIM MIP - left (switches + PFD)', left_panel), seam_angle(l1, -1),
             ('HINGE leaf', box(X(l1), X(l1) + 1.4, -tp - 20, 0, zl + 10, 359))]
-    left += frame(l0, l1, True, False, [(l0 + T, l1 - 20, zl + 10), (l0 + T, l1 - 20, 10.0), (215.5, l1 - 20, 126.0), (l0 + T, l1 - 20, 359.0)])
+    left += frame(l0, l1, True, False, [(l0 + T, l1 - 20, zl + 10), (l0 + T, l1 - 20, 10.0), (215.5, l1 - 20, 126.0), (240.0, l1 - 20, 359.0)])
     for xu in (X(l0), X(l1) - 40):
-        left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
+        left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, zl - P['skin'] - ft, zl - P['skin'])))   # under the bottom rim
     spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1), seam_angle(s1, -1),
               ('HINGE knuckle B', vcyl(X(uB), yk, zl + 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, zl + 10, 359, 3.0))]
     right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), seam_angle(r0, +1),
              ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, zl + 10, 359))]
-    right += frame(r0, r1, False, True, [(r0 + 20, r1 - T, zl + 10), (r0 + 20, r1 - T, 10.0), (r0 + 20, r1 - T, 126.0), (r0 + 20, r1 - T, 359.0)])
-    for xu in (X(r0) + 2, X(r1) - T):
-        right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
-        right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, zl - ft - 60, zl - ft)))
+    r1f = r1 + P['r_ext']           # outer frame line of the right half (after the edge filler)
+    right += frame(r0, r1f, False, True, [(r0 + 20, r1f - T, zl + 10), (r0 + 20, r1f - T, 10.0), (r0 + 20, r1f - T, 126.0), (r0 + 20, 705.0, 359.0)])
+    zb = zl - P['skin']
+    for xu in (X(r0) + 2, X(r1f) - T):
+        right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, zb - ft, zb)))
+        right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, zb - ft - 60, zb - ft)))
 
     occR = add('Right half', right, grounded=True)
     occS = add('Spacer', spacer)
