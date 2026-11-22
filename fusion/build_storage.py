@@ -25,7 +25,7 @@ S = dict(
 QUADRANT = dict(host='Right half', u=(560.0, 735.0), z=(140.0, 315.0), y=(-122.0, -32.0))   # 175 x 175 x 90
 PED_BASE = dict(host='Left half', u=(30.0, 250.0), z=(175.0, 285.0), y=(-80.0, -35.0))
 FUEL_POD = dict(host='Right half', src='FSP3 v1:1', mod_u=230.5, mod_z=-199.0, stow_u=852.0, stow_z=211.0, stow_c=-87.0, rot=180)
-TRIM_POD = dict(host='Left half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=255.0, stow_yc=-74.0, stow_z=230.0, rot=90)
+TRIM_POD = dict(host='Left half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=249.0, stow_yc=-74.0, stow_z=230.0, rot=90)
 
 
 def X(u):
@@ -82,20 +82,41 @@ def build_storage():
 
     hosts = {o.component.name: o for o in root.occurrences}
     items = {'Left half': [], 'Right half': [], 'Spacer': []}
+    spx = importlib.util.spec_from_file_location('ext', BASE + 'ext.py')
+    ext = importlib.util.module_from_spec(spx); spx.loader.exec_module(ext)
+    prof = ext.make(tbm, F)
+    zt = 369.0
+    # rear box of each half, built from 2020 extrusion (square top): a rear frame just inside the removable lid,
+    # four corner depth members back from the front frame, 3 mm ply skins on the outer side, top, bottom and the
+    # seam side (outside, so nothing inside the tub loses space), and the 3 mm rear lid.
     for h in ('Left half', 'Right half'):
-        back = -S['tub_back'][h]
-        walls = prism(h, 0.0, back + w, -tp)
-        op(walls, prism(h, w, back, -tp + 1), SUB)
-        # clear the frame members the walls run along (uprights, seam angle, lower rail)
+        B = S['tub_back'][h]
+        yr1 = -B + w; yr0 = yr1 + T            # rear frame occupies y yr1..yr0, just inside the lid (pilot y, negative = behind)
         if h == 'Left half':
-            op(walls, box(X(l0) - 1, X(l0) + T, -tp - 40, -tp + 1, zl - 1, 216.5), SUB)
-            op(walls, box(X(l1) - 20, X(l1) + 1, -tp - 20, -tp + 1, zl - 1, 370), SUB)
+            uo0, uo1, us0, us1, ua, ub = l0, l0 + T, l1 - T, l1, l0, l1     # outer column, seam column
         else:
-            op(walls, box(X(r1) - T, X(r1) + 1, -tp - 40, -tp + 1, zl - 1, 216.5), SUB)
-            op(walls, box(X(r0) - 1, X(r0) + 20, -tp - 20, -tp + 1, zl - 1, 370), SUB)
-        op(walls, box(X(l0 if h == 'Left half' else r0) - 1, X(l1 if h == 'Left half' else r1) + 1, -tp - T, -tp + 1, zl - 1, zl + T), SUB)
-        items[h].append(('PANEL rear tub walls (3 mm ply)', walls))
-        items[h].append(('PANEL rear lid (3 mm ply, removable)', prism(h, 0.0, back, back + w)))
+            uo0, uo1, us0, us1, ua, ub = r1 - T, r1, r0, r0 + T, r0, r1
+        fr = []
+        # rear frame: two verticals + top/bottom horizontals
+        fr.append(('2020 Rear post %d' % round(zt - zl), prof(X(uo0), X(uo1), yr1, yr0, zl, zt)))
+        fr.append(('2020 Rear post %d' % round(zt - zl), prof(X(us0), X(us1), yr1, yr0, zl, zt)))
+        hlo, hhi = min(uo1, us1), max(uo0, us0)
+        hlo = (uo1 if uo1 < us0 else us1); hhi = (us0 if uo1 < us0 else uo0)
+        fr.append(('2020 Rear rail %d' % round(hhi - hlo), prof(X(hlo), X(hhi), yr1, yr0, zt - T, zt)))
+        fr.append(('2020 Rear rail %d' % round(hhi - hlo), prof(X(hlo), X(hhi), yr1, yr0, zl, zl + T)))
+        # corner depth members: outer ones start behind the 2040 upright (y -49), seam ones behind the seam angle (-29)
+        for (c0, c1, yf) in ((uo0, uo1, -tp - 40), (us0, us1, -tp - 20)):
+            for (z0, z1) in ((zt - T, zt), (zl, zl + T)):
+                fr.append(('2020 Depth %d' % round(yf - yr0), prof(X(c0), X(c1), yf, yr0, z0, z1)))
+        # skins (3 mm ply), outside the frame
+        side = (X(ua) - w, X(ua)) if h == 'Left half' else (X(ub), X(ub) + w)
+        seam = (X(ub), X(ub) + w) if h == 'Left half' else (X(ua) - w, X(ua))
+        fr.append(('PANEL skin outer side (3 mm ply)', box(side[0], side[1], yr1 - 0.0, -tp, zl, zt)))
+        fr.append(('PANEL skin seam side (3 mm ply)', box(seam[0], seam[1], -B, -tp - 20, zl, zt)))
+        fr.append(('PANEL skin top (3 mm ply)', box(X(ua) - w, X(ub) + w, -B, -tp, zt, zt + w)))
+        fr.append(('PANEL skin bottom (3 mm ply)', box(X(ua) - w, X(ub) + w, -B, -tp - 40, zl - w, zl)))   # stops behind the feet
+        fr.append(('PANEL rear lid (3 mm ply, removable)', box(X(ua) - w, X(ub) + w, -B, -B + w, zl, zt)))
+        items[h].extend(fr)
 
     # face pockets (open-front print trays behind the panel cut-outs)
     for h, p0, p1, q0, q1 in P['pockets']:

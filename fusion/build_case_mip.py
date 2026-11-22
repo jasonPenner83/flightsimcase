@@ -5,7 +5,7 @@
 # The right part (MFD, standby, ELT) moves 25 mm right. Panel face is flush with the front of the frame.
 # Units mm. My frame: X right (pilot view), Y toward pilot, Z up; panel front at y = 0, bottom at z = 0.
 # Final pilot coordinate u = x + 460.
-import adsk.core, adsk.fusion, math
+import adsk.core, adsk.fusion, math, importlib.util
 
 P = dict(
     T=20.0, t_panel=9.0,
@@ -20,6 +20,7 @@ P = dict(
     z_low=-125.0,                # bottom of the lower panel (his fuse panels reach z -103)
     # open face pockets (u0, u1, z0, z1): blank panel areas that face the other half's protruding parts when
     # closed, so they double as storage pockets; between the 2020 rails at z 10 and z 126
+    square_top=True,             # Jason: lose the top corner radius -> straight extrusion frame + straight glareshield
     pockets=(('Left half', 338.0, 405.0, 24.0, 112.0), ('Right half', 800.0, 915.0, 24.0, 112.0)),
 )
 
@@ -95,21 +96,28 @@ def build():
         tgt = left_panel if host == 'Left half' else right_panel
         if not op(tgt, box(X(p0), X(p1), -tp - 1, 1, q0, q1), SUB):
             raise RuntimeError('pocket cut failed')
+    if P['square_top']:          # fill his curved top corners (quarter-ellipse-ish NURBS from z 216 / 236 mm in)
+        op(left_panel, box(X(0.0), X(237.0), -tp, 0, 215.0, 369.0), UNI)
+        op(right_panel, box(X(920.0 + dR - 237.0), X(920.0 + dR), -tp, 0, 215.0, 369.0), UNI)
     s0, s1 = uB + hg, uA - hg
     spacer_panel = box(X(s0), X(s1), -tp, 0, 0, 369.0)
     op(spacer_panel, box(X(P['gma_u'] - P['gma_w'] / 2), X(P['gma_u'] + P['gma_w'] / 2), -tp - 1, 1, P['gma_z0'], P['gma_z1']), SUB)
     l0, l1 = 0.0, uB - hg
     r0, r1 = uA + hg, 920.0 + dR
 
+    _sp = importlib.util.spec_from_file_location('ext', r'D:/Admin/Documents/Projects/FlightSimCase/fusion/ext.py')
+    _ext = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(_ext)
+    prof = _ext.make(tbm, F)        # real Vevor 2020 / 2040 cross-sections
+
     def frame(u0, u1, outer_left, outer_right, rails):
         L = []
-        hz = 216.5
+        hz = 369.0 if P['square_top'] else 216.5
         if outer_left:
-            L.append(('2040 Upright %d' % (hz - zl), box(X(u0), X(u0) + T, -tp - 40, -tp, zl, hz)))
+            L.append(('2040 Upright %d' % (hz - zl), prof(X(u0), X(u0) + T, -tp - 40, -tp, zl, hz)))
         if outer_right:
-            L.append(('2040 Upright %d' % (hz - zl), box(X(u1) - T, X(u1), -tp - 40, -tp, zl, hz)))
+            L.append(('2040 Upright %d' % (hz - zl), prof(X(u1) - T, X(u1), -tp - 40, -tp, zl, hz)))
         for (a, b, zc) in rails:
-            L.append(('2020 Rail %d' % round(b - a), box(X(a), X(b), -tp - T, -tp, zc - T / 2, zc + T / 2)))
+            L.append(('2020 Rail %d' % round(b - a), prof(X(a), X(b), -tp - T, -tp, zc - T / 2, zc + T / 2)))
         return L
 
     def seam_angle(u_edge, side):
@@ -133,14 +141,14 @@ def build():
     ft = P['foot']; yk = P['kn']
     left = [('PANEL 737DIYSIM MIP - left (switches + PFD)', left_panel), seam_angle(l1, -1),
             ('HINGE leaf', box(X(l1), X(l1) + 1.4, -tp - 20, 0, zl + 10, 359))]
-    left += frame(l0, l1, True, False, [(l0 + T, l1 - 2, zl + 10), (l0 + T, l1 - 2, 10.0), (215.5, l1 - 2, 126.0)])
+    left += frame(l0, l1, True, False, [(l0 + T, l1 - 20, zl + 10), (l0 + T, l1 - 20, 10.0), (215.5, l1 - 20, 126.0), (l0 + T, l1 - 20, 359.0)])
     for xu in (X(l0), X(l1) - 40):
         left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
     spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1), seam_angle(s1, -1),
               ('HINGE knuckle B', vcyl(X(uB), yk, zl + 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, zl + 10, 359, 3.0))]
     right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), seam_angle(r0, +1),
              ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, zl + 10, 359))]
-    right += frame(r0, r1, False, True, [(r0 + 2, r1 - T, zl + 10), (r0 + 2, r1 - T, 10.0), (r0 + 2, r1 - T, 126.0)])
+    right += frame(r0, r1, False, True, [(r0 + 20, r1 - T, zl + 10), (r0 + 20, r1 - T, 10.0), (r0 + 20, r1 - T, 126.0), (r0 + 20, r1 - T, 359.0)])
     for xu in (X(r0) + 2, X(r1) - T):
         right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, zl - ft, zl)))
         right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, zl - ft - 60, zl - ft)))
