@@ -66,7 +66,28 @@ def build_lower():
                         lo = [min(lo[0], bb.minPoint.x), min(lo[1], bb.minPoint.z)]
                         hi = [max(hi[0], bb.maxPoint.x), max(hi[1], bb.maxPoint.z)]
                 stack.extend(list(o.childOccurrences))
-            if hi[0] > lo[0]:
+            if hi[0] > lo[0] and ch.component.name.startswith(('Throttle', 'Mixture', 'Condition')):
+                # push-pulls get a ROUND hole on the rod axis: 31 mm for the throttle friction screw, 27 mm for the
+                # mixture screw (check both against the 737DIYSIM throttle guide before drilling)
+                axis = None
+                for o in ch.childOccurrences:
+                    if 'rod' in o.name or 'Tube' in o.name:
+                        # (a just-placed occurrence's own bbox is still empty: use its bodies, at any depth)
+                        xs, zs, st2 = [], [], [o]
+                        while st2:
+                            q = st2.pop()
+                            for bd in q.bRepBodies:
+                                bb = bd.boundingBox
+                                xs += [bb.minPoint.x, bb.maxPoint.x]; zs += [bb.minPoint.z, bb.maxPoint.z]
+                            st2.extend(list(q.childOccurrences))
+                        axis = ((min(xs) + max(xs)) / 2, (min(zs) + max(zs)) / 2)
+                dia = 2.7 if ch.component.name.startswith('Mixture') else 3.1
+                hole = tbm.createCylinderOrCone(adsk.core.Point3D.create(axis[0], -0.1, axis[1]), dia / 2,
+                                                adsk.core.Point3D.create(axis[0], tp / 10.0 + 0.1, axis[1]), dia / 2)
+                if not tbm.booleanOperation(plates[h], hole, SUB):
+                    raise RuntimeError('cut failed ' + ch.name)
+                cuts.append('%s %s round %.0f at u %.1f z %.1f' % (h, ch.component.name[:10], dia * 10, axis[0] * 10 + 460, axis[1] * 10))
+            elif hi[0] > lo[0]:
                 c = 0.05   # 0.5 mm clearance
                 tool = boxw([lo[0] - c, -0.1, lo[1] - c], [hi[0] + c, tp / 10.0 + 0.1, hi[1] + c])
                 if not tbm.booleanOperation(plates[h], tool, SUB):
