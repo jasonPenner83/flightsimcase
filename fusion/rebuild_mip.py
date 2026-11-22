@@ -25,8 +25,9 @@ def run(_context: str):
     load('build_case_mip').build()
     load('place_vendor').place()
     load('build_lower').build_lower()
+    load('build_storage').build_storage()
     lib = app.materialLibraries.itemByName('Fusion Material Library')
-    mats = {'PANEL': 'Plywood, Finish', 'ALU': 'Aluminum 6061', '20': 'Aluminum 6061', 'PRINT': 'PET Plastic'}
+    mats = {'REF': 'ABS Plastic', 'PANEL': 'Plywood, Finish', 'ALU': 'Aluminum 6061', '20': 'Aluminum 6061', 'PRINT': 'PET Plastic'}
     for o in r.occurrences:
         if o.component.name in ('Right half', 'Spacer', 'Left half'):
             for b in o.component.bRepBodies:

@@ -10,7 +10,7 @@ PLACE = {
     'C172 Yoke Adapt:1':   ('Left half', 0.0, 0.0),
     'GMA-1347 v3:1':       ('Spacer', 10.0, -16.0),      # sunk flush into the spacer
     'G1000 V2 v1:1':       ('Right half', 25.0, 0.0),
-    'ASI v1:1':            ('Right half', 83.0, 0.0),    # ASI + attitude + altimeter block moved right
+    'ASI v1:1':            ('Right half', 90.0, 0.0),    # ASI + attitude + altimeter block moved right
     'Elt:1':               ('Right half', 25.0, 0.0),
     # lower panel: his fuse panels are fascias that stand 28 mm proud of his recessed 3 mm plate; brought
     # forward 12 mm their faces land flush with the MIP face and pass through cut-outs in our 9 mm lower plate.

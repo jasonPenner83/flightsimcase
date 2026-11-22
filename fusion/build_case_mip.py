@@ -13,11 +13,14 @@ P = dict(
     hg=1.5, kn=2.5,
     cut_left=430.0, cut_right=496.0, shift_right=25.0,
     gma_u=476.0, gma_w=48.0, gma_z0=129.5, gma_z1=327.5,
-    gauge_shift=83.0,            # his ASI/attitude/altimeter block moves +83 mm (into the old copilot-yoke area)
+    gauge_shift=90.0,            # his ASI/attitude/altimeter block moves +90 mm (old copilot-yoke area; clears the seam edge + rear tub wall)
     yoke_u=283.8, yoke_z=60.0, yoke_d=40.0,
     rear=70.0,                   # his ASI case is ~65 mm behind the panel
     foot=40.0,
     z_low=-125.0,                # bottom of the lower panel (his fuse panels reach z -103)
+    # open face pockets (u0, u1, z0, z1): blank panel areas that face the other half's protruding parts when
+    # closed, so they double as storage pockets; between the 2020 rails at z 10 and z 126
+    pockets=(('Left half', 338.0, 405.0, 24.0, 112.0), ('Right half', 800.0, 915.0, 24.0, 112.0)),
 )
 
 
@@ -88,6 +91,10 @@ def build():
     tbm.transform(plugs, mg)
     op(right_panel, box(X(P['cut_right'] + dR), X(702.0 + P['gauge_shift']), -tp, 0, 22.0, 122.0), UNI)
     op(right_panel, plugs, SUB)
+    for host, p0, p1, q0, q1 in P['pockets']:
+        tgt = left_panel if host == 'Left half' else right_panel
+        if not op(tgt, box(X(p0), X(p1), -tp - 1, 1, q0, q1), SUB):
+            raise RuntimeError('pocket cut failed')
     s0, s1 = uB + hg, uA - hg
     spacer_panel = box(X(s0), X(s1), -tp, 0, 0, 369.0)
     op(spacer_panel, box(X(P['gma_u'] - P['gma_w'] / 2), X(P['gma_u'] + P['gma_w'] / 2), -tp - 1, 1, P['gma_z0'], P['gma_z1']), SUB)
