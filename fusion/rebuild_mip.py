@@ -26,6 +26,7 @@ def run(_context: str):
     load('place_vendor').place()
     load('build_lower').build_lower()
     load('build_storage').build_storage()
+    load('build_glareshield').build_glareshield()
     lib = app.materialLibraries.itemByName('Fusion Material Library')
     mats = {'REF': 'ABS Plastic', 'PANEL': 'Plywood, Finish', 'ALU': 'Aluminum 6061', '20': 'Aluminum 6061', 'PRINT': 'PET Plastic'}
     for o in r.occurrences:

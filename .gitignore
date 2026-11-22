@@ -13,3 +13,4 @@ desktop.ini
 
 # Paid vendor files (737DIYSIM) - never commit
 vendor/
+fusion/check_glare.log

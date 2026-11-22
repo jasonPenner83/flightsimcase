@@ -1,10 +1,10 @@
 # Stowage check: stowed items, pods, tubs and face pockets vs everything else on the same half (open state).
 import adsk.core, adsk.fusion
 
-NEW = ('PANEL rear', 'PRINT face pocket', 'PRINT pedestal', 'REF Logitech')
+NEW = ('PANEL rear', 'PRINT face pocket', 'PRINT pedestal', 'REF Logitech', 'PRINT glareshield', 'PANEL bottom closure', 'PANEL side closure')
 
 
-def check(host_name):
+def check(host_name, everything=False):
     d = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct)
     host = [o for o in d.rootComponent.occurrences if o.component.name == host_name][0]
     coll = adsk.core.ObjectCollection.create()
@@ -16,7 +16,7 @@ def check(host_name):
             if b.name.startswith('ZONE'):
                 continue
             bb = b.boundingBox
-            if bb.maxPoint.y < 0.85:            # only things behind the panel back can meet the storage
+            if not everything and bb.maxPoint.y < 0.85 and not b.name.startswith(NEW):   # storage is behind the panel back
                 continue
             coll.add(b)
         if o != host:
