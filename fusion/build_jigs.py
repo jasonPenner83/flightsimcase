@@ -22,11 +22,11 @@ JIGS = [
     ('J08_standby_attitude', 'Right half', 'PANEL 737', (613.0, 699.0, 28.0, 116.0), 20.0),
     ('J09_standby_altimeter', 'Right half', 'PANEL 737', (699.0, 791.0, 21.0, 116.0), 20.0),
     ('J10_ELT', 'Right half', 'PANEL 737', (834.0, 870.0, 247.0, 293.0), 20.0),
-    ('J11_right_face_pocket', 'Right half', 'PANEL 737', (796.0, 919.0, 20.0, 116.0), 20.0),
+    ('J11_flaps_lever', 'Right half', 'PANEL 737', (829.0, 901.5, 25.0, 111.0), 20.0),   # flaps moved up to the main panel
     ('J12_left_fuse_panel', 'Lower panel (left)', 'PANEL lower', (19.5, 278.0, -155.5, -46.0), 20.0),
     ('J13_fuel_selector', 'Lower panel (left)', 'PANEL lower', (298.0, 412.0, -158.0, -40.0), 20.0),
     ('J14_throttle_mixture_condition', 'Lower panel (right)', 'PANEL lower', (618.0, 762.0, -128.0, -89.0), 20.0),
-    ('J15_flaps_lever', 'Lower panel (right)', 'PANEL lower', (804.0, 877.0, -143.5, -57.5), 20.0),
+    ('J15_trim_wheel', 'Lower panel (right)', 'PANEL lower', (531.0, 613.0, -220.0, -40.0), 18.0),   # trim wheel case, left of the throttle
 ]
 
 

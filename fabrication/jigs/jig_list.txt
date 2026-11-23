@@ -9,9 +9,9 @@ J07_standby_ASI 128 x 128 x 8 OK
 J08_standby_attitude 126 x 128 x 8 OK
 J09_standby_altimeter 132 x 135 x 8 OK
 J10_ELT 76 x 86 x 8 OK
-J11_right_face_pocket 163 x 136 x 8 OK
+J11_flaps_lever 112 x 126 x 8 OK
 J12_left_fuse_panel_A 164 x 150 x 8 OK
 J12_left_fuse_panel_B 164 x 150 x 8 OK
 J13_fuel_selector 154 x 158 x 8 OK
 J14_throttle_mixture_condition 184 x 79 x 8 OK
-J15_flaps_lever 113 x 126 x 8 OK
+J15_trim_wheel 118 x 216 x 8 OK

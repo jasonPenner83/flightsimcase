@@ -16,7 +16,8 @@ bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
 S = dict(
-    tub_back={'Left half': 72.0, 'Right half': 190.0},   # Jason: deep parts live on the right; left is thin (rear frame sits right behind the 2040 upright)
+    tub_back={'Left half': 72.0, 'Right half': 90.0},   # Jason 2026-11-23: no storage in the main unit; right box just clears the flaps lever (76) and standby gauges (65)
+      # Jason: deep parts live on the right; left is thin (rear frame sits right behind the 2040 upright)
       # rear lid outer face behind the panel face; right is deeper (throttle rods, more storage)
     wall=3.0,
     ell_a=236.0, ell_b=153.0, ell_z=216.0,   # his panel's top outer corner curve (approximated as a quarter ellipse)
@@ -118,13 +119,6 @@ def build_storage():
         op(tray, box(X(p0), X(p1), -tp - S['pocket_depth'][h], -tp + 1, q0, q1), SUB)
         items[h].append(('PRINT face pocket tray', tray))
 
-    # stowed: quadrant envelope + pedestal base
-    q = QUADRANT
-    items[q['host']].append(('REF Logitech throttle quadrant 175x175x90 (stowed)', box(X(q['u'][0]), X(q['u'][1]), q['y'][0], q['y'][1], q['z'][0], q['z'][1])))
-    pb = PED_BASE
-    base = box(X(pb['u'][0]), X(pb['u'][1]), pb['y'][0], pb['y'][1], pb['z'][0], pb['z'][1])
-    items[pb['host']].append(('PRINT pedestal base + desk clamp (stowed)', base))
-
     for h, its in items.items():
         if not its:
             continue
@@ -174,7 +168,8 @@ def build_storage():
 
     # fuel selector now lives on the panel (left lower), so only the trim wheel is a clamp-on pod
     # pod(FUEL_POD, 'Fuel selector pod (clamp-on)', (-69.0, -75.0, -66.0), (69.0, -8.0, 66.0))   # tucked between MFD, rail and the corner curve
-    pod(TRIM_POD, 'Trim wheel pod (clamp-on)', (-41.5, -130.0, -90.0), (41.5, 0.0, 90.0))
+    # (storage removed 2026-11-23: no quadrant, trim pod or pedestal base in the main unit)
+    # pod(TRIM_POD, 'Trim wheel pod (clamp-on)', (-41.5, -130.0, -90.0), (41.5, 0.0, 90.0))
     print('storage: tubs %s mm behind face, pockets %d' % (S['tub_back'], len(P['pockets'])))
 
 

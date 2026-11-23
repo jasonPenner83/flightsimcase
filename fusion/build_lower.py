@@ -15,7 +15,7 @@ P = bcm.P
 
 HOST = {'Left half': 'Lower panel (left)', 'Spacer': 'Lower panel (spacer)', 'Right half': 'Lower panel (right)'}
 BOX_DEPTH = {'Left half': 72.0, 'Right half': 190.0}   # same as the rear boxes above
-LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
+LOWER = ('LHS Fuse panel', 'FSP3', 'Throttle', 'Mixture', 'Condition', 'Trim')
 
 
 def X(u):
@@ -55,7 +55,8 @@ def build_lower():
         for ch in o.childOccurrences:
             if ch.component.name.startswith('Lower panel'):
                 hosts[ch.component.name] = ch
-    plates = {h: box(X(a), X(b), -tp, 0, zb_, zt_) for h, (a, b) in spans.items()}
+    zbot = {h: (P['lower_bot_right'] if h == 'Right half' else zb_) for h in spans}
+    plates = {h: box(X(a), X(b), -tp, 0, zbot[h], zt_) for h, (a, b) in spans.items()}
 
     # cut-outs: union footprint (x, z) of each lower module's bodies that pass through the panel plane
     cuts = []
@@ -116,10 +117,11 @@ def build_lower():
             ur0, ur1 = a + 20, b - T
         its = items[h]
         its.append(('2020 Lower rail %d' % round(ur1 - ur0), prof(X(ur0), X(ur1), -tp - T, -tp, zt_ - T, zt_)))
-        its.append(('PANEL lower box side, deep (3 mm)', box(X(so0), X(so1), -B, rim, zb_ - sk, zd_under - sk)))
+        zb_h = zbot[h]
+        its.append(('PANEL lower box side, deep (3 mm)', box(X(so0), X(so1), -B, rim, zb_h - sk, zd_under - sk)))
         its.append(('PANEL lower box side, desk zone (3 mm)', box(X(so0), X(so1), fz, rim, zd_under - sk, zt_)))
-        its.append(('PANEL lower box bottom (3 mm)', box(X(min(so0, ui0)), X(max(so1, ui1)), -B, rim, zb_ - sk, zb_)))
-        its.append(('PANEL lower box lid (3 mm)', box(X(ui0), X(ui1), -B, -B + sk, zb_, zd_under - sk)))
+        its.append(('PANEL lower box bottom (3 mm)', box(X(min(so0, ui0)), X(max(so1, ui1)), -B, rim, zb_h - sk, zb_h)))
+        its.append(('PANEL lower box lid (3 mm)', box(X(ui0), X(ui1), -B, -B + sk, zb_h, zd_under - sk)))
         its.append(('PANEL lower box shelf under desk (3 mm)', box(X(ui0), X(ui1), -B, fz, zd_under - sk, zd_under)))
         its.append(('PANEL lower box desk-zone back (3 mm)', box(X(ui0), X(ui1), fz - sk, fz, zd_under, zt_)))
 

@@ -29,6 +29,8 @@ def check(angles=((90, 90),), include_panels=True):
             if b.boundingBox.minPoint.y < -0.05:      # only parts in front of the panel face can collide
                 coll.add(b); groups.append(tag); tok[b.entityToken] = tag
         for c in o.childOccurrences:
+            if c.component.name.startswith('Lower panel'):
+                continue          # lower panel packs separately (Jason 2026-11-23)
             add_all(c, tag)
     for o in d.rootComponent.occurrences:
         if o.component.name in ('Left half', 'Spacer', 'Right half'):
@@ -37,6 +39,8 @@ def check(angles=((90, 90),), include_panels=True):
                     if b.name.startswith(('PANEL', 'ALU', 'PRINT')):
                         coll.add(b); groups.append(o.component.name); tok[b.entityToken] = o.component.name
             for ch in o.childOccurrences:
+                if ch.component.name.startswith('Lower panel'):
+                    continue
                 add_all(ch, o.component.name)
     out = {}
     for sp, lh in angles:

@@ -28,11 +28,11 @@ edges and the nearby screw holes as small drill marks. Print in PETG, 4 walls, 4
 | J06 | MFD opening | A + B (half-lap, 2 x M3) |
 | J07-J09 | Standby ASI, attitude, altimeter | 1 each |
 | J10 | ELT switch | 1 |
-| J11 | Right face pocket | 1 |
+| J11 | Flaps lever (main panel, right of the standby gauges) | 1 |
 | J12 | Left fuse panel | A + B (half-lap, 2 x M3) |
 | J13 | Fuel selector (left lower) | 1 |
 | J14 | Throttle 31 / mixture 27 / condition 31 mm holes | 1 |
-| J15 | Flaps lever | 1 |
+| J15 | Trim wheel (right lower, left of the throttle) | 1 |
 
 How to use (flush-trim / pattern bit with a top bearing, 1/4 in shank cutter, cutting length >= 12 mm):
 

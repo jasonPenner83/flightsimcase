@@ -17,7 +17,8 @@ PLACE = {
     # The flaps lever comes forward 40 mm (lever stands proud like the real one, mechanism stays shallow).
     'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Lower panel (left)', 0.0, 12.0, -48.0),
     # (RHS fuse panel removed: throttle / mixture / condition push-pulls take its place, see SPLIT)
-    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Lower panel (right)', 126.0, 40.0, -48.0),   # u 790-872
+    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 151.0, 40.0, 120.0),   # main panel, right of the standby gauges (u 815-897, z 25-111)
+    'Trim v15:1':          ('Lower panel (right)', 162.0, 0.0, 83.0),   # built into the right lower piece, left of the throttle (u 535-609)   # u 790-872
     # fuel selector on the left lower in the old start-key spot (Jason: keep the key that's in the LHS fuse panel).
     # Face u 288-423, z -119..11 (overlaps the MIP bottom edge by 11 mm), face plate on the panel front; support body
     # fits exactly between the lower 2020 rail (z -105) and the MIP panel bottom (z 0).
@@ -35,7 +36,7 @@ SPLIT = [
     ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Lower panel (right)', 73.0, 12.0, -48.0, MOVE_M),     # knob u 690
     ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Lower panel (right)', 174.0, 12.0, -48.0, MOVE_T),  # knob u 740
 ]
-LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
+LOWER = ('LHS Fuse panel', 'FSP3', 'Throttle', 'Mixture', 'Condition', 'Trim')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 

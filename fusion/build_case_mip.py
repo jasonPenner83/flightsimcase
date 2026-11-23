@@ -30,7 +30,9 @@ P = dict(
                                  # edge evens them so the forward-extended rims meet exactly when folded
     rim=46.5,                    # each half's rim (top, curved corner, outer side, bottom) runs this far in front of the face
     skin=3.0,
-    pockets=(('Right half', 800.0, 915.0, 24.0, 112.0),),   # left pocket removed: the yoke housing tunnel runs there
+    pockets=(),                  # face pockets removed (left: yoke tunnel; right: flaps lever moved up there)
+    flaps_cut=(833.0, 897.5, 29.0, 107.0),        # flaps lever on the main panel, right of the standby gauges
+    lower_bot_right=-225.0,      # right lower piece is taller: the trim wheel (172 mm case) sits left of the throttle
 )
 
 
@@ -107,6 +109,8 @@ def build():
         tgt = left_panel if host == 'Left half' else right_panel
         if not op(tgt, box(X(p0), X(p1), -tp - 1, 1, q0, q1), SUB):
             raise RuntimeError('pocket cut failed')
+    fc = P['flaps_cut']
+    op(right_panel, box(X(fc[0]), X(fc[1]), -tp - 1, 1, fc[2], fc[3]), SUB)
     if P['square_top']:          # fill his curved top corners (quarter-ellipse-ish NURBS from z 216 / 236 mm in)
         op(left_panel, box(X(0.0), X(237.0), -tp, 0, 215.0, 369.0), UNI)
         op(right_panel, box(X(920.0 + dR - 237.0), X(920.0 + dR), -tp, 0, 215.0, 369.0), UNI)
