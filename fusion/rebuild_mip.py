@@ -20,7 +20,7 @@ def run(_context: str):
         r.asBuiltJoints.item(0).deleteMe()
     for i in range(r.occurrences.count - 1, -1, -1):
         o = r.occurrences.item(i)
-        if o.component.name in ('Right half', 'Spacer', 'Left half', 'Glareshield (detachable)'):
+        if o.component.name in ('Right half', 'Spacer', 'Left half', 'Glareshield (detachable)') or o.component.name.startswith('Pod:'):
             o.deleteMe()
     load('build_case_mip').build()
     load('place_vendor').place()

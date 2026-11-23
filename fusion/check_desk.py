@@ -46,7 +46,7 @@ def check():
         for c in o.childOccurrences:
             walk(c)
     for o in root.occurrences:
-        if o.component.name in ('Left half', 'Spacer', 'Right half'):
+        if o.component.name in ('Left half', 'Spacer', 'Right half') or o.component.name.startswith('Pod'):
             walk(o)
     ii = d.createInterferenceInput(coll); ii.areCoincidentFacesIncluded = False
     res = d.analyzeInterference(ii)

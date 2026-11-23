@@ -19,10 +19,10 @@ PAD = 10.0                           # blank border around each panel
 GRID = 50.0
 # router jigs (same regions as fusion/build_jigs.py) -> label the cut-outs they cut
 JIGS = [('J01', 'Left main', (134, 430, 131, 326)), ('J02', 'Left main', (19, 223, 28, 245.5)), ('J03', 'Left main', (260, 308, 0, 57)),
-        ('J05', 'Spacer panel', (448, 504, 125, 332)), ('J06', 'Right main', (530, 828, 131, 326)),
+        ('J04', 'Left main', (335, 388, 65, 118)), ('J05', 'Spacer panel', (448, 504, 125, 332)), ('J06', 'Right main', (530, 828, 131, 326)),
         ('J07', 'Right main', (523, 611, 28, 116)), ('J08', 'Right main', (613, 699, 28, 116)), ('J09', 'Right main', (699, 791, 21, 116)),
-        ('J10', 'Right main', (834, 870, 247, 293)), ('J11', 'Right main', (829, 901.5, 25, 111)), ('J12', 'Left lower', (19.5, 278, -155.5, -46)),
-        ('J13', 'Left lower', (298, 412, -158, -40)), ('J14', 'Right lower', (618, 762, -128, -89)), ('J15', 'Right lower', (531, 613, -220, -40))]
+        ('J10', 'Right main', (834, 870, 247, 293)), ('J11', 'Right main', (863, 935.5, 150, 236)), ('J13', 'Right main', (807, 925, 0, 116)),
+        ('J14', 'TPM pod', (618, 762, -128, -89)), ('J15', 'Trim wheel pod', (531, 607, -223, -42))]
 
 
 class Pdf:

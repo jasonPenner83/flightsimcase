@@ -24,15 +24,15 @@ edges and the nearby screw holes as small drill marks. Print in PETG, 4 walls, 4
 | J01 | PFD opening | A + B (half-lap, 2 x M3) |
 | J02 | Switch / dimmer panel | 1 |
 | J03 | Yoke hole, 40 mm, with slot to the bottom edge | 1 |
+| J04 | Ignition key | 1 |
 | J05 | GMA 1347 opening (spacer) | 1 |
 | J06 | MFD opening | A + B (half-lap, 2 x M3) |
 | J07-J09 | Standby ASI, attitude, altimeter | 1 each |
 | J10 | ELT switch | 1 |
-| J11 | Flaps lever (main panel, right of the standby gauges) | 1 |
-| J12 | Left fuse panel | A + B (half-lap, 2 x M3) |
-| J13 | Fuel selector (left lower) | 1 |
-| J14 | Throttle 31 / mixture 27 / condition 31 mm holes | 1 |
-| J15 | Trim wheel (right lower, left of the throttle) | 1 |
+| J11 | Flaps lever (right of the MFD) | 1 |
+| J13 | Fuel selector (right of the standby gauges) | 1 |
+| J14 | TPM pod: throttle 31 / mixture 27 / condition 31 mm holes | 1 |
+| J15 | Trim wheel pod | 1 |
 
 How to use (flush-trim / pattern bit with a top bearing, 1/4 in shank cutter, cutting length >= 12 mm):
 

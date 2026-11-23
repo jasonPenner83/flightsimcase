@@ -31,7 +31,9 @@ P = dict(
     rim=46.5,                    # each half's rim (top, curved corner, outer side, bottom) runs this far in front of the face
     skin=3.0,
     pockets=(),                  # face pockets removed (left: yoke tunnel; right: flaps lever moved up there)
-    flaps_cut=(833.0, 897.5, 29.0, 107.0),        # flaps lever on the main panel, right of the standby gauges
+    flaps_cut=(867.0, 931.5, 154.0, 232.0),       # flaps lever: right of the MFD, below the ELT
+    fsp_cut=(811.0, 921.0, 1.0, 112.0),           # fuel selector (trimmed 109 mm face) right of the standby gauges, under the MFD
+    key_cut=(339.5, 383.5, 69.5, 113.5),          # ignition key, left half between the yoke and the seam, above the yoke housing
     lower_bot_right=-225.0,      # right lower piece is taller: the trim wheel (172 mm case) sits left of the throttle
 )
 
@@ -109,8 +111,9 @@ def build():
         tgt = left_panel if host == 'Left half' else right_panel
         if not op(tgt, box(X(p0), X(p1), -tp - 1, 1, q0, q1), SUB):
             raise RuntimeError('pocket cut failed')
-    fc = P['flaps_cut']
-    op(right_panel, box(X(fc[0]), X(fc[1]), -tp - 1, 1, fc[2], fc[3]), SUB)
+    for nm_, tgt_ in (('flaps_cut', 'R'), ('fsp_cut', 'R'), ('key_cut', 'L')):
+        fc = P[nm_]
+        op(right_panel if tgt_ == 'R' else left_panel, box(X(fc[0]), X(fc[1]), -tp - 1, 1, fc[2], fc[3]), SUB)
     if P['square_top']:          # fill his curved top corners (quarter-ellipse-ish NURBS from z 216 / 236 mm in)
         op(left_panel, box(X(0.0), X(237.0), -tp, 0, 215.0, 369.0), UNI)
         op(right_panel, box(X(920.0 + dR - 237.0), X(920.0 + dR), -tp, 0, 215.0, 369.0), UNI)
@@ -160,18 +163,21 @@ def build():
     spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1, 16.0), seam_angle(s1, -1, 16.0),   # leaves trimmed: the flush GMA 1347 base plate sits between them
              
               ('HINGE knuckle B', vcyl(X(uB), yk, zl + 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, zl + 10, 359, 3.0))]
-    right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), seam_angle(r0, +1),
+    rs_name, rs_body = seam_angle(r0, +1)
+    op(rs_body, box(X(r0) - 1, X(r0) + 21, -tp - 2.5, -tp + 0.5, 18.0, 126.0), SUB)   # leaf notched behind the ASI faceplate
+    right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), (rs_name + ' notched', rs_body),
              ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, zl + 10, 359))]
     r1f = r1 + P['r_ext']           # outer frame line of the right half (after the edge filler)
-    right += frame(r0, r1f, False, True, [(r0 + 20, r1f - T, 10.0), (r0 + 20, r1f - T, 126.0), (r0 + 20, 705.0, 359.0)])
+    right += frame(r0, r1f, False, True, [(r0 + 20, 795.0, 10.0), (r0 + 20, r1f - T, 126.0), (r0 + 20, 705.0, 359.0)])   # bottom rail stops at the fuel selector
     occR = add('Right half', right, grounded=True)
     occS = add('Spacer', spacer)
     occL = add('Left half', left)
-    # separate lower panel pieces: bolted to their half / spacer (deployed and stowed), modelled as children so they fold with it
-    for host_occ, nm in ((occL, 'Lower panel (left)'), (occS, 'Lower panel (spacer)'), (occR, 'Lower panel (right)')):
-        lo = host_occ.component.occurrences.addNewComponent(adsk.core.Matrix3D.create())
-        lo.component.name = nm
-        lo.isGroundToParent = True
+    # add-on pods (Jason 2026-11-23): trim wheel and throttle/mixture/condition, each its own clamp-on piece that hangs
+    # under the main unit's front edge when wanted and packs separately
+    for nm in ('Pod: trim wheel (clamp-on)', 'Pod: TPM quadrant (clamp-on)'):
+        po = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        po.component.name = nm
+        po.isGrounded = True
 
     def pivot_point(occ, px, py):
         comp = occ.component

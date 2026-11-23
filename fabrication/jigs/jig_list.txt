@@ -2,6 +2,7 @@ J01_PFD_opening_A 185 x 239 x 8 OK
 J01_PFD_opening_B 185 x 239 x 8 OK
 J02_switch_panel 238 x 252 x 8 OK
 J03_yoke_hole_and_slot 88 x 97 x 8 OK
+J04_ignition_key 93 x 93 x 8 OK
 J05_GMA1347_opening 96 x 247 x 8 OK
 J06_MFD_opening_A 186 x 239 x 8 OK
 J06_MFD_opening_B 186 x 239 x 8 OK
@@ -9,9 +10,7 @@ J07_standby_ASI 128 x 128 x 8 OK
 J08_standby_attitude 126 x 128 x 8 OK
 J09_standby_altimeter 132 x 135 x 8 OK
 J10_ELT 76 x 86 x 8 OK
-J11_flaps_lever 112 x 126 x 8 OK
-J12_left_fuse_panel_A 164 x 150 x 8 OK
-J12_left_fuse_panel_B 164 x 150 x 8 OK
-J13_fuel_selector 154 x 158 x 8 OK
-J14_throttle_mixture_condition 184 x 79 x 8 OK
-J15_trim_wheel 118 x 216 x 8 OK
+J11_flaps_lever 102 x 116 x 8 OK
+J13_fuel_selector 154 x 152 x 8 OK
+J14_TPM_pod_holes 184 x 79 x 8 OK
+J15_trim_wheel_pod 112 x 217 x 8 OK

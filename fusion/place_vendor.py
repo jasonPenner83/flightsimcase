@@ -9,20 +9,21 @@ PLACE = {
     '172 AV PNL v1:1':     ('Left half', 0.0, 0.0),
     'C172 Yoke Adapt:1':   ('Left half', 0.0, 0.0, -27.0),   # follows the yoke hole down to the Logitech shaft height
     'GMA-1347 v3:1':       ('Spacer', 10.0, -16.0),      # sunk flush into the spacer
-    'G1000 V2 v1:1':       ('Right half', 25.0, 0.0),
+    # G1000 V2 (MFD): placed child by child in SPLIT, without its 346 x 238 x 3 plate (Component17) that sits inside
+    # the panel thickness, and 2 mm forward so its frames bear on the panel face
     'ASI v1:1':            ('Right half', 90.0, 0.0),    # ASI + attitude + altimeter block moved right
     'Elt:1':               ('Right half', 25.0, 0.0),
     # lower panel: his fuse panels are fascias that stand 28 mm proud of his recessed 3 mm plate; brought
     # forward 12 mm their faces land flush with the MIP face and pass through cut-outs in our 9 mm lower plate.
     # The flaps lever comes forward 40 mm (lever stands proud like the real one, mechanism stays shallow).
-    'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Lower panel (left)', 0.0, 12.0, -48.0),
+    # (fuse panels omitted, Jason 2026-11-23)
     # (RHS fuse panel removed: throttle / mixture / condition push-pulls take its place, see SPLIT)
-    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 151.0, 40.0, 120.0),   # main panel, right of the standby gauges (u 815-897, z 25-111)
-    'Trim v15:1':          ('Lower panel (right)', 162.0, 0.0, 83.0),   # built into the right lower piece, left of the throttle (u 535-609)   # u 790-872
+    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 185.0, 40.0, 245.0),   # main panel, right of the MFD (faceplate u 858-930, z 150-236)
+    'C172 Start sw v1:1':  ('Left half', 267.0, 0.0, 253.0),     # ignition key on the main panel, u 340-383, z 70-113
+    'Trim v15:1':          ('Pod: trim wheel (clamp-on)', 162.0, 0.0, 80.0),   # separate clamp-on pod (u 535-609)   # u 790-872
     # fuel selector on the left lower in the old start-key spot (Jason: keep the key that's in the LHS fuse panel).
     # Face u 288-423, z -119..11 (overlaps the MIP bottom edge by 11 mm), face plate on the panel front; support body
     # fits exactly between the lower 2020 rail (z -105) and the MIP panel bottom (z 0).
-    'FSP3 v1:1':           ('Lower panel (left)', 125.0, 8.0, 97.0),
 }
 # His lower-panel push-pull throttle and mixture (slide-pot type), plus a second throttle used as the CONDITION
 # knob, on the right lower where the RHS fuse panel was. Modelled PUSHED IN (storage/fold state): knob, rod and
@@ -32,11 +33,15 @@ PLACE = {
 MOVE_T = {'8mm x 198mm brass rod': -62.0, '5 Throttle Knob (1)': -62.0, '8 Ferrule (1)': -62.0, '5 Throttle Knob (2)': None}
 MOVE_M = {'Mix Tube': -60.0, '3 Mix Knob': -60.0, '8 Ferrule': -60.0}
 SPLIT = [
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Lower panel (right)', 74.0, 12.0, -48.0, MOVE_T),   # knob u 640
-    ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Lower panel (right)', 73.0, 12.0, -48.0, MOVE_M),     # knob u 690
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Lower panel (right)', 174.0, 12.0, -48.0, MOVE_T),  # knob u 740
+    # fuel selector on the main panel, right of the standby gauges; his 135 x 130 face plate is left out and replaced by
+    # a printed 135 x 109 one (build_lower) so it fits under the MFD bezel
+    ('G1000 V2 v1:1', 'MFD (G1000 V2, no back plate)', 'Right half', 25.0, 2.0, 0.0, {'Component17': None}),
+    ('FSP3 v1:1', 'Fuel selector (trimmed face)', 'Right half', 633.0, 8.0, 252.0, {'1 Facepanel': None}),
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Pod: TPM quadrant (clamp-on)', 74.0, 12.0, -48.0, MOVE_T),   # knob u 640
+    ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Pod: TPM quadrant (clamp-on)', 73.0, 12.0, -48.0, MOVE_M),     # knob u 690
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Pod: TPM quadrant (clamp-on)', 174.0, 12.0, -48.0, MOVE_T),  # knob u 740
 ]
-LOWER = ('LHS Fuse panel', 'FSP3', 'Throttle', 'Mixture', 'Condition', 'Trim')
+LOWER = ('Throttle', 'Mixture', 'Condition', 'Trim')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 
@@ -88,6 +93,7 @@ def place():
         placed.append((host, occ))
     lookup = {}
     for src in top.childOccurrences:
+        lookup[src.name] = (src, top)
         for ch in src.childOccurrences:
             lookup[src.name + '/' + ch.name] = (ch, src)
     for key, wname, host, du, dy, dz, moves in SPLIT:

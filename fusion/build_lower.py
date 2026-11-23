@@ -1,9 +1,9 @@
-# Lower panel pieces (left, spacer, right) for the 737DIYSIM MIP folding case. Runs AFTER place_vendor.place().
-# Jason (2026-11-23): the lower panel is separate from the main unit, bolted to it, and hangs BELOW the desk top in
-# front of the desk edge; packed, it stays on and forms the base of the closed case. The 9 mm plates (same plane as the
-# MIP panel) are cut where a lower module passes through. Each side piece has a stepped 3 mm box: shallow in the desk-
-# edge zone (z -41..-3, 31 mm deep so it clears the desk edge 40 mm behind the face), full depth below the desk
-# underside (z -41) where the deep parts (push-pull rods, fuel selector, flaps mechanism) run back under the desk.
+# Add-on pods (Jason 2026-11-23): the lower panel is gone. Trim wheel and throttle / mixture / condition push-pulls are
+# two separate clamp-on pods that hang under the main unit's front edge when wanted (same knob-screw brackets) and pack
+# separately. Each pod: a 9 mm front plate (cut where its module passes through), a 2020 top rail, and a stepped 3 mm
+# box: 31 mm deep in the desk-edge strip (z -41..-3, clear of the desk edge 40 mm behind the face), full depth below
+# the desk underside where the rods / trim wheel run back under the desk.
+# Also makes the printed 135 x 109 face plate for the fuel selector on the main panel. Runs after place_vendor.
 # Units mm, frame as build_case_mip (X right, Y toward pilot, Z up, u = x + 460).
 import importlib.util
 import adsk.core, adsk.fusion
@@ -13,9 +13,13 @@ spec = importlib.util.spec_from_file_location('build_case_mip', BASE + 'build_ca
 bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
-HOST = {'Left half': 'Lower panel (left)', 'Spacer': 'Lower panel (spacer)', 'Right half': 'Lower panel (right)'}
-BOX_DEPTH = {'Left half': 72.0, 'Right half': 190.0}   # same as the rear boxes above
-LOWER = ('LHS Fuse panel', 'FSP3', 'Throttle', 'Mixture', 'Condition', 'Trim')
+# pod name -> (u0, u1, bottom z, box depth)
+PODS = {'Pod: trim wheel (clamp-on)': (525.0, 612.0, -225.0, 140.0),
+        'Pod: TPM quadrant (clamp-on)': (615.0, 778.0, -145.0, 190.0)}
+HOST = {k: k for k in PODS}
+BOX_DEPTH = {k: v[3] for k, v in PODS.items()}
+LOWER = ('Throttle', 'Mixture', 'Condition', 'Trim')
+FSP_FACE = dict(u0=796.0, u1=931.0, z0=0.0, z1=109.0, tab=(850.0, 931.0, 118.0), shaft=(858.0, 40.0, 16.0), lever=(890.0, 914.0, 87.0, 111.0))
 
 
 def X(u):
@@ -49,13 +53,9 @@ def build_lower():
         return tbm.createCylinderOrCone(F(x, y0, z), r / 10.0, F(x, y1, z), r / 10.0)
 
     uA, uB, hg = P['uA'], P['uB'], P['hg']
-    spans = {'Left half': (0.0, uB - hg), 'Spacer': (uB + hg, uA - hg), 'Right half': (uA + hg, 920.0 + P['shift_right'] + P['r_ext'])}
-    hosts = {}
-    for o in root.occurrences:
-        for ch in o.childOccurrences:
-            if ch.component.name.startswith('Lower panel'):
-                hosts[ch.component.name] = ch
-    zbot = {h: (P['lower_bot_right'] if h == 'Right half' else zb_) for h in spans}
+    spans = {k: (v[0], v[1]) for k, v in PODS.items()}
+    hosts = {o.component.name: o for o in root.occurrences}
+    zbot = {k: v[2] for k, v in PODS.items()}
     plates = {h: box(X(a), X(b), -tp, 0, zbot[h], zt_) for h, (a, b) in spans.items()}
 
     # cut-outs: union footprint (x, z) of each lower module's bodies that pass through the panel plane
@@ -101,29 +101,57 @@ def build_lower():
                 if not tbm.booleanOperation(plates[h], tool, SUB):
                     raise RuntimeError('cut failed ' + ch.name)
                 cuts.append('%s %s u %.0f..%.0f z %.0f..%.0f' % (h, ch.component.name[:16], lo[0] * 10 + 460, hi[0] * 10 + 460, lo[1] * 10, hi[1] * 10))
-    items = {h: [('PANEL lower (%s)' % h.lower(), plates[h])] for h in spans}
+    items = {h: [('PANEL pod front plate 9 mm (%s)' % h.split(':')[1].split('(')[0].strip(), plates[h])] for h in spans}
 
     spx = importlib.util.spec_from_file_location('ext', BASE + 'ext.py')
     ext = importlib.util.module_from_spec(spx); spx.loader.exec_module(ext)
     prof = ext.make(tbm, F)
-    for h in ('Left half', 'Right half'):
+    for h in PODS:
         a, b = spans[h]
         B = BOX_DEPTH[h]
-        if h == 'Left half':
-            so0, so1, ui0, ui1 = a - sk, a, a, b          # outer skin column, inner span
-            ur0, ur1 = a + T, b - 20
-        else:
-            so0, so1, ui0, ui1 = b, b + sk, a, b
-            ur0, ur1 = a + 20, b - T
-        its = items[h]
-        its.append(('2020 Lower rail %d' % round(ur1 - ur0), prof(X(ur0), X(ur1), -tp - T, -tp, zt_ - T, zt_)))
         zb_h = zbot[h]
-        its.append(('PANEL lower box side, deep (3 mm)', box(X(so0), X(so1), -B, rim, zb_h - sk, zd_under - sk)))
-        its.append(('PANEL lower box side, desk zone (3 mm)', box(X(so0), X(so1), fz, rim, zd_under - sk, zt_)))
-        its.append(('PANEL lower box bottom (3 mm)', box(X(min(so0, ui0)), X(max(so1, ui1)), -B, rim, zb_h - sk, zb_h)))
-        its.append(('PANEL lower box lid (3 mm)', box(X(ui0), X(ui1), -B, -B + sk, zb_h, zd_under - sk)))
-        its.append(('PANEL lower box shelf under desk (3 mm)', box(X(ui0), X(ui1), -B, fz, zd_under - sk, zd_under)))
-        its.append(('PANEL lower box desk-zone back (3 mm)', box(X(ui0), X(ui1), fz - sk, fz, zd_under, zt_)))
+        its = items[h]
+        its.append(('2020 Pod top rail %d' % round(b - a - 6), prof(X(a + 3), X(b - 3), -tp - T, -tp, zt_ - T, zt_)))
+        for (so0, so1) in ((a - sk, a), (b, b + sk)):
+            its.append(('PANEL pod box side, deep (3 mm)', box(X(so0), X(so1), -B, rim, zb_h - sk, zd_under - sk)))
+            its.append(('PANEL pod box side, desk zone (3 mm)', box(X(so0), X(so1), fz, rim, zd_under - sk, zt_)))
+        its.append(('PANEL pod box bottom (3 mm)', box(X(a - sk), X(b + sk), -B, rim, zb_h - sk, zb_h)))
+        its.append(('PANEL pod box lid (3 mm)', box(X(a), X(b), -B, -B + sk, zb_h, zd_under - sk)))
+        its.append(('PANEL pod box shelf under desk (3 mm)', box(X(a), X(b), -B, fz, zd_under - sk, zd_under)))
+        its.append(('PANEL pod box desk-zone back (3 mm)', box(X(a), X(b), fz - sk, fz, zd_under, zt_)))
+        its.append(('PRINT pod hanger bracket (pair)', box(X(a + 10), X(a + 30), -tp - 2, -tp, zt_, zt_ + 30)))
+
+    # fuel selector face plate: HIS face plate trimmed to 135 x 109 (+ a tab under the shut-off lever) so it fits under
+    # the MFD bezel; printed by Jason from his file with the same trim
+    import math
+    f = FSP_FACE
+    vend = [o for o in root.occurrences if o.component.name.startswith('737DIYSIM')][0]
+    top = vend.childOccurrences.item(0)
+    fsp = [c for c in top.childOccurrences if c.name == 'FSP3 v1:1'][0]
+    face = [c for c in fsp.childOccurrences if c.name.startswith('1 Facepanel')][0]
+    R = adsk.core.Matrix3D.create(); R.setToRotation(math.pi, adsk.core.Vector3D.create(0, 0, 1), adsk.core.Point3D.create(0, 0, 0))
+    M = adsk.core.Matrix3D.create(); M.translation = adsk.core.Vector3D.create(7.0, 0.4, 15.05); R.transformBy(M)
+    Tm = adsk.core.Matrix3D.create(); Tm.translation = adsk.core.Vector3D.create(633.0 / 10.0, -8.0 / 10.0, 252.0 / 10.0); R.transformBy(Tm)
+    keep = box(X(f['u0']) - 1, X(f['u1']) + 1, -5.0, 20.0, f['z0'], f['z1'])
+    tbm.booleanOperation(keep, box(X(f['tab'][0]), X(f['tab'][1]) + 1, -5.0, 20.0, f['z1'] - 1, f['tab'][2]), UNI)
+    plate = None
+    st = [face]
+    while st:
+        q = st.pop()
+        for bd in q.bRepBodies:
+            c = tbm.copy(bd); tbm.transform(c, R)
+            if plate is None:
+                plate = c
+            else:
+                tbm.booleanOperation(plate, c, UNI)
+        st.extend(list(q.childOccurrences))
+    tbm.booleanOperation(plate, keep, adsk.fusion.BooleanTypes.IntersectionBooleanType)
+    items_main = [('PRINT fuel selector face plate (his plate trimmed to 135 x 109)', plate)]
+    comp = hosts['Right half'].component
+    bf = comp.features.baseFeatures.add(); bf.startEdit()
+    for nm, bd in items_main:
+        nb = comp.bRepBodies.add(bd, bf); nb.name = nm
+    bf.finishEdit()
 
     for h, its in items.items():
         comp = hosts[HOST[h]].component
@@ -131,7 +159,7 @@ def build_lower():
         for nm, b in its:
             nb = comp.bRepBodies.add(b, bf); nb.name = nm
         bf.finishEdit()
-    print('lower panel pieces: z %.0f..%.0f, cuts:' % (zb_, zt_), cuts)
+    print('pods: cuts:', cuts)
     return cuts
 
 
