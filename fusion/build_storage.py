@@ -26,7 +26,7 @@ S = dict(
 QUADRANT = dict(host='Right half', u=(560.0, 735.0), z=(140.0, 315.0), y=(-122.0, -32.0))   # 175 x 175 x 90
 PED_BASE = dict(host='Right half', u=(840.0, 885.0), z=(60.0, 280.0), y=(-120.0, -75.0))   # on edge, behind the right face pocket
 FUEL_POD = dict(host='Right half', src='FSP3 v1:1', mod_u=230.5, mod_z=-199.0, stow_u=852.0, stow_z=211.0, stow_c=-87.0, rot=180)
-TRIM_POD = dict(host='Right half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=674.0, stow_yc=-74.0, stow_z=80.0, rot=90)   # Jason's position (moved in Fusion, 2026-11-22)
+TRIM_POD = dict(host='Right half', src='Trim v15:1', mod_u=409.5, mod_z=-213.0, stow_u0=674.0, stow_yc=-74.0, stow_z=104.0, rot=90)   # Jason's position (2026-11-22), raised 24 mm: the box floor is now z 0
 
 
 def X(u):
@@ -102,6 +102,8 @@ def build_storage():
         fr.append(('2020 Rear post %d' % round(216.0 - zl), prof(X(uo0), X(uo1), yr1, yr0, zl, 216.0)))
         fr.append(('2020 Rear post %d' % round(zt - zl), prof(X(us0), X(us1), yr1, yr0, zl, zt)))
         blo, bhi = (uo1, us0) if uo1 < us0 else (us1, uo0)
+        if h == 'Left half':          # yoke housing tunnel: the bottom rear rail stops short of it
+            bhi = min(bhi, P['tunnel'][0])
         fr.append(('2020 Rear rail %d' % round(bhi - blo), prof(X(blo), X(bhi), yr1, yr0, zl, zl + T)))
         fr.append(('2020 Rear rail %d' % round(ut1 - ut0), prof(X(ut0), X(ut1), yr1, yr0, zt - T, zt)))
         for (c0, c1, yf, z0, z1) in ((uo0, uo1, -tp - 40, zl, zl + T), (uo0, uo1, -tp - 40, 216.0 - T, 216.0),

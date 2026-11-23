@@ -7,7 +7,7 @@ import adsk.core, adsk.fusion, math
 PLACE = {
     'G1000 v1:1':          ('Left half', 0.0, 0.0),
     '172 AV PNL v1:1':     ('Left half', 0.0, 0.0),
-    'C172 Yoke Adapt:1':   ('Left half', 0.0, 0.0),
+    'C172 Yoke Adapt:1':   ('Left half', 0.0, 0.0, -27.0),   # follows the yoke hole down to the Logitech shaft height
     'GMA-1347 v3:1':       ('Spacer', 10.0, -16.0),      # sunk flush into the spacer
     'G1000 V2 v1:1':       ('Right half', 25.0, 0.0),
     'ASI v1:1':            ('Right half', 90.0, 0.0),    # ASI + attitude + altimeter block moved right
@@ -15,13 +15,13 @@ PLACE = {
     # lower panel: his fuse panels are fascias that stand 28 mm proud of his recessed 3 mm plate; brought
     # forward 12 mm their faces land flush with the MIP face and pass through cut-outs in our 9 mm lower plate.
     # The flaps lever comes forward 40 mm (lever stands proud like the real one, mechanism stays shallow).
-    'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Left half', 0.0, 12.0),
+    'Lower Panel Assy v1:1/LHS Fuse panel v1:1': ('Lower panel (left)', 0.0, 12.0, -48.0),
     # (RHS fuse panel removed: throttle / mixture / condition push-pulls take its place, see SPLIT)
-    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Right half', 126.0, 40.0),   # u 790-872
+    'Lower Panel Assy v1:1/flaps lever v1:1':    ('Lower panel (right)', 126.0, 40.0, -48.0),   # u 790-872
     # fuel selector on the left lower in the old start-key spot (Jason: keep the key that's in the LHS fuse panel).
     # Face u 288-423, z -119..11 (overlaps the MIP bottom edge by 11 mm), face plate on the panel front; support body
     # fits exactly between the lower 2020 rail (z -105) and the MIP panel bottom (z 0).
-    'FSP3 v1:1':           ('Left half', 125.0, 8.0, 145.0),
+    'FSP3 v1:1':           ('Lower panel (left)', 125.0, 8.0, 97.0),
 }
 # His lower-panel push-pull throttle and mixture (slide-pot type), plus a second throttle used as the CONDITION
 # knob, on the right lower where the RHS fuse panel was. Modelled PUSHED IN (storage/fold state): knob, rod and
@@ -31,9 +31,9 @@ PLACE = {
 MOVE_T = {'8mm x 198mm brass rod': -62.0, '5 Throttle Knob (1)': -62.0, '8 Ferrule (1)': -62.0, '5 Throttle Knob (2)': None}
 MOVE_M = {'Mix Tube': -60.0, '3 Mix Knob': -60.0, '8 Ferrule': -60.0}
 SPLIT = [
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Right half', 74.0, 12.0, 0.0, MOVE_T),   # knob u 640
-    ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Right half', 73.0, 12.0, 0.0, MOVE_M),     # knob u 690
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Right half', 174.0, 12.0, 0.0, MOVE_T),  # knob u 740
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Lower panel (right)', 74.0, 12.0, -48.0, MOVE_T),   # knob u 640
+    ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Lower panel (right)', 73.0, 12.0, -48.0, MOVE_M),     # knob u 690
+    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Lower panel (right)', 174.0, 12.0, -48.0, MOVE_T),  # knob u 740
 ]
 LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
@@ -45,6 +45,10 @@ def place():
     root = d.rootComponent
     tbm = adsk.fusion.TemporaryBRepManager.get()
     hosts = {o.component.name: o for o in root.occurrences}
+    for o in list(hosts.values()):
+        for ch in o.childOccurrences:
+            if ch.component.name.startswith('Lower panel'):
+                hosts[ch.component.name] = ch
     vend = [o for o in root.occurrences if o.component.name.startswith('737DIYSIM')][0]
     top = vend.childOccurrences.item(0)
     R = adsk.core.Matrix3D.create()

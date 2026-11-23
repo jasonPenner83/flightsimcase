@@ -102,8 +102,17 @@ def build_rim():
         y0, y1 = -B + sk, rim
         skin = interior(h, sk, y0, y1, sh[h])
         op(skin, interior(h, 0.0, y0 - 1, y1 + 1, sh[h]), SUB)
+        lid = interior(h, sk, -B, -B + sk, sh[h])
+        if h == 'Left half':
+            # yoke: tunnel for the housing through the bottom of the left box, and the shaft slot through the bottom
+            # skin in front of the panel, so the main unit lowers straight down over the yoke
+            t0, t1, t2, t3 = P['tunnel']
+            op(skin, box(X(t0), X(t1), -B - 1, -tp + 0.01, t2, t3), SUB)
+            op(lid, box(X(t0), X(t1), -B - 1, -B + sk + 1, t2, t3), SUB)
+            yu, yd = P['yoke_u'], P['yoke_d']
+            op(skin, box(X(yu - yd / 2), X(yu + yd / 2), -tp, rim + 1, zl - sk - 1, 1.0), SUB)
         items[h].append(('PANEL rim skin, closes the case (3 mm)', skin))
-        items[h].append(('PANEL rear lid (3 mm, removable)', interior(h, sk, -B, -B + sk, sh[h])))
+        items[h].append(('PANEL rear lid (3 mm, removable)', lid))
         # seam-side wall of the rear box (outside the seam column, behind the seam angle)
         if h == 'Left half':
             items[h].append(('PANEL seam side wall (3 mm)', box(X(l1), X(l1) + sk, -B, -tp - 20, zl - sk, zt + sk)))

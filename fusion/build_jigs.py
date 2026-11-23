@@ -15,8 +15,7 @@ BED = 250.0      # usable bed (256 minus margin)
 JIGS = [
     ('J01_PFD_opening', 'Left half', 'PANEL 737', (134.0, 430.0, 131.0, 326.0), 22.0, [(100.0, 141.3, 100.0, 245.0)]),
     ('J02_switch_panel', 'Left half', 'PANEL 737', (19.0, 223.0, 28.0, 245.5), 17.0, [(141.3, 260.0, 137.5, 260.0)]),
-    ('J03_yoke_hole', 'Left half', 'PANEL 737', (260.0, 308.0, 36.0, 84.0), 20.0),
-    ('J04_left_face_pocket', 'Left half', 'PANEL 737', (334.0, 409.0, 20.0, 116.0), 20.0),
+    ('J03_yoke_hole_and_slot', 'Left half', 'PANEL 737', (260.0, 308.0, 0.0, 57.0), 20.0),   # hole + slot to the bottom edge
     ('J05_GMA1347_opening', 'Spacer', 'PANEL spacer', (448.0, 504.0, 125.0, 332.0), 20.0),
     ('J06_MFD_opening', 'Right half', 'PANEL 737', (530.0, 828.0, 131.0, 326.0), 22.0),
     ('J07_standby_ASI', 'Right half', 'PANEL 737', (523.0, 611.0, 28.0, 116.0), 20.0),
@@ -24,10 +23,10 @@ JIGS = [
     ('J09_standby_altimeter', 'Right half', 'PANEL 737', (699.0, 791.0, 21.0, 116.0), 20.0),
     ('J10_ELT', 'Right half', 'PANEL 737', (834.0, 870.0, 247.0, 293.0), 20.0),
     ('J11_right_face_pocket', 'Right half', 'PANEL 737', (796.0, 919.0, 20.0, 116.0), 20.0),
-    ('J12_left_fuse_panel', 'Left half', 'PANEL lower', (19.5, 278.0, -107.5, 0.0), 20.0),
-    ('J13_fuel_selector_notch', 'Left half', 'PANEL lower', (298.0, 412.0, -110.0, 0.0), 20.0),
-    ('J14_throttle_mixture_condition', 'Right half', 'PANEL lower', (618.0, 762.0, -80.0, -41.0), 20.0),
-    ('J15_flaps_lever', 'Right half', 'PANEL lower', (804.0, 877.0, -95.5, -9.5), 20.0),
+    ('J12_left_fuse_panel', 'Lower panel (left)', 'PANEL lower', (19.5, 278.0, -155.5, -46.0), 20.0),
+    ('J13_fuel_selector', 'Lower panel (left)', 'PANEL lower', (298.0, 412.0, -158.0, -40.0), 20.0),
+    ('J14_throttle_mixture_condition', 'Lower panel (right)', 'PANEL lower', (618.0, 762.0, -128.0, -89.0), 20.0),
+    ('J15_flaps_lever', 'Lower panel (right)', 'PANEL lower', (804.0, 877.0, -143.5, -57.5), 20.0),
 ]
 
 
@@ -57,6 +56,10 @@ def build_jigs():
         return tbm.createCylinderOrCone(F(x, y0, z), r / 10.0, F(x, y1, z), r / 10.0)
 
     hosts = {o.component.name: o.component for o in root.occurrences}
+    for o in root.occurrences:
+        for ch in o.childOccurrences:
+            if ch.component.name.startswith('Lower panel'):
+                hosts[ch.component.name] = ch.component
     os.makedirs(OUT, exist_ok=True)
     made = []
     for spec in JIGS:

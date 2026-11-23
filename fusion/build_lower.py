@@ -1,6 +1,9 @@
-# Lower panel for the 737DIYSIM MIP folding case. Runs AFTER place_vendor.place(): the 9 mm lower plates
-# (same plane as the MIP panel) are cut wherever a placed lower module passes through the panel plane.
-# Behind the plates: open-top printed cable bins in the negative space. Condition knob = placeholder.
+# Lower panel pieces (left, spacer, right) for the 737DIYSIM MIP folding case. Runs AFTER place_vendor.place().
+# Jason (2026-11-23): the lower panel is separate from the main unit, bolted to it, and hangs BELOW the desk top in
+# front of the desk edge; packed, it stays on and forms the base of the closed case. The 9 mm plates (same plane as the
+# MIP panel) are cut where a lower module passes through. Each side piece has a stepped 3 mm box: shallow in the desk-
+# edge zone (z -41..-3, 31 mm deep so it clears the desk edge 40 mm behind the face), full depth below the desk
+# underside (z -41) where the deep parts (push-pull rods, fuel selector, flaps mechanism) run back under the desk.
 # Units mm, frame as build_case_mip (X right, Y toward pilot, Z up, u = x + 460).
 import importlib.util
 import adsk.core, adsk.fusion
@@ -10,10 +13,8 @@ spec = importlib.util.spec_from_file_location('build_case_mip', BASE + 'build_ca
 bcm = importlib.util.module_from_spec(spec); spec.loader.exec_module(bcm)
 P = bcm.P
 
-# (host, u0, u1, z0, z1, depth) open-top bins behind the lower plates. Halves: inside the 2040 frame depth.
-# Spacer: shallow, because the spacer's back faces outward when folded (a deeper bin widens the closed case).
-BINS = [('Spacer', 436.0, 515.0, None, -5.0, 21.5),
-        ('Right half', 878.0, 922.0, None, -5.0, 48.5)]
+HOST = {'Left half': 'Lower panel (left)', 'Spacer': 'Lower panel (spacer)', 'Right half': 'Lower panel (right)'}
+BOX_DEPTH = {'Left half': 72.0, 'Right half': 190.0}   # same as the rear boxes above
 LOWER = ('LHS Fuse panel', 'flaps lever', 'FSP3', 'Throttle', 'Mixture', 'Condition')
 
 
@@ -28,7 +29,9 @@ def build_lower():
     tbm = adsk.fusion.TemporaryBRepManager.get()
     SUB = adsk.fusion.BooleanTypes.DifferenceBooleanType
     UNI = adsk.fusion.BooleanTypes.UnionBooleanType
-    tp = P['t_panel']; zl = P['z_low']; T = P['T']
+    tp = P['t_panel']; zt_, zb_ = P['lower_top'], P['lower_bot']; T = P['T']; sk = P['skin']; rim = P['rim']
+    zd_under = P['desk_z'] - P['desk_t']          # desk underside, -41
+    fz = -(P['desk_edge'] - 9.0)                   # back of the desk-edge zone: -31 (9 mm clear of the desk edge)
 
     def F(x, y, z):
         return adsk.core.Point3D.create(x / 10.0, -y / 10.0, z / 10.0)
@@ -46,14 +49,18 @@ def build_lower():
         return tbm.createCylinderOrCone(F(x, y0, z), r / 10.0, F(x, y1, z), r / 10.0)
 
     uA, uB, hg = P['uA'], P['uB'], P['hg']
-    spans = {'Left half': (0.0, uB - hg), 'Spacer': (uB + hg, uA - hg), 'Right half': (uA + hg, 920.0 + P['shift_right'])}
-    hosts = {o.component.name: o for o in root.occurrences}
-    plates = {h: box(X(a), X(b), -tp, 0, zl, 0) for h, (a, b) in spans.items()}
+    spans = {'Left half': (0.0, uB - hg), 'Spacer': (uB + hg, uA - hg), 'Right half': (uA + hg, 920.0 + P['shift_right'] + P['r_ext'])}
+    hosts = {}
+    for o in root.occurrences:
+        for ch in o.childOccurrences:
+            if ch.component.name.startswith('Lower panel'):
+                hosts[ch.component.name] = ch
+    plates = {h: box(X(a), X(b), -tp, 0, zb_, zt_) for h, (a, b) in spans.items()}
 
     # cut-outs: union footprint (x, z) of each lower module's bodies that pass through the panel plane
     cuts = []
     for h in spans:
-        for ch in hosts[h].childOccurrences:
+        for ch in hosts[HOST[h]].childOccurrences:
             if not ch.component.name.startswith(LOWER):
                 continue
             lo = [1e9, 1e9]; hi = [-1e9, -1e9]
@@ -95,20 +102,34 @@ def build_lower():
                 cuts.append('%s %s u %.0f..%.0f z %.0f..%.0f' % (h, ch.component.name[:16], lo[0] * 10 + 460, hi[0] * 10 + 460, lo[1] * 10, hi[1] * 10))
     items = {h: [('PANEL lower (%s)' % h.lower(), plates[h])] for h in spans}
 
-    for h, u0, u1, z0, z1, dep in BINS:
-        z0 = (zl + T + 2) if (z0 is None and h != 'Spacer') else (zl + 5 if z0 is None else z0)
-        y_front, y_back = -tp - 2.5, -tp - 2.5 - dep
-        b = box(X(u0), X(u1), y_back, y_front, z0, z1)
-        tbm.booleanOperation(b, box(X(u0) + 2, X(u1) - 2, y_back + 2, y_front - 2, z0 + 2, z1 + 5), SUB)
-        items[h].append(('PRINT cable bin (%s)' % h.lower(), b))
+    spx = importlib.util.spec_from_file_location('ext', BASE + 'ext.py')
+    ext = importlib.util.module_from_spec(spx); spx.loader.exec_module(ext)
+    prof = ext.make(tbm, F)
+    for h in ('Left half', 'Right half'):
+        a, b = spans[h]
+        B = BOX_DEPTH[h]
+        if h == 'Left half':
+            so0, so1, ui0, ui1 = a - sk, a, a, b          # outer skin column, inner span
+            ur0, ur1 = a + T, b - 20
+        else:
+            so0, so1, ui0, ui1 = b, b + sk, a, b
+            ur0, ur1 = a + 20, b - T
+        its = items[h]
+        its.append(('2020 Lower rail %d' % round(ur1 - ur0), prof(X(ur0), X(ur1), -tp - T, -tp, zt_ - T, zt_)))
+        its.append(('PANEL lower box side, deep (3 mm)', box(X(so0), X(so1), -B, rim, zb_ - sk, zd_under - sk)))
+        its.append(('PANEL lower box side, desk zone (3 mm)', box(X(so0), X(so1), fz, rim, zd_under - sk, zt_)))
+        its.append(('PANEL lower box bottom (3 mm)', box(X(min(so0, ui0)), X(max(so1, ui1)), -B, rim, zb_ - sk, zb_)))
+        its.append(('PANEL lower box lid (3 mm)', box(X(ui0), X(ui1), -B, -B + sk, zb_, zd_under - sk)))
+        its.append(('PANEL lower box shelf under desk (3 mm)', box(X(ui0), X(ui1), -B, fz, zd_under - sk, zd_under)))
+        its.append(('PANEL lower box desk-zone back (3 mm)', box(X(ui0), X(ui1), fz - sk, fz, zd_under, zt_)))
 
     for h, its in items.items():
-        comp = hosts[h].component
+        comp = hosts[HOST[h]].component
         bf = comp.features.baseFeatures.add(); bf.startEdit()
         for nm, b in its:
             nb = comp.bRepBodies.add(b, bf); nb.name = nm
         bf.finishEdit()
-    print('lower panel: z %.0f..0, cuts:' % zl, cuts)
+    print('lower panel pieces: z %.0f..%.0f, cuts:' % (zb_, zt_), cuts)
     return cuts
 
 

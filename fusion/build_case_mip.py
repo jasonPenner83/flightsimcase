@@ -14,10 +14,15 @@ P = dict(
     cut_left=430.0, cut_right=496.0, shift_right=25.0,
     gma_u=476.0, gma_w=48.0, gma_z0=129.5, gma_z1=327.5,
     gauge_shift=90.0,            # his ASI/attitude/altimeter block moves +90 mm (old copilot-yoke area; clears the seam edge + rear tub wall)
-    yoke_u=283.8, yoke_z=60.0, yoke_d=40.0,
+    yoke_u=283.8, yoke_z=33.0, yoke_d=40.0,  # Logitech yoke shaft ~36 mm above the desk (desk top = z -3): hole + slot to the bottom edge
     rear=70.0,                   # his ASI case is ~65 mm behind the panel
     foot=40.0,
-    z_low=-125.0,                # bottom of the lower panel (his fuse panels reach z -103)
+    z_low=0.0,                   # bottom of the MAIN unit panels; the main unit sits on the desk (its 3 mm bottom skin at z -3..0)
+    desk_z=-3.0, desk_edge=40.0, desk_t=38.0,   # deployed: desk top, desk front edge 40 mm behind the panel face, 1.5 in thick
+    lower_top=-3.0, lower_bot=-173.0,            # separate lower panel pieces hang below the desk top, in front of its edge
+    lower_drop=48.0,             # lower modules move down 48 mm so everything deep sits under the desk (underside z -41)
+    yoke_box=(158.8, 408.8, 250.0, 71.25),        # Logitech yoke housing: u range, depth, height (on the desk, front at the desk edge)
+    tunnel=(153.0, 409.0, -5.0, 75.0),           # tunnel through the left box for the housing (u0, u1, z0, z1)
     # open face pockets (u0, u1, z0, z1): blank panel areas that face the other half's protruding parts when
     # closed, so they double as storage pockets; between the 2020 rails at z 10 and z 126
     square_top=False,            # Jason: KEEP his curved top corners
@@ -25,7 +30,7 @@ P = dict(
                                  # edge evens them so the forward-extended rims meet exactly when folded
     rim=46.5,                    # each half's rim (top, curved corner, outer side, bottom) runs this far in front of the face
     skin=3.0,
-    pockets=(('Left half', 338.0, 405.0, 24.0, 112.0), ('Right half', 800.0, 915.0, 24.0, 112.0)),
+    pockets=(('Right half', 800.0, 915.0, 24.0, 112.0),),   # left pocket removed: the yoke housing tunnel runs there
 )
 
 
@@ -88,6 +93,8 @@ def build():
     mv = adsk.core.Matrix3D.create(); mv.translation = adsk.core.Vector3D.create(dR / 10.0, 0, 0)
     tbm.transform(right_panel, mv)
     op(left_panel, ycyl(X(P['yoke_u']), P['yoke_z'], -tp - 1, 1, P['yoke_d'] / 2), SUB)
+    # slot from the yoke hole down to the bottom edge: the main unit lowers straight down over the yoke shaft
+    op(left_panel, box(X(P['yoke_u'] - P['yoke_d'] / 2), X(P['yoke_u'] + P['yoke_d'] / 2), -tp - 1, 1, -1.0, P['yoke_z']), SUB)
     # standby gauges: re-use HIS cutout shapes (ASI / attitude / altimeter + screw holes), moved +83 mm into the
     # old copilot-yoke area: plugs = slab minus his panel over the gauge region, then fill + re-cut
     plugs = box(X(434.0), X(702.0), -tp, 0, 22.0, 122.0)
@@ -124,13 +131,13 @@ def build():
             L.append(('2020 Rail %d' % round(b - a), prof(X(a), X(b), -tp - T, -tp, zc - T / 2, zc + T / 2)))
         return L
 
-    def seam_angle(u_edge, side):
+    def seam_angle(u_edge, side, leaf=20.0):
         x = X(u_edge)
         x0, x1 = (x - 2, x) if side < 0 else (x, x + 2)
         a = box(x0, x1, -tp - 20, -tp, zl, 369.0)
-        x0, x1 = (x - 20, x) if side < 0 else (x, x + 20)
+        x0, x1 = (x - leaf, x) if side < 0 else (x, x + leaf)
         op(a, box(x0, x1, -tp - 2, -tp, zl, 369.0), UNI)
-        return ('ALU angle 20x20x2 (seam)', a)
+        return ('ALU angle 20x20x2 (seam)' if leaf == 20.0 else 'ALU angle 20x%dx2 (seam, trimmed)' % leaf, a)
 
     def add(name, items, grounded=False):
         occ = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
@@ -145,23 +152,22 @@ def build():
     ft = P['foot']; yk = P['kn']
     left = [('PANEL 737DIYSIM MIP - left (switches + PFD)', left_panel), seam_angle(l1, -1),
             ('HINGE leaf', box(X(l1), X(l1) + 1.4, -tp - 20, 0, zl + 10, 359))]
-    left += frame(l0, l1, True, False, [(l0 + T, l1 - 20, zl + 10), (l0 + T, l1 - 20, 10.0), (215.5, l1 - 20, 126.0), (240.0, l1 - 20, 359.0)])
-    for xu in (X(l0), X(l1) - 40):
-        left.append(('PRINT foot', box(xu, xu + T, -tp - 40, 0, zl - P['skin'] - ft, zl - P['skin'])))   # under the bottom rim
-    spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1), seam_angle(s1, -1),
+    left += frame(l0, l1, True, False, [(l0 + T, P['tunnel'][0], 10.0), (215.5, l1 - 20, 126.0), (240.0, l1 - 20, 359.0)])
+    spacer = [('PANEL spacer (GMA 1347, flush)', spacer_panel), seam_angle(s0, +1, 16.0), seam_angle(s1, -1, 16.0),   # leaves trimmed: the flush GMA 1347 base plate sits between them
+             
               ('HINGE knuckle B', vcyl(X(uB), yk, zl + 10, 359, 3.0)), ('HINGE knuckle A', vcyl(X(uA), yk, zl + 10, 359, 3.0))]
     right = [('PANEL 737DIYSIM MIP - right (MFD + standby)', right_panel), seam_angle(r0, +1),
              ('HINGE leaf', box(X(r0) - 1.4, X(r0), -tp - 20, 0, zl + 10, 359))]
     r1f = r1 + P['r_ext']           # outer frame line of the right half (after the edge filler)
-    right += frame(r0, r1f, False, True, [(r0 + 20, r1f - T, zl + 10), (r0 + 20, r1f - T, 10.0), (r0 + 20, r1f - T, 126.0), (r0 + 20, 705.0, 359.0)])
-    zb = zl - P['skin']
-    for xu in (X(r0) + 2, X(r1f) - T):
-        right.append(('PRINT clamp foot', box(xu, xu + T, -tp - 40, 0, zb - ft, zb)))
-        right.append(('PRINT desk clamp jaw', box(xu, xu + T, 0, 12, zb - ft - 60, zb - ft)))
-
+    right += frame(r0, r1f, False, True, [(r0 + 20, r1f - T, 10.0), (r0 + 20, r1f - T, 126.0), (r0 + 20, 705.0, 359.0)])
     occR = add('Right half', right, grounded=True)
     occS = add('Spacer', spacer)
     occL = add('Left half', left)
+    # separate lower panel pieces: bolted to their half / spacer (deployed and stowed), modelled as children so they fold with it
+    for host_occ, nm in ((occL, 'Lower panel (left)'), (occS, 'Lower panel (spacer)'), (occR, 'Lower panel (right)')):
+        lo = host_occ.component.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        lo.component.name = nm
+        lo.isGroundToParent = True
 
     def pivot_point(occ, px, py):
         comp = occ.component
