@@ -86,8 +86,8 @@ The case holds 737DIYSIM modules built from his files. The rest is off the shelf
 
 | Item | Source | Qty | Where in the case |
 | --- | --- | --- | --- |
-| G1000 PFD bezel + 10.4 in LCD | 737DIYSIM | 1 | Left half |
-| G1000 MFD bezel + LCD (about 239 × 176) | 737DIYSIM | 1 | Right half |
+| G1000 PFD bezel + 10.4 in LCD (Toshiba LTD104EDZS + HDMI board, [AliExpress](https://www.aliexpress.com/item/1005011787148121.html), C$72.38 + C$3.76 shipping) | 737DIYSIM | 1 | Left half |
+| G1000 MFD bezel + LCD (same LTD104EDZS kit, about 219 × 174; see [g1000-display-choice.md](g1000-display-choice.md)) | 737DIYSIM | 1 | Right half |
 | GMA 1347 audio panel | 737DIYSIM | 1 | Spacer, mounted flush; volume knob comes off for travel |
 | Switch and dimmer panel (172 AV PNL) | 737DIYSIM | 1 | Left half |
 | Standby ASI, attitude, altimeter | 737DIYSIM | 1 set | Right half, in the old copilot-yoke area |
