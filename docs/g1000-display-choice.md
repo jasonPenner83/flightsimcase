@@ -30,4 +30,4 @@ His MIP cutout for each G1000 is 282 x 179, so the bezel is narrower than a real
 | Waveshare 10.1DP-CAPLCD (16:10, 1280x800) | about 217 x 136 active | 16:10 is the wrong shape. It's too short for the 158 mm-tall window and makes MSFS letterbox or stretch the G1000 pop-out |
 
 ## Open check
-Measure the LCD pocket in his G1000 STL (inner width/height/depth) once the files are opened. If the pocket is 239 mm wide or more, the AUO becomes an option.
+Measure the LCD pocket in his G1000 STL (inner width/height/depth) once the files are opened. All these 10.4 in panels share the same 210.4 x 157.8 mm active area, so the picture lines up with his window either way. If his pocket turns out to be sized for the wider 238.6 x 175.8 panels (an earlier MIP BOM note guessed about 239 x 176), print a pair of 10 mm side shims to center the Toshiba.
