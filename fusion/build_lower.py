@@ -15,10 +15,10 @@ P = bcm.P
 
 # pod name -> (u0, u1, bottom z, box depth)
 PODS = {'Pod: trim wheel (clamp-on)': (525.0, 612.0, -225.0, 140.0),
-        'Pod: TPM quadrant (clamp-on)': (615.0, 778.0, -145.0, 190.0)}
+        'Pod: TPM quadrant (clamp-on)': (615.0, 778.0, -175.0, 255.0)}   # V2 throttles: rack runs 244 mm back when pushed in
 HOST = {k: k for k in PODS}
 BOX_DEPTH = {k: v[3] for k, v in PODS.items()}
-LOWER = ('Throttle', 'Mixture', 'Condition', 'Trim')
+LOWER = ('Throttle', 'Mixture', 'Prop', 'Trim')
 FSP_FACE = dict(u0=796.0, u1=931.0, z0=0.0, z1=109.0, tab=(850.0, 931.0, 118.0), shaft=(858.0, 40.0, 16.0), lever=(890.0, 914.0, 87.0, 111.0))
 
 
@@ -74,7 +74,7 @@ def build_lower():
                         lo = [min(lo[0], bb.minPoint.x), min(lo[1], bb.minPoint.z)]
                         hi = [max(hi[0], bb.maxPoint.x), max(hi[1], bb.maxPoint.z)]
                 stack.extend(list(o.childOccurrences))
-            if hi[0] > lo[0] and ch.component.name.startswith(('Throttle', 'Mixture', 'Condition')):
+            if hi[0] > lo[0] and ch.component.name.startswith(('Throttle', 'Mixture', 'Prop')):
                 # push-pulls get a ROUND hole on the rod axis: 31 mm for the throttle friction screw, 27 mm for the
                 # mixture screw (check both against the 737DIYSIM throttle guide before drilling)
                 axis = None
@@ -135,7 +135,7 @@ def build_lower():
     keep = box(X(f['u0']) - 1, X(f['u1']) + 1, -5.0, 20.0, f['z0'], f['z1'])
     tbm.booleanOperation(keep, box(X(f['tab'][0]), X(f['tab'][1]) + 1, -5.0, 20.0, f['z1'] - 1, f['tab'][2]), UNI)
     plate = None
-    st = [face]
+    st = [c for c in face.childOccurrences if 'EMBOSSED' in c.name.upper()]   # one of his two face variants, no screws
     while st:
         q = st.pop()
         for bd in q.bRepBodies:

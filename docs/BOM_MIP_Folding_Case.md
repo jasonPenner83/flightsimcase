@@ -44,13 +44,13 @@ The panels are 9 mm plywood and the skins are 3 mm. The rim skins wrap the curve
 | Main panel, left | 9 mm ply | 430 × 369 | 1 | From his MIP panel file; yoke hole + slot, ignition key cut-out |
 | Main panel, right | 9 mm ply | 430 × 369 | 1 | His right section plus the 6 mm edge strip; fuel selector and flaps cut-outs |
 | Spacer panel | 9 mm ply | 85 × 369 | 1 | 48 × 198 cutout for the GMA 1347 |
-| TPM pod front plate | 9 mm ply | 163 × 142 | 1 | Throttle 31, mixture 27, condition 31 mm holes |
+| TPM pod front plate | 9 mm ply | 163 × 172 | 1 | Throttle 31, mixture 27, prop 31 mm holes |
 | Trim wheel pod front plate | 9 mm ply | 87 × 222 | 1 | Trim case cut-out |
 | Rim skin, left | 3 mm bending ply or 1.5 mm aluminium | about 1140 × 116 developed | 1 | Tunnel and slot cut in the bottom |
 | Rim skin, right | 3 mm bending ply or 1.5 mm aluminium | about 1140 × 134 developed | 1 | Right box is 90 mm deep |
 | Rear lid | 3 mm ply | about 433 × 375, curved top corner | 2 | Left lid has the tunnel notch |
 | Seam side wall | 3 mm ply | 43 × 375 (left), 61 × 375 (right) | 2 | Hinge side of each box |
-| TPM pod box | 3 mm ply | bottom 169 × 237, lid 163 × 101, shelf 163 × 159, back 163 × 38, 2 sides 237 × 104 + 78 × 41 | 1 set | 190 mm deep under the desk for the rods |
+| TPM pod box | 3 mm ply | bottom 169 × 302, lid 163 × 131, shelf 163 × 224, back 163 × 38, 2 sides 302 × 134 + 78 × 41 | 1 set | 255 mm deep under the desk for the throttle V2 racks |
 | Trim wheel pod box | 3 mm ply | bottom 93 × 187, lid 87 × 181, shelf 87 × 109, back 87 × 38, 2 sides 187 × 184 + 78 × 41 | 1 set | 140 mm deep under the desk |
 
 One 1220 × 610 sheet of 9 mm ply covers all five panels and plates. One 1220 × 610 sheet of 3 mm ply covers the lids, seam walls and both pod boxes. The rim skins are about 1.15 m long, so buy them as a long strip or join them at the top straight run.
@@ -91,7 +91,7 @@ The case holds 737DIYSIM modules built from his files. The rest is off the shelf
 | ELT switch | 737DIYSIM | 1 | Right half |
 | Yoke adapter | 737DIYSIM | 1 | Left half, at the yoke shaft height |
 | Trim wheel (Trim v15) | 737DIYSIM | 1 | Trim wheel pod |
-| Throttle push-pull (lower-panel version) | 737DIYSIM | 2 | TPM pod: one throttle, one used as condition |
+| Throttle V2 (172 THROTTLE V2, rack + gear pot) | 737DIYSIM | 2 | TPM pod: throttle and prop |
 | Mixture push-pull | 737DIYSIM | 1 | TPM pod |
 | Powered USB hub, 7-port (about 115 × 45 × 25) | Off the shelf | 1 | Right box, behind the MFD |
 | 12 V power supply, LRS-50-12 size (99 × 82 × 30) | Off the shelf | 1 | Right box, behind the MFD |
@@ -104,7 +104,7 @@ Every printed case part fits the A1's 256 × 256 × 256 mm build volume. Print i
 
 | Part | Size (mm) | Qty | Fits 256 bed | Print notes |
 | --- | --- | --- | --- | --- |
-| Fuel selector face plate | 135 × 109 × 10 | 1 | Yes | His face plate file, trimmed 10.5 mm top and bottom (tab kept under the shut-off lever) |
+| Fuel selector face plate | 135 × 109 × 10 | 1 | Yes | His embossed face plate file, trimmed 10.5 mm top and bottom (tab kept under the shut-off lever) |
 | Pod hanger bracket | 20 × 30 × 2 | 4 | Yes | Two per pod; or 20 × 3 mm aluminium flat bar |
 | Glareshield middle piece | 91 × 56 × 9 | 1 | Yes | Top face down; 4 magnet pockets |
 
@@ -113,9 +113,9 @@ Router jigs for the panel cut-outs (16 prints, all within the bed) are in the fa
 ## Open items
 
 - [ ] Confirm the yoke shaft height: the model assumes about 36 mm above the desk.
-- [ ] Check under the desk where the pods go: the TPM pod reaches 190 mm and the trim pod 140 mm back under the desktop.
+- [ ] Check under the desk where the pods go: the TPM pod reaches 255 mm and the trim pod 140 mm back under the desktop.
 - [ ] Check the yoke clamp clears the main unit; the panel stands 40 mm in front of the desk edge.
 - [ ] Check the MFD's knob encoders: a few sit up to 2 mm into the panel back at the cut-out edges, so relieve the panel there.
 - [ ] Pick the rim material: 3 mm bending ply or 1.5 mm aluminium.
 - [ ] Model the pod brackets, the closing latches and the carry handle.
-- [ ] Confirm the throttle (31 mm) and mixture (27 mm) hole sizes against his throttle guide.
+- [ ] Confirm the throttle / prop (31 mm) and mixture (27 mm) hole sizes against his throttle guides.

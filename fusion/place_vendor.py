@@ -31,17 +31,19 @@ PLACE = {
 # rods reach ~171 mm behind the face (right rear tub is deeper for this). Each is placed child by child into a
 # wrapper component.  (key, wrapper name, host, du, dy, dz, {child-name prefix: extra dy, None = leave out})
 MOVE_T = {'8mm x 198mm brass rod': -62.0, '5 Throttle Knob (1)': -62.0, '8 Ferrule (1)': -62.0, '5 Throttle Knob (2)': None}
+MOVE_V2 = {'8mm x 198mm brass rod': -62.0, '5 Throttle Knob': -62.0, '9 Silver Cap': -62.0, '172 THR RACK': -62.0}
 MOVE_M = {'Mix Tube': -60.0, '3 Mix Knob': -60.0, '8 Ferrule': -60.0}
 SPLIT = [
     # fuel selector on the main panel, right of the standby gauges; his 135 x 130 face plate is left out and replaced by
     # a printed 135 x 109 one (build_lower) so it fits under the MFD bezel
     ('G1000 V2 v1:1', 'MFD (G1000 V2, no back plate)', 'Right half', 25.0, 2.0, 0.0, {'Component17': None}),
     ('FSP3 v1:1', 'Fuel selector (trimmed face)', 'Right half', 633.0, 8.0, 252.0, {'1 Facepanel': None}),
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Throttle (push-pull, pushed in)', 'Pod: TPM quadrant (clamp-on)', 74.0, 12.0, -48.0, MOVE_T),   # knob u 640
+    # Throttle and prop: his 172 THROTTLE V2 (rack + gear pot), pushed in (knob, rod, cap and rack 62 mm back)
+    ('172 THROTTLE V2 v1:1', 'Throttle (V2, pushed in)', 'Pod: TPM quadrant (clamp-on)', 75.0, 0.0, 49.0, MOVE_V2),   # knob u 640
     ('Lower Panel Assy v1:1/Mix Lever v1:1', 'Mixture (push-pull, pushed in)', 'Pod: TPM quadrant (clamp-on)', 73.0, 12.0, -48.0, MOVE_M),     # knob u 690
-    ('Lower Panel Assy v1:1/throt temp v1:1', 'Condition (throttle copy, pushed in)', 'Pod: TPM quadrant (clamp-on)', 174.0, 12.0, -48.0, MOVE_T),  # knob u 740
+    ('172 THROTTLE V2 v1:1', 'Prop (V2 throttle, pushed in)', 'Pod: TPM quadrant (clamp-on)', 175.0, 0.0, 49.0, MOVE_V2),   # knob u 740
 ]
-LOWER = ('Throttle', 'Mixture', 'Condition', 'Trim')
+LOWER = ('Throttle', 'Mixture', 'Prop', 'Trim')
 REMOVABLE = ('dUAL kNOB',)     # knobs that come off for travel (GMA volume knob)
 
 

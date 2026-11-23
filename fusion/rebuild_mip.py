@@ -38,6 +38,10 @@ def run(_context: str):
                         b.material = lib.materials.itemByName(v)
                 if b.name.startswith('ZONE'):
                     b.isLightBulbOn = False
+                if b.name.startswith('PRINT fuel selector'):
+                    alib = app.materialLibraries.itemByName('Fusion Appearance Library')
+                    ap = d.appearances.itemByName('Plastic - Matte (Black)') or d.appearances.addByCopy(alib.appearances.itemByName('Plastic - Matte (Black)'), 'Plastic - Matte (Black)')
+                    b.appearance = ap
         if o.name.startswith('MIP') or o.component.name.startswith('737DIYSIM'):
             o.isLightBulbOn = False
     print('rebuilt')
